@@ -14,25 +14,29 @@ class Personaje:
     self.nivel_de_poder = nivel_de_poder
     self.habilidades = []
     
-    def atacar(self):
+  def atacar(self):
       pass
     
-    def defender(self):
+  def defender(self):
       pass
     
-    def usar_tecnica(self):
+  def usar_tecnica(self):
       pass
     
-    def recibir_daño(self):
+  def recibir_daño(self):
       pass
     
-    def mostrar_estado(self):
+  def mostrar_estado(self):
       pass
     
 class Humano(Personaje):
-  def __init__(self, nombre: str, vida: int, raza: str, nivel_de_poder: int, habilidades):
+  def __init__(self, nombre: str, vida: int, nivel_de_poder: int, habilidades):
     super().__init__(nombre, vida, "Humano", nivel_de_poder, habilidades)
     
 class Androide(Personaje):
-  def __init__(self, nombre: str, vida: int, raza: str, nivel_de_poder: int, habilidades):
+  def __init__(self, nombre: str, vida: int, nivel_de_poder: int, habilidades):
     super().__init__(nombre, vida, "Andriode", nivel_de_poder, habilidades)
+    
+class Sayayin(Personaje):
+  def __init__(self, nombre: str, vida: int, nivel_de_poder: int, habilidades):
+    super().__init__(nombre, vida, "Sayayin", nivel_de_poder, habilidades)

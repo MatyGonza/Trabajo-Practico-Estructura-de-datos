@@ -3,7 +3,11 @@ from guererro import *
 from criatura import *
 from ladron   import *
 import os
+
+#limpia la consola, para mantener la interfaz limpia
 os.system('cls' if os.name == 'nt' else 'clear')
+
+#Eleccion de clase
 print("1-> Guerrero. (Tienes un ataque mejor)")
 print("2-> Ladron. (Puedes robar)")
 print("")
@@ -16,10 +20,16 @@ elif clase == 2:
     guerrero = Ladron(3,3,3,20,0,0,0,"Alumno")
     ataque_especial = "Robar"
 
+
+#Se crea el oponente
 monstruo = Monstruo(3,3,4,3,"Emilio Torredano")
+
+#Se limpa la interfaz
 os.system('cls' if os.name == 'nt' else 'clear')
 
 
+
+#Bucle de combate, hasta que un personaje no tenga mas vida
 while (monstruo.hp > 0 or guerrero.hp > 0):
     print("")
     print("Nombre = {}   Nivel = {}    Vida = {}    Furia = {}".format(guerrero.nombre, guerrero.nivel, guerrero.hp, guerrero.fu))
@@ -54,12 +64,14 @@ while (monstruo.hp > 0 or guerrero.hp > 0):
         monstruo.atacar(guerrero)
         guerrero.mostrarVida()
 
-
+#fin del juego
 if (guerrero.hp <= 0):
     print("")
     print("--NO TIENES NI PUTA IDEA (pero eso ya lo sabias ¯\_(ツ)_/¯ )--")
     print("")
 
+
+#Fin del juego
 elif (monstruo.hp <= 0):
     print("")
     print("--HAS APROBADO CALCULO--")
