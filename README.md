@@ -2,33 +2,40 @@
 **Cátedra: Estructuras de Datos en Python**
 **II Cuatrimestre 2024**
 
-# Título del Proyecto
+# Trabajo Final Estructura de Datos
 
+
+## Integrantes del Grupo
+1. Florencia Molina 
+3. Junior Flores
+2. Matias Gonzalez 
 
 
 ## Tabla de Contenidos
 - [Introducción](#introducción)
-   
     - [Descripción](#descripción)
     - [Objetivos](#objetivos)
-
-
 - [Planificación](#planificación)
-
     - [Análisis del mercado](#análisis-del-mercado)
     - [Alcance del proyecto](#alcance-del-proyecto)
     - [Metodología](#metodología)
-
-
-- [Análisis](#Análisis)
-
+- [Análisis](#análisis)
     - [Especificación de requerimientos](#especificación-de-requerimientos)
-        
         - [Requerimientos funcionales](#requerimientos-funcionales)
         - [Requerimientos no funcionales](#requerimientos-no-funcionales)
-        
     - [Historia de usuarios y criterios de aceptación](#historia-de-usuarios-y-criterios-de-aceptación)
-
+- [Diseño](#diseño)
+- [Desarrollo](#desarrollo)
+    - [Clases e Interfaces](#clases-e-interfaces)
+    - [Estructuras Recursivas](#estructuras-recursivas)
+    - [Arboles Binarios](#arboles-binarios)
+    - [Arboles Generales](#arboles-generales)
+    - [Cola de Prioridades y Heap Binaria](#cola-de-prioridades-y-heap-binaria)
+    - [Análisis de Algoritmos](#análisis-de-algoritmos)
+    - [Grafos](#grafos)
+        - [Recorridos DFS y BFS](#recorridos-DFS-y-BFS)
+        - [Ordenamiento Topológico](#ordenamiento-topológico)
+        - [Problemas NP y Camino Mínimo](#problemas-np-y-camino-mínimo)
 
 
 - [Requisitos](#requisitos)
@@ -39,25 +46,36 @@
 - [Contribuciones](#contribuciones)
 - [Licencia](#licencia)
 
-## Introducción 
-
+## **Introducción**
 
 ### Descripción
-Este proyecto tiene como objetivo [describir brevemente el propósito del proyecto]. Se implementa utilizando [tecnologías utilizadas, por ejemplo, Python, Java, etc.].
+Este proyecto tiene como objetivo, desarrollar en grupo un juego de Dragon Ball. El propósito de este proyecto es realizar un juego para la cátedra de estructura de datos , y poder implementar todos los temas que vimos y luego realizar una defensa individual de dicho proyecto. Este trabajo tiene como carácter evaluativo con nota que sera sumada al primer parcial.
+El proyecto se puede por grupos de 2 o 3 personas, utilizando el lenguaje python y librerías que sean necesarias.
+Fecha de entrega 28/11 18hs.
+
 
 ### Objetivos
-- Objetivo 1: [Descripción del objetivo]
-- Objetivo 2: [Descripción del objetivo]
-- Objetivo 3: [Descripción del objetivo]
+- Creación de un un juego por turnos de DBZ.
+- Creación y gestión de personajes, batallas y evolución de poderes.
+- Poder gestionar una forma de trabajo en grupo para la realización del proyecto.
+- Entregar el trabajo en tiempo y forma.
 
 
-## Planificación
+## **Planificación**
 
 ### Análisis del mercado
 [analisis-del-mercado]: #analisis-del-mercado
 
+La relevancia de realizar este proyecto de un juego de DBZ es la de implementar todo lo aprendido en la cátedra involucrando compañeros y la búsqueda de una forma de trabajo en común para el realización del proyecto.
+Poder jugar diferentes pensamientos y avanzar en grupo, divertirnos en la creación del mismo juego.
 
-Aquí deben describir brevemente la relevancia del proyecto
+Publico Objetivo:
+- Docente de la cátedra.
+- Compañeros futuros colegas que quieran implementar mejoras.
+- Publico general de video juegos.
+
+: Identificar las funciones principales y límites del proyecto.
+
 
 
 
@@ -66,12 +84,6 @@ Aquí deben describir brevemente la relevancia del proyecto
 [alcence-del-proyecto]: #alcance-del-proyecto
 
  Identificar las funciones principales y límites del proyecto
-
-
-
-
-
-
 
 ### Metodología  
 
@@ -83,7 +95,7 @@ Metodología y proceso de trabajo optamos en trabajar con reuniones semanales a 
 - Grupo de WhatsApp
 
 
-## Análisis
+## **Análisis**
 
 ### Especificación de requerimientos
 [especificación-de-requerimientos]:#especificación-de-requerimientos
@@ -161,6 +173,49 @@ Estos perfiles demográficos se convierten en una guía esencial para el diseño
 que cada aspecto del juego este cuidadosamente adaptado a las expectativas y deseos de los
 jugadores.
 
+
+## **Diseño**
+
+
+## **Desarrollo**
+
+### Clases e Interfaces
+[Clases-e-Interfaces]:(#clases-e-interfaces)
+
+
+### Estructuras Recursivas
+[estructuras-recursivas]:(#estructuras-recursivas)
+
+
+### Arboles Binarios
+[arboles-binarios]:(#arboles-binarios)
+
+
+
+### Arboles Generales
+[arboles-generales]:(#arboles-generales)
+
+
+
+### Cola de Prioridades y Heap Binaria
+[cola-de-prioridades-y-heap-binaria]:(#cola-de-prioridades-y-heap-binaria)
+
+
+### Análisis de Algoritmos
+[análisis-de-algoritmos]:(#análisis-de-algoritmos)
+
+### Grafos
+
+
+
+#### Recorridos DFS y BFS
+[recorridos-DFS-y-BFS]:(#recorridos-DFS-y-BFS)
+
+#### Ordenamiento Topológico
+[ordenamiento-topológico]:(#ordenamiento-topológico)
+
+#### Problemas NP y Camino Mínimo
+[problemas-np-y-camino-mínimo]:(#problemas-np-y-camino-mínimo)
 
 
 ## Requisitos
