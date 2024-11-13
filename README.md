@@ -67,27 +67,41 @@ Fecha de entrega 28/11 18hs.
 [analisis-del-mercado]: #analisis-del-mercado
 
 La relevancia de realizar este proyecto de un juego de DBZ es la de implementar todo lo aprendido en la cátedra involucrando compañeros y la búsqueda de una forma de trabajo en común para el realización del proyecto.
-Poder jugar diferentes pensamientos y avanzar en grupo, divertirnos en la creación del mismo juego.
+Poder jugar diferentes pensamientos y avanzar en grupo, divertirnos en la creación del mismo.
 
 Publico Objetivo:
 - Docente de la cátedra.
 - Compañeros futuros colegas que quieran implementar mejoras.
 - Publico general de video juegos.
 
-: Identificar las funciones principales y límites del proyecto.
-
-
-
-
 
 ### Alcance del proyecto
 [alcence-del-proyecto]: #alcance-del-proyecto
 
- Identificar las funciones principales y límites del proyecto
+Funciones principales
+- Elegir un personaje.
+- El personaje tiene que subir de niveles.
+- El personaje tiene que adquirir nuevas habilidades.
+- Realizar entrenamientos.
+- Jugar un torneo.
+- Jugar una batalla aleatoria.
+- Los personajes pueden recorrer planetas del universo de dragon ball z. 
+- Los personajes pueden buscar las esferas del dragon.
+ 
+Límites del proyecto
+- Crear un juego que sea por turnos.
+- Crear una interfaz de usuario que sea por terminal. 
+
+
 
 ### Metodología  
 
 Metodología y proceso de trabajo optamos en trabajar con reuniones semanales a disponibilidad de cada uno.
+
+Tecnologías
+
+- Visual studio code
+- Python
 - Meet
 - Drive
 - Discord
@@ -100,81 +114,85 @@ Metodología y proceso de trabajo optamos en trabajar con reuniones semanales a 
 ### Especificación de requerimientos
 [especificación-de-requerimientos]:#especificación-de-requerimientos
 
+
+
 #### Requerimientos funcionales
 [requerimientos-funcionales]:#requerimientos-funcionales
 
-Detallar los requerimientos funcionales y no funcionales
-de la aplicación.
-
-En función al problema y el análisis de los trabajos relacionados, se especifican los siguientes
-requerimientos funcionales, mismos que se plantean a continuación:
 1. Sistema de combate:
-- RF-01: Implementar un sistema de combate estratégico que permita la interacción del
-jugador con diferentes habilidades y movimientos.
-- RF-02: Desarrollar una variedad de habilidades únicas para cada clase de personaje
-ya sea jugable o no, lo que permite la diversificación de estrategias de combate.
-- RF-03: Permitir la combinación de habilidades con el propósito de generar combos y
-efectos especiales durante los enfrentamientos.
+- Implementar un sistema de combate estratégico que permita la interacción del
+jugador con diferentes habilidades y movimientos desde la terminal.
+- Desarrollar habilidades únicas para cada clase de personaje.
 
 2. Progresión del Personaje:
-- RF4: Crear un sistema de niveles y experiencia que permita al jugador avanzar y
+- Crear un sistema de niveles y experiencia que permita al jugador avanzar y
 mejorar a medida que avanza en el juego.
-- RF5: Desarrollar un sistema que recompense al jugador cuando derrote enemigos.
+- Desarrollar un sistema de entrenamiento que permita mejorar las habilidades del personaje.
+- Desarrollar un sistema que el personaje pueda viajar por diferentes planetas y poder entrenar en ellos.
+
 3. Interacción del Jugador:
-- RF6: Diseñar un entorno interactivo que permite al jugador explorar el mundo del juego
-y pueda participar en múltiples desafíos.
-- RF7: Facilitar la interacción del personaje con respecto a los NPCs.
+- Diseñar una interfaz de usuario desde la terminal  que permite al jugador explorar el juego y pueda participar en múltiples desafíos.
 
 
 #### Requerimientos no funcionales 
 [requerimientos-no-funcionales]:#requerimientos-no-funcionales
 
-Se han identificado los siguientes requerimientos no funcionales, listados a continuación:
 1. Rendimiento y Optimización
-- RNF1: Garantizar un rendimiento fluido y estable del juego, evitando tiempos de carga
-prolongados y problemas de framerate20
-.
+- Garantizar un rendimiento fluido y estable del juego, evitando errores de ejecución.
 
-- RNF2: Optimizar el uso de recursos para garantizar que el juego funcione de manera
+- Optimizar el uso de recursos para garantizar que el juego funcione de manera
 eficiente en dispositivos de PC.
 
 2. Estilo Visual y Narrativa:
-- RNF3: Desarrollar un estilo artístico y gráfico coherente que refleje la estética y la
-temática del juego.
-- RNF4: Crear una narrativa atractiva que sumerge al jugador en el mundo del juego y
-complemente la mecánica de combate.
+- Desarrollar un menu intuitivo para el usuario. 
+- Crear una narrativa atractiva que sumerge al jugador en el mundo del juego.
 
 3. Estabilidad:
-- RNF5: Realizar pruebas exhaustivas para garantizar la estabilidad del juego,
+- Realizar pruebas para garantizar la estabilidad del juego,
 minimizando errores, cierres inesperados y fallos técnicos.
 
 ### Historia de usuarios y criterios de aceptación
 [historia-de-usuarios-y-criterios-de-aceptación]:(historia-de-usuarios-y-criterios-de-aceptación)
 
-En esta sección se estudia a detalle las distintas audiencias a las que va dirigido el juego, junto con
-los perfiles específicos de los jugadores, donde se lleva a cabo un cuidadoso análisis de las métricas,
-el objetivo es comprender no sólo las preferencias y expectativas del público, sino también a ajustar
-las mecánicas de juego, la narrativa y los elementos visuales para garantizar una experiencia
-cautivadora y atractiva para los usuarios finales, seguidamente se en lista los grupos demográficos a
-considerar:
+En esta sección se estudia a detalle las distintas audiencias a las que va dirigido el juego
+
+- Docente de la cátedra : Quien nos dará una devolución critica y con nota del trabajo realizado.
+
+- Compañeros de la clase, futuros colegas que nos darán su opinion o podrán mejorar el proyecto aportando sus propias ideas. 
+
 - Jugadores RPG tradicionales: Personas que disfrutan de la profundidad narrativa y el
 progreso de los personajes, aspectos típicamente asociados con los RPG clásicos.
-- Amantes de combate estratégicos: Personas a las que les gusta la estrategia en los juegos
-y disfrutan planificando tácticas para enfrentamientos desafiantes.
-- Audiencia interesada en el estilo artístico único: Personas atraídas por el arte visual
-distintivo, el diseño de personajes y escenarios que ofrecen algo diferente y llamativo.
-- Aventureros de mundo abierto: Jugadores que disfrutan explorando mundos extensos y
-descubriendo secretos mientras avanzan en la trama del juego.
-- Exploradores coleccionistas: Estos jugadores se deleitan descubriendo y recolectando
-elementos ocultos, secretos o coleccionable dispersos a lo largo del mundo del juego.
+
 - Público general de videojuegos: Este segmento, aunque amplio, puede ser atraído por una
 narrativa atractiva, mecánicas de juego interesantes y un estilo visual único.
-Estos perfiles demográficos se convierten en una guía esencial para el diseño y desarrollo, asegurando
-que cada aspecto del juego este cuidadosamente adaptado a las expectativas y deseos de los
-jugadores.
 
 
 ## **Diseño**
+
+- **Herramientas y entorno de desarrollo**
+    - Visual studio code
+    - Git
+    - Github
+
+- **Mecánica y dinámica del juego**
+
+    - Sistema de habilidades, los personajes utilizan habilidades exclusivos de las diferentes clases de personajes. Estas clases están representadas en una lista de habilidades.
+
+    - Sistema de combate, los jugadores pueden utilizar ataques normales, o ataques especiales (habilidades), o cargar energía (ki) para la utilización de estas habilidades.
+    El sistema esta diseñado para que sea un combate por turnos hasta que algún jugador se quede sin vida. Por cada turno se actualiza la vida, energía(ki), experiencia, nivel de los personajes.
+
+    - Progresión del personaje, el protagonista avanza de nivel por medio de la experiencia(combates, entrenamientos), y va adquiriendo nuevas habilidades.
+
+    - Una variedad de personajes están disponibles en el juego para elección del usuario. Estas clases ya están predefinidas en la interfaz permitiendo al usuario empezar el juego rápidamente.
+
+    - Exploración y misiones el personaje puede explorar distintos planetas y realizar entrenamientos o misiones.
+
+- **Arquitectura general de la aplicación**
+
+
+- Diseño gráfico e interfaces.
+- SDD.
+
 
 
 ## **Desarrollo**
