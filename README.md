@@ -200,6 +200,43 @@ narrativa atractiva, mecánicas de juego interesantes y un estilo visual único.
 ### Clases e Interfaces
 [Clases-e-Interfaces]:(#clases-e-interfaces)
 
+**clase Personaje** con varios atributos:
+- **nombre**: Nombre del personaje.
+- **vida**: Puntos de vida del personaje.
+- **raza**: Raza del personaje (ej. humano, sayayin).
+- **estado**: Estado actual del personaje (ej. normal).
+- **velocidad**: Velocidad del personaje en combate.
+- **defensa**: Capacidad de defensa del personaje.
+- **fuerza**: Potencia de ataque del personaje.
+- **ki**: Energía actual del personaje.
+- **max_ki**: Máximo nivel de ki que puede alcanzar.
+- **transformaciones**: Posibles transformaciones que puede realizar el personaje.
+- **habilidades**: Habilidades especiales que posee.
+- **exp**: Experiencia acumulada por el personaje.
+- **max_exp**: Máximo de experiencia necesaria para subir de nivel.
+- **nivel_pelea**: Nivel de combate del personaje para equilibrar enfrentamientos.
+
+**metodos**
+- **mostrar_stats**: Este método imprime en consola las estadísticas actuales del personaje, mostrando todos los atributos definidos en el constructor.
+
+- **atacar**: Este método permite al personaje atacar a otro personaje (enemigo). 
+    La lógica es la siguiente:
+        - Verifica si el ki es suficiente (mínimo 100).
+        - Calcula el daño basado en la fuerza del personaje.
+        - Determina el daño efectivo restando la defensa del enemigo.
+        - Llama al método recibir_daño del enemigo para aplicar el daño.
+        - Si no hay suficiente ki, imprime un mensaje recomendando cargar energía.
+
+- **cargar_ki**: Este método permite al personaje cargar su ki hasta alcanzar su máximo. Incrementa el ki en una cantidad definida (incremento) y muestra el progreso en la consola. Utiliza un bucle while para seguir cargando hasta alcanzar max_ki.
+
+- **defender**: 
+
+- **usar_tecnica**:
+
+- **recibir_daño**: Este método maneja la lógica cuando un personaje recibe daño. Si el daño recibido es menor o igual a la defensa del personaje, no se recibe daño. De lo contrario, se resta el daño a los puntos de vida y se imprime la vida restante.
+
+
+
 
 ### Estructuras Recursivas
 [estructuras-recursivas]:(#estructuras-recursivas)
