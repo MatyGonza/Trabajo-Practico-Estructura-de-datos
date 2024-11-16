@@ -241,6 +241,15 @@ narrativa atractiva, mecánicas de juego interesantes y un estilo visual único.
 ### Estructuras Recursivas
 [estructuras-recursivas]:(#estructuras-recursivas)
 
+**Concepto del Algoritmo**
+Experiencia: Cada vez que un personaje gana una pelea, acumula experiencia. Al alcanzar un umbral de experiencia, puede subir de nivel.
+- Nivel: El nivel del personaje determina su máximo de Ki y puede influir en el multiplicador de poder.
+- Máximo Ki: El máximo de Ki aumenta con cada nivel, lo que permite al personaje realizar más ataques especiales o cargar Ki más rápidamente.
+**Estructura del Algoritmo**
+- Clase Personaje: Contendrá atributos como nombre, fuerza base, experiencia, nivel y máximo de Ki.
+- Método evolucionar_poder: Este método será recursivo y calculará el nuevo poder del personaje basado en la experiencia ganada tras cada combate.
+Método para subir de nivel: Se activará cuando la experiencia acumulada alcance el máximo permitido para el nivel actual
+
 
 ### Arboles Binarios
 [arboles-binarios]:(#arboles-binarios)

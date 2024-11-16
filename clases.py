@@ -7,9 +7,8 @@ import time
 
 class Personaje:
     """
-      La clase Personaje es la clase base que define las características y comportamientos comunes de todos los personajes en el juego.
+    La clase Personaje es la clase base que define las características y comportamientos comunes de todos los personajes en el juego.
     """
-  
     def __init__(self, nombre:str, vida:int, raza:str, estado:str, velocidad:int, defensa:int, fuerza:int, ki:int, max_ki:int, transformaciones:list, habilidades:list, exp:int, max_exp:int,nivel_pelea:int):
         if transformaciones is None:
             transformaciones = []
@@ -52,7 +51,6 @@ class Personaje:
         else:
           print ("No se puede atacar, ya que no contas con la cant. de ki necesario. Te recomiendo cargar el ki.")
 
-    
     def cargar_ki(self, incremento, enemigo):  # Se incrementará de 100 en cien
         while self.ki < self.max_ki:
             self.ki += incremento
@@ -68,9 +66,7 @@ class Personaje:
     #Agrega una habilidad, se puede aprender con los entrenamientos o al subir nivel
     def aprender_habilidad(self, habilidad):
         self.habilidades.append(habilidad)
-        
-    
-            
+                
     def defender(self):
       pass
     
@@ -97,38 +93,39 @@ class Personaje:
 
 
 class Humano(Personaje):
-
-  def __init__(self, nombre: str, vida: int, raza: str, estado: str, velocidad: int, defensa: int, fuerza: int, ki: int, max_ki, transformaciones, habilidades, exp, max_exp, nivel_pelea):
-    super().__init__(nombre, vida, raza, estado, velocidad, defensa, fuerza, ki, max_ki, transformaciones, habilidades, exp, max_exp, nivel_pelea)
     
-def ataque_especial(self, enemigo):
-    """Ataque especial del Humano."""
-    if self.ki >= 300:
-        # Calcular el daño potencial basado en la fuerza
-        daño_especial = int(self.fuerza * 15)
-        
-        # Calcular el daño efectivo restando la defensa del enemigo
-        daño_efectivo = daño_especial - enemigo.defensa
-        
-        # Asegurarse de que el daño no sea negativo
-        if daño_efectivo < 0:
-            daño_efectivo = 0
-        
-        # Aplicar el daño al enemigo
-        enemigo.recibir_daño(daño_efectivo)
-        
-        # Mensaje de resultado
-        print(f"{self.nombre} realizó un ataque especial infligiendo {daño_efectivo} puntos de daño a {enemigo.nombre}.")
-        
-        # Reducir ki al usar el ataque especial
-        self.ki -= 300  
-    else:
-        print("No tienes suficiente ki para realizar un ataque especial.")
-        
+
+    def __init__(self, nombre: str, vida: int, raza: str, estado: str, velocidad: int, defensa: int, fuerza: int, ki: int, max_ki, transformaciones, habilidades, exp, max_exp, nivel_pelea):
+        super().__init__(nombre, vida, raza, estado, velocidad, defensa, fuerza, ki, max_ki, transformaciones, habilidades, exp, max_exp, nivel_pelea)
+    
+    def ataque_especial(self, enemigo):
+        """Ataque especial del Humano."""
+        if self.ki >= 300:
+            # Calcular el daño potencial basado en la fuerza
+            daño_especial = int(self.fuerza * 15)
+            
+            # Calcular el daño efectivo restando la defensa del enemigo
+            daño_efectivo = daño_especial - enemigo.defensa
+            
+            # Asegurarse de que el daño no sea negativo
+            if daño_efectivo < 0:
+                daño_efectivo = 0
+            
+            # Aplicar el daño al enemigo
+            enemigo.recibir_daño(daño_efectivo)
+            
+            # Mensaje de resultado
+            print(f"{self.nombre} realizó un ataque especial infligiendo {daño_efectivo} puntos de daño a {enemigo.nombre}.")
+            
+            # Reducir ki al usar el ataque especial
+            self.ki -= 300  
+        else:
+            print("No tienes suficiente ki para realizar un ataque especial.")
+            
         
 class Androide(Personaje):
-  def __init__(self, nombre: str, vida: int, raza: str, estado: str, velocidad: int, defensa: int, fuerza: int, ki: int, max_ki, transformaciones, habilidades, exp, max_exp, nivel_pelea):
-    super().__init__(nombre, vida, raza, estado, velocidad, defensa, fuerza, ki, max_ki, transformaciones, habilidades, exp, max_exp, nivel_pelea)
+    def __init__(self, nombre: str, vida: int, raza: str, estado: str, velocidad: int, defensa: int, fuerza: int, ki: int, max_ki, transformaciones, habilidades, exp, max_exp, nivel_pelea):
+        super().__init__(nombre, vida, raza, estado, velocidad, defensa, fuerza, ki, max_ki, transformaciones, habilidades, exp, max_exp, nivel_pelea)
 
 def ataque_especial(self, enemigo):
     """Ataque especial del Andriode."""
@@ -158,8 +155,8 @@ def ataque_especial(self, enemigo):
 
 
 class Sayayin(Personaje):
-  def __init__(self, nombre: str, vida: int, raza: str, estado: str, velocidad: int, defensa: int, fuerza: int, ki: int, max_ki, transformaciones, habilidades, exp, max_exp, nivel_pelea):
-    super().__init__(nombre, vida, raza, estado, velocidad, defensa, fuerza, ki, max_ki, transformaciones, habilidades, exp, max_exp, nivel_pelea)
+    def __init__(self, nombre: str, vida: int, raza: str, estado: str, velocidad: int, defensa: int, fuerza: int, ki: int, max_ki=10000, transformaciones, habilidades, exp, max_exp, nivel_pelea):
+        super().__init__(nombre, vida, raza, estado, velocidad, defensa, fuerza, ki, max_ki, transformaciones, habilidades, exp, max_exp, nivel_pelea)
 
 def ataque_especial(self, enemigo):
     """Ataque especial del Sayayin."""

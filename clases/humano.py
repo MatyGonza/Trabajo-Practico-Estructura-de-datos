@@ -2,9 +2,8 @@ from clases.personaje import Personaje
 
 class Humano(Personaje):
     
-    def __init__(self, nombre: str, vida: int, raza: str, estado: str, velocidad: int, defensa: int, fuerza: int, ki: int, max_ki, transformaciones, habilidades, exp, max_exp, nivel_pelea):
-        super().__init__(nombre, vida, raza, estado, velocidad, defensa, fuerza, ki, max_ki, transformaciones, habilidades, exp, max_exp, nivel_pelea)
-    
+    def __init__(self, nombre: str, vida: int, raza: str, estado: str, velocidad: int, defensa: int, fuerza: int, ki: int, transformaciones: list, habilidades: list, exp: int, max_exp: int, nivel_pelea: int, nivel: int = 1, max_ki_base: int = 10000, max_ki: int = 10000):
+        super().__init__(nombre, vida, raza, estado, velocidad, defensa, fuerza, ki, transformaciones, habilidades, exp, max_exp, nivel_pelea, nivel, max_ki_base, max_ki)
     def ataque_especial(self, enemigo):
         
         """Ataque especial del Humano."""
