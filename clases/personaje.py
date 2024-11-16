@@ -6,7 +6,7 @@ class Personaje:
     """
     La clase Personaje es la clase base que define las características y comportamientos comunes de todos los personajes en el juego.
     """
-    def __init__(self, nombre:str, vida:int, raza:str, estado:str, velocidad:int, defensa:int, fuerza:int, ki:int, transformaciones:list, habilidades:list, exp:int, max_exp:int,nivel_pelea:int,nivel:int=1,max_ki_base:int=10000,max_ki:int=10000):
+    def __init__(self, nombre:str, vida:int, raza:str, estado:str, velocidad:int, defensa:int, fuerza:int, ki:int, transformaciones:list, habilidades:list, exp:int, max_exp:int,nivel_poder:int,nivel:int=1,max_ki_base:int=10000,max_ki:int=10000):
         #Si no se le pasan los parametros se crea una lista vacia, esta bueno porque al empezar todos los personajes empezaran sin habilidades
         #Esta parte creo que se implementa con otra estructura de datos a revisar
         if transformaciones is None:
@@ -26,7 +26,7 @@ class Personaje:
         self.habilidades = habilidades
         self.exp = exp
         self.max_exp = max_exp
-        self.nivel_pelea = nivel_pelea #este seria un parametro para la cola de prioridad o para separar personajes
+        self.nivel_poder = nivel_poder #este seria un parametro para la cola de prioridad o para separar personajes
           #y que no sea desequlibrada la pelea ejem (satan vs goku) no seria posible    
         self.nivel = nivel  # Se agrego nivel para tener una referencia de nivel del personaje y el max ki, ya que el nivel de pelea puede variar si realiza una transformacion pero el nivel de personaje no cambia
         self.max_ki_base = max_ki_base# se agrego este atributo para tener una base al cual multiplicar cuando se actualiza el max ki segun el nivel del personaje
@@ -39,7 +39,7 @@ class Personaje:
         habilidades_str = ', '.join(self.habilidades) if self.habilidades else "Ninguna"
         transformaciones_str = ', '.join(self.transformaciones) if self.transformaciones else "Ninguna"
       
-        print (f"Nombre: {self.nombre}\nRaza: {self.raza}\nEstado: {self.estado}\nKi: {self.ki}\nMaximo de Ki: {self.max_ki}\nNivel de pelea: {self.nivel_pelea}\nVida: {self.vida} hp\nFuerza: {self.fuerza}\nVelocidad: {self.velocidad}\nDefensa: {self.defensa}\nExperiencia: {self.exp}/{self.max_exp}\nTransformaciones: {transformaciones_str}\nHabilidades: {habilidades_str}\n")
+        print (f"Nombre: {self.nombre}\nRaza: {self.raza}\nEstado: {self.estado}\nKi: {self.ki}\nMaximo de Ki: {self.max_ki}\nNivel de poder: {self.nivel_poder}\nVida: {self.vida} hp\nFuerza: {self.fuerza}\nVelocidad: {self.velocidad}\nDefensa: {self.defensa}\nExperiencia: {self.exp}/{self.max_exp}\nTransformaciones: {transformaciones_str}\nHabilidades: {habilidades_str}\n")
     
     def atacar(self,enemigo): #esto es una implementacion algo basica que puede cambiar.
         if self.ki >=   100:  #el personaje necesita un min de 100/1000 para hacer un ataque normal
@@ -96,6 +96,14 @@ class Personaje:
 
     ################################################################
     
+    def incrementar_atributos(self):
+        """Aumenta gradualmente los atributos de velocidad, defensa y fuerza."""
+        incremento = 5  # Define cuánto se incrementarán los atributos por cada nivel de poder
+        self.velocidad += incremento
+        self.defensa += incremento
+        self.fuerza += incremento
+        print(f"{self.nombre} ha incrementado sus atributos: Velocidad: {self.velocidad}, Defensa: {self.defensa}, Fuerza: {self.fuerza}")
+
     def calcular_max_ki(self):
           """Calcula el máximo de Ki basado en el nivel."""
           return (self.nivel * self.max_ki_base)  # Ejemplo: 100 + 50 por cada nivel
@@ -106,6 +114,7 @@ class Personaje:
         if self.exp >= self.nivel * 100:  # Ejemplo: 100 exp por nivel
             self.nivel += 1
             self.max_ki = self.calcular_max_ki()  # Actualiza el máximo de Ki
+            self.incrementar_atributos()  # Aumenta los atributos al subir de nivel
             print(f"{self.nombre} ha subido al nivel {self.nivel}!")
             # Llamada recursiva para verificar si se puede subir nuevamente
             self.subir_nivel()
@@ -119,13 +128,13 @@ class Personaje:
         :return: Poder total tras los combates.
         """
         if combates_ganados <= 0:
-            return self.nivel_pelea
+            return self.nivel_poder
         
         # Calcular el nuevo poder
-        nuevo_poder = self.nivel_pelea * multiplicador
+        nuevo_poder = self.nivel_poder * multiplicador
         
         # Actualizar el poder actual
-        self.nivel_pelea = nuevo_poder
+        self.nivel_poder = nuevo_poder
         
         # Aumentar experiencia tras cada combate
         self.exp += 50  # Ejemplo: ganar 50 exp por combate

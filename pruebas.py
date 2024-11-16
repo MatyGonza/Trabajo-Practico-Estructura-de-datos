@@ -21,7 +21,7 @@ print(f"Nivel final: {goku.nivel}, Max Ki: {goku.max_ki}")
 goku.mostrar_stats()
 vegueta.mostrar_stats()
 goku.cargar_ki(100)
-#poder_final = goku.evolucionar_poder(combates_ganados)
+poder_final = goku.evolucionar_poder(combates_ganados)
 
 goku.mostrar_stats()
 
