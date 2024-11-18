@@ -1,7 +1,5 @@
-from clases.personaje import Personaje
-from clases.humano import Humano
+
 from clases.sayayin import Sayayin
-from clases.andriode import Androide
 from clases.juego import Juego
 
 goku = Sayayin("goku")
