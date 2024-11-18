@@ -108,6 +108,23 @@ Tecnologías
 - Repositorio de Github
 - Grupo de WhatsApp
 
+**AGENDA DE REUNIONES**
+Con el fin de llevar encuentros semanales para conversar acerca del trabajo final, se crearon distintas vías de comunicación entre las cuales se nombran las siguientes:
+- Chat grupal en Whatsapp para facilitar la comunicación entre los integrantes.
+- Drive para compartir y editar documentos.
+- Canal en Discord para compartir material y llevar a cabo reuniones.
+- Repositorio en GitHub para subir actividades del proyecto.
+- Reuniones a través de Meet para mantener conversaciones.
+A continuación se deja detallado el cronograma de encuentros a lo largo del trabajo:
+**Semana 1**
+Viernes 01/11/24: Se llevó a cabo el primer encuentro en Meet donde cada integrante se presentó y se delinearon las primeras ideas acerca del trabajo final. Fue en esta instancia donde se acordó crear un canal en Discord y un repositorio en GitHub para compartir material y actividades realizadas por cada integrante.
+**Semana 2**
+Viernes 08/11/24: Mediante una reunión de Meet se logró avanzar en las primeras unidades del trabajo. En una puesta en común, se dialogó y se brindaron opiniones sobre lo trabajado hasta el momento.
+**Semana 3**
+Viernes 15/11/24: Se utilizó por primera vez el canal de voz de Discord en el cual se fueron compartiendo propuestas y dificultades y, al mismo tiempo, se buscaron soluciones en conjunto para abordar dichas problemáticas. Además, se acordó seguir avanzando en las unidades siguientes.
+**Semana 4**
+
+
 
 ## **Análisis**
 
