@@ -39,21 +39,25 @@ class Personaje:
         habilidades_str = ', '.join(self.habilidades) if self.habilidades else "Ninguna"
         transformaciones_str = ', '.join(self.transformaciones) if self.transformaciones else "Ninguna"
       
-        print (f"Nombre: {self.nombre}\nRaza: {self.raza}\nEstado: {self.estado}\nKi: {self.ki}\nMaximo de Ki: {self.max_ki}\nNivel de poder: {self.nivel_poder}\nVida: {self.vida} hp\nFuerza: {self.fuerza}\nVelocidad: {self.velocidad}\nDefensa: {self.defensa}\nExperiencia: {self.exp}/{self.max_exp}\nTransformaciones: {transformaciones_str}\nHabilidades: {habilidades_str}\n")
+        print (f"\n\nNombre: {self.nombre}\nNivel: {self.nivel}\nRaza: {self.raza}\nEstado: {self.estado}\nKi: {self.ki}\nMaximo de Ki: {self.max_ki}\nNivel de poder: {self.nivel_poder}\nVida: {self.vida} hp\nFuerza: {self.fuerza}\nVelocidad: {self.velocidad}\nDefensa: {self.defensa}\nExperiencia: {self.exp}/{self.max_exp}\nTransformaciones: {transformaciones_str}\nHabilidades: {habilidades_str}\n")
     
     def atacar(self,enemigo): #esto es una implementacion algo basica que puede cambiar.
-        if self.ki >=   100:  #el personaje necesita un min de 100/1000 para hacer un ataque normal
+        if self.ki >=   1000:  #el personaje necesita un min de 100/1000 para hacer un ataque normal
             daño = int(self.fuerza * 10)
             print(f"{self.nombre} infligio un daño de: {daño}.")
+
+
             daño_efectivo = max(daño - self.defensa, 0) #el daño no puede ser negativo.
-            enemigo.recibir_daño(daño_efectivo)
-            print(f"{self.nombre} inflinge puntos daño: {daño_efectivo}.")
-            self.ki -= 100  # Reduce ki al atacar
+            enemigo.recibir_daño(daño_efectivo,enemigo)
+
+
+            self.ki -= 1000  # Reduce ki al atacar
         else:
           print ("No se puede atacar, ya que no contas con la cant. de ki necesario. Te recomiendo cargar el ki.")
 
     
     def cargar_ki(self, incremento):  # Se incrementará de 100 en cien
+    #hay qe ver si carga hasta el maximo ki o no dentro de la pelea, implemente que el maximoki aumento cada vez que suba de nivel
         while self.ki < self.max_ki:
             self.ki += incremento
             # Asegurarse de que ki no supere max_ki
@@ -77,54 +81,62 @@ class Personaje:
     def usar_tecnica(self):
       pass
     
-    def recibir_daño(self,daño_recibido):
+    def recibir_daño(self,daño_recibido,personaje):
 
-      if self.defensa >= daño_recibido:
+      if personaje.defensa >= daño_recibido:
         print("No se recibio daño")
         return
       else:
-        self.vida -=daño_recibido
-        if self.vida < 0 :
+        personaje.vida -=daño_recibido
+        if personaje.vida < 0 :
           #No puede llegar la vida a menos de 0 
-          self.vida = 0 
+          personaje.vida = 0
+          print(f"{personaje.nombre} ha sido derrotado")
         
-      print(f"Recibiste daño efectivo: {daño_recibido}\nTu vida restante es: {self.vida}")
+      print(f"{personaje.nombre} Recibiste daño efectivo: {daño_recibido}, tu vida restante es: {self.vida}")
 
     def ataque_especial(self, enemigo):
         """Método para realizar un ataque especial (por definir en subclases)."""
         raise NotImplementedError("Este método debe ser implementado en las subclases.")
 
     ################################################################
+    def actualizar_max_exp(self):
+        exp_base = 100
+        max_exp_actualizada = self.nivel * exp_base
+        self.max_exp = max_exp_actualizada
+        return self.max_exp
     
+
     def incrementar_atributos(self):
         """Aumenta gradualmente los atributos de velocidad, defensa y fuerza."""
         incremento = 5  # Define cuánto se incrementarán los atributos por cada nivel de poder
         self.velocidad += incremento
         self.defensa += incremento
         self.fuerza += incremento
-        print(f"{self.nombre} ha incrementado sus atributos: Velocidad: {self.velocidad}, Defensa: {self.defensa}, Fuerza: {self.fuerza}")
+        self.vida += incremento*100
 
     def calcular_max_ki(self):
-          """Calcula el máximo de Ki basado en el nivel."""
-          return (self.nivel * self.max_ki_base)  # Ejemplo: 100 + 50 por cada nivel
+        """Calcula el máximo de Ki basado en el nivel."""
+                
+        return (self.nivel * self.max_ki_base)  # Ejemplo: 100 + 50 por cada nivel
         
-      
+
     def subir_nivel(self):
         #Sube el nivel del personaje si alcanza la experiencia necesaria.
         if self.exp >= self.nivel * 100:  # Ejemplo: 100 exp por nivel
             self.nivel += 1
             self.max_ki = self.calcular_max_ki()  # Actualiza el máximo de Ki
             self.incrementar_atributos()  # Aumenta los atributos al subir de nivel
-            print(f"{self.nombre} ha subido al nivel {self.nivel}!")
+            self.actualizar_max_exp()#Actualiza la experiencia maxima para subir de nivel
             # Llamada recursiva para verificar si se puede subir nuevamente
             self.subir_nivel()
     
-    def evolucionar_poder(self, combates_ganados, multiplicador=1):
+    def evolucionar_poder(self, combates_ganados, multiplicador=2):
         """
         Método recursivo para calcular la evolución del poder tras cada combate.
         
         :param combates_ganados: Número de combates ganados.
-        :param multiplicador: Multiplicador actual (por defecto es 1).
+        :param multiplicador: Multiplicador actual (por defecto es 2).
         :return: Poder total tras los combates.
         """
         if combates_ganados <= 0:
@@ -132,13 +144,12 @@ class Personaje:
         
         # Calcular el nuevo poder
         nuevo_poder = self.nivel_poder * multiplicador
-        
+        nuevo_poder = round(nuevo_poder)
         # Actualizar el poder actual
         self.nivel_poder = nuevo_poder
         
         # Aumentar experiencia tras cada combate
         self.exp += 50  # Ejemplo: ganar 50 exp por combate
-        print(f"{self.nombre} ganó experiencia. Total exp: {self.exp}")
         
         # Verificar si se debe subir de nivel
         self.subir_nivel()
