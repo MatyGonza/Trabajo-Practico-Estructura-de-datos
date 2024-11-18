@@ -2,32 +2,29 @@ from clases.personaje import Personaje
 from clases.humano import Humano
 from clases.sayayin import Sayayin
 from clases.andriode import Androide
+from clases.juego import Juego
 
 goku = Sayayin("goku")
-vegueta = Sayayin("Vegeta", transformaciones=["Super Saiyan", "Super Saiyan Blue"], habilidades=["megaboom"])
-#goku = Sayayin("Son Guku",10000,"Saiyayin","Normal",70,70,70,0,["Supersayayin","Supersayayin2","Supersayayin3"],["kamekameha,genkidama"],0,100,2)
-#enemigo = Humano("Cell",10000,"Androide","Normal",70,70,50,0,None,None,0,100,3)
-
+vegeta = Sayayin("Vegeta", transformaciones=["Super Saiyan", "Super Saiyan Blue"], habilidades=["megaboom"])
 
 
 
 #test
 
-# Supongamos que Goku gana 5 combates y usa el multiplicador de Super Saiyajin (2x)
-combates_ganados = 20
-multiplicador_super_saiyajin = 1
+combates_ganados = 2   
 
-print(f"Nivel final: {goku.nivel}, Max Ki: {goku.max_ki}")
+# Mostrar estadísticas iniciales
 goku.mostrar_stats()
-vegueta.mostrar_stats()
+vegeta.mostrar_stats()
 goku.cargar_ki(100)
+vegeta.cargar_ki(100)
+
+# Evolucionar poder tras los combates ganados
 poder_final = goku.evolucionar_poder(combates_ganados)
-
+poder_final = vegeta.evolucionar_poder(combates_ganados)
+# Mostrar estadísticas después de cargar Ki y evolucionar poder
 goku.mostrar_stats()
-
-
-goku.subir_nivel()
-#print(f"Poder final de {goku.nombre} tras {combates_ganados} combates: {poder_final}")
+vegeta.mostrar_stats()
 
 print(f"Nivel final: {goku.nivel}, Max Ki: {goku.max_ki}")
 
@@ -43,3 +40,7 @@ enemigo.ataque_especial(goku)
 goku.mostrar_stats()
 enemigo.mostrar_stats()
 """
+
+# Iniciar el combate
+juego = Juego(goku,vegeta)
+juego.iniciar_combate()
