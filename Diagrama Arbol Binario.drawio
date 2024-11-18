@@ -1,0 +1,266 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" version="24.8.6">
+  <diagram name="Página-1" id="c_wOlnUyRf0UPIZTqM8_">
+    <mxGraphModel dx="2261" dy="782" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="414" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-1" value="Inicio" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-4" target="tPRoAkrtBi-BiuNvu3l5-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="414" y="370" />
+              <mxPoint x="414" y="370" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-4" value="Crear Personaje" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="180" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-8" value="Si" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-5" target="tPRoAkrtBi-BiuNvu3l5-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-5" target="tPRoAkrtBi-BiuNvu3l5-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-11" value="No" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="tPRoAkrtBi-BiuNvu3l5-10">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-5" value="¿Árbol vacío?" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="349" y="310" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-7" value="Insertar nodo como raíz" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="564" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-9" target="tPRoAkrtBi-BiuNvu3l5-12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="560" />
+              <mxPoint x="415" y="560" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-9" value="Llamar método insertar recursivo" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="354" y="480" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-12" target="tPRoAkrtBi-BiuNvu3l5-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-19" value="Si" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="tPRoAkrtBi-BiuNvu3l5-15">
+          <mxGeometry x="-0.0095" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-12" target="tPRoAkrtBi-BiuNvu3l5-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-18" value="No" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="tPRoAkrtBi-BiuNvu3l5-17">
+          <mxGeometry x="0.0667" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-39" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-12" target="tPRoAkrtBi-BiuNvu3l5-38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-12" value="¿Nivel de poder menor al del nodo actual?" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="350" y="600" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-14" target="tPRoAkrtBi-BiuNvu3l5-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-14" target="tPRoAkrtBi-BiuNvu3l5-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-14" target="tPRoAkrtBi-BiuNvu3l5-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-30" value="Si" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="tPRoAkrtBi-BiuNvu3l5-27">
+          <mxGeometry x="0.0737" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-14" target="tPRoAkrtBi-BiuNvu3l5-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-31" value="No" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="tPRoAkrtBi-BiuNvu3l5-29">
+          <mxGeometry x="-0.0105" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-14" value="¿Izquierda vacía?" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="585" y="600" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-16" target="tPRoAkrtBi-BiuNvu3l5-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-36" value="Si" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="tPRoAkrtBi-BiuNvu3l5-33">
+          <mxGeometry x="0.0947" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-16" target="tPRoAkrtBi-BiuNvu3l5-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-37" value="No" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="tPRoAkrtBi-BiuNvu3l5-35">
+          <mxGeometry x="-0.0105" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-16" value="¿Derecha vacía?" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="165" y="600" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-24" value="Insertar nuevo nodo a la izquierda" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="700" y="550" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-28" value="Llamar método recursivo en la izquierda" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="700" y="670" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-32" value="Insertar nuevo nodo a la derecha" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="10" y="550" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-34" value="Llamar método recursivo en la derecha" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="10" y="670" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-41" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-38" target="tPRoAkrtBi-BiuNvu3l5-40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-38" value="Búsqueda de personaje (método buscar)" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="355" y="770" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-43" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-40" target="tPRoAkrtBi-BiuNvu3l5-42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-46" value="Si" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="tPRoAkrtBi-BiuNvu3l5-43">
+          <mxGeometry x="-0.1294" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-45" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-40">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="265" y="940" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-47" value="No" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="tPRoAkrtBi-BiuNvu3l5-45">
+          <mxGeometry x="-0.0353" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-66" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-40" target="tPRoAkrtBi-BiuNvu3l5-65">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-40" value="¿Nodo actual es none?" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="350" y="900" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-42" value="Retornar none" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="565" y="910" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-51" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-49" target="tPRoAkrtBi-BiuNvu3l5-50">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="70" y="940" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-55" value="Si" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="tPRoAkrtBi-BiuNvu3l5-51">
+          <mxGeometry x="0.54" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-54" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-49" target="tPRoAkrtBi-BiuNvu3l5-53">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="70" y="940" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-58" value="No" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="tPRoAkrtBi-BiuNvu3l5-54">
+          <mxGeometry x="0.5172" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-49" value="¿Nivel de poder nodo actual es igual nivel buscado?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="130" y="900" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-50" value="Devuelve personaje buscado" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="10" y="840" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-60" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-53" target="tPRoAkrtBi-BiuNvu3l5-59">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-63" value="Si" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="tPRoAkrtBi-BiuNvu3l5-60">
+          <mxGeometry x="-0.0348" relative="1" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-62" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-53" target="tPRoAkrtBi-BiuNvu3l5-61">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-64" value="No" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="tPRoAkrtBi-BiuNvu3l5-62">
+          <mxGeometry x="-0.0571" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-53" value="¿Nivel de poder nodo actual es menor nivel buscado?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="5" y="980" width="145" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-59" value="Llamar método buscar nombre a la izquierda" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-170" y="930" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-61" value="Llamar método buscar nombre a la derecha" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-170" y="1040" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-68" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-65" target="tPRoAkrtBi-BiuNvu3l5-67">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-65" value="Obtener nombres según fuerza" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="355" y="1070" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-70" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-67" target="tPRoAkrtBi-BiuNvu3l5-69">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-67" value="Recorrido en orden (método inorden)" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="355" y="1210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-72" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-69" target="tPRoAkrtBi-BiuNvu3l5-71">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-75" value="Si" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="tPRoAkrtBi-BiuNvu3l5-72">
+          <mxGeometry x="-0.1765" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-74" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-69" target="tPRoAkrtBi-BiuNvu3l5-73">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-76" value="No" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="tPRoAkrtBi-BiuNvu3l5-74">
+          <mxGeometry x="-0.1765" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-78" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tPRoAkrtBi-BiuNvu3l5-69" target="tPRoAkrtBi-BiuNvu3l5-77">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-69" value="¿Nodo actual es none?" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="350" y="1340" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-71" value="Retornar" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="565" y="1350" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-73" value="&lt;div&gt;Llamar método inorden&lt;/div&gt;&lt;div&gt;(agrega nombre a lista, llama método a la derecha)&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="145" y="1350" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tPRoAkrtBi-BiuNvu3l5-77" value="Fin" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="355" y="1490" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
