@@ -1,11 +1,11 @@
 from clases.personaje import Personaje
+from clases.arbol__transformaciones import ArbolTransformaciones,NodoTransformacion
+from clases.arbol_habilidades import ArbolHabilidades,NodoHabilidad
 
 class Sayayin(Personaje):
-    #def __init__(self, nombre: str, vida: int, raza: str, estado: str, velocidad: int, defensa: int, fuerza: int, ki: int, transformaciones: list, habilidades: list, exp: int, max_exp: int, nivel_pelea: int, nivel: int = 1, max_ki_base: int = 10000, max_ki: int = 10000):
-        #super().__init__(nombre, vida=1000, raza="Sayayin", estado="Normal", velocidad=15, defensa=70, fuerza=70, ki=0, transformaciones=None, habilidades=None, exp=0, max_exp=100, nivel_pelea=1, nivel=1, max_ki_base=10000, max_ki=None)
-    def __init__(self, nombre: str, transformaciones=None, habilidades=None):
-        super().__init__(nombre, vida=1000, raza="Sayayin", estado="Normal", velocidad=15, defensa=70, fuerza=70, ki=0,habilidades = habilidades if not None else [],transformaciones = transformaciones if not None else [],  exp=0, max_exp=100, nivel_poder=1)
-        
+    def __init__(self, nombre: str):
+        super().__init__(nombre, vida=1000, raza="Sayayin", estado="Normal", ki=0, max_ki=100, transformaciones=self.crear_arbol_transformaciones(), transformacion_inicial=self.crear_arbol_transformaciones().raiz, habilidades=self.crear_arbol_habilidades(), exp=0, max_exp=100, nivel_de_poder=1, nivel=1, max_ki_base=1000)
+    
     def ataque_especial(self, enemigo):
         """Ataque especial del Sayayin."""
         if self.ki >= 500:
@@ -28,3 +28,34 @@ class Sayayin(Personaje):
             self.ki -= 500  
         else:
             print("No tienes suficiente ki para realizar un ataque especial.")
+
+
+    
+    def crear_arbol_transformaciones(self):
+        """Crea el árbol de transformaciones para el Saiyajin."""
+        base = NodoTransformacion("Base", 0, None, 1)
+        ssj = NodoTransformacion("Super Saiyajin", 4000, base, 50)
+        ssj2 = NodoTransformacion("Super Saiyajin 2", 5500, ssj, 100)
+        ssj3 = NodoTransformacion("Super Saiyajin 3", 7000, ssj2, 150)
+        ssj4 = NodoTransformacion("Super Saiyajin 4", 8500, ssj3, 160)
+
+        # Jerarquías
+        base.agregar_hijo(ssj)
+        ssj.agregar_hijo(ssj2)
+        ssj2.agregar_hijo(ssj3)
+        ssj3.agregar_hijo(ssj4)
+
+        return ArbolTransformaciones(base)
+
+    def crear_arbol_habilidades(self):
+        """Crea el árbol de habilidades para el Saiyajin."""
+        base_habilidad = NodoHabilidad("Ataque básico", 1000, 1000, None,"Un golpe básico con Ki.")
+        genkidama = NodoHabilidad("Genkidama", 1500, 3000, None,"El poder de todos los seres vivos en un solo ataque.")
+        kamehameha = NodoHabilidad("Kamehameha", 2000, 4000, None,"Un rayo de energía muy poderoso.")
+        kamehameha_x10 = NodoHabilidad("Kamehameha x10", 5000, 40000, None, "El Kamehameha aumentado 10 veces.")
+        # Jerarquías
+        base_habilidad.agregar_hijo(kamehameha)
+        kamehameha.agregar_hijo(genkidama)
+        genkidama.agregar_hijo(kamehameha_x10)
+
+        return ArbolHabilidades(base_habilidad)

@@ -28,10 +28,10 @@ class Juego:
                 accion = input("¿Quieres atacar (a) o cargar ki (c)? ").strip().lower()
                 
                 if accion == 'a':
-                    self.jugador.atacar(self.maquina)
+                    self.jugador.ataque_basico(self.maquina)
                     break  # Salir del bucle si la acción es válida
                 elif accion == 'c':
-                    self.jugador.cargar_ki(100)
+                    self.jugador.cargar_ki(1000)
                     break  # Salir del bucle si la acción es válida
                 else:
                     print("Acción no válida. Por favor, elige 'a' para atacar o 'c' para cargar ki.")
@@ -39,7 +39,7 @@ class Juego:
     def turno_maquina(self):
         print(f"\nTurno de {self.maquina.nombre}.")
         if self.maquina.ki >= 100 and random.choice([True, False]):
-            self.maquina.atacar(self.jugador)
+            self.maquina.ataque_basico(self.jugador)
         else:
-            self.maquina.cargar_ki(100)
+            self.maquina.cargar_ki(1000)
 

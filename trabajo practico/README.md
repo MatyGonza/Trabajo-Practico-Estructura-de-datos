@@ -273,10 +273,14 @@ Método para subir de nivel: Se activará cuando la experiencia acumulada alcanc
 
 
 
+![Diagrama de arbol binario](./Diagrama%20Arbol%20Binario.png)
+
+
+
 
 ### Arboles Generales
 [arboles-generales]:(#arboles-generales)
-![Diagrama de arbol binario](./Diagrama%20Arbol%20Binario.png)
+
 
 
 ### Cola de Prioridades y Heap Binaria

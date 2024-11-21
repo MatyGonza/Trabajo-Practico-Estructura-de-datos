@@ -14,7 +14,6 @@ class NodoTransformacion():
         nodo_hijo.padre = self
         self.hijos.append(nodo_hijo)
 
-
 #Arbol general de las tranformaciones
 class ArbolGeneral: 
     
@@ -41,7 +40,6 @@ class ArbolGeneral:
                 return resultado
         return None
 
-    
 #Nodo de las habilidades
 class NodoHabilidad:
     def __init__(self, nombre: str, costo_ki: int, daño: int, transformacion_requerida,descripcion: str):
@@ -93,15 +91,9 @@ class ArbolHabilidades:
                 return resultado
         return None
 
-
-
-
-
-
-
-
 class Personaje:
-    def __init__(self,nombre:str,vida:int,raza:str,estado:str,velocidad:int,defensa:int,fuerza:int,ki:int,max_ki,transformaciones,transformacion_inicial,habilidades,exp,max_exp,nivel_de_poder):
+    def __init__(self,nombre:str,vida:int,raza:str,estado:str,velocidad:int,defensa:int,fuerza:int,ki:int,max_ki,transformaciones,transformacion_inicial,habilidades,exp,max_exp,nivel_de_poder,nivel:int=1,max_ki_base:int=10000):
+        
         self.nombre = nombre
         self.vida = vida
         self.raza = raza
@@ -117,11 +109,13 @@ class Personaje:
         self.exp = exp
         self.max_exp = max_exp
         self.nivel_de_poder = nivel_de_poder
+        self.nivel = nivel
+        self.max_ki_base = max_ki_base
         
     
     
     def mostrar_stats(self):
-        print (f"Nombre: {self.nombre}\nRaza: {self.raza}\nEstado: {self.estado}\nMaximo de Ki: {self.max_ki}\nVida: {self.vida} hp\nFuerza: {self.fuerza}\nVelocidad: {self.velocidad}\nDefensa: {self.defensa}\nExperiencia: {self.exp}/{self.max_exp}\nTransformaciones: {self.transformaciones}\nHabilidades: {self.habilidades}")
+        print (f"Nombre: {self.nombre}\nNivel: {self.nivel}\nRaza: {self.raza}\nEstado: {self.estado}\nMaximo de Ki: {self.max_ki}\nVida: {self.vida} hp\nFuerza: {self.fuerza}\nVelocidad: {self.velocidad}\nDefensa: {self.defensa}\nExperiencia: {self.exp}/{self.max_exp}\nTransformaciones: {self.transformaciones}\nHabilidades: {self.habilidades}\nnivel de Poder: {self.nivel_de_poder}")
     
     def ataque_basico(self,enemigo): #esto es una implementacion algo basica que puede cambiar.
         if self.ki >=   1000:  #el personaje necesita un min de 1000/100000 para hacer un ataque normal
@@ -148,8 +142,6 @@ class Personaje:
       self.estado = "Defensivo"
       print(f"{self.nombre} esta en guardia y el proximo turno del oponente el daño se reducira a la mitad.")
 
-
-    
     def recibir_daño(self,daño_recibido):
 
         if self.estado == "defensivo":
@@ -161,8 +153,6 @@ class Personaje:
         if self.estodo != "defensivo":
             self.vida -=daño_recibido
             print(f"Recibiste daño efectivo: {daño_recibido}\nTu vida restante es: {self.vida}")
-      
-
 
     def usar_habilidad(self, habilidad_nombre, enemigo):
     # Buscar la habilidad en el árbol
@@ -180,6 +170,7 @@ class Personaje:
 
     # Verificar si tiene suficiente Ki
         if self.ki < nodo_habilidad.costo_ki:
+            
             print(f"No tienes suficiente Ki para usar '{habilidad_nombre}'. Necesitas {nodo_habilidad.costo_ki}.")
             return
 
@@ -209,8 +200,77 @@ class Personaje:
     # Realizar la transformación
         self.ki -= nodo_transformacion.ki_necesario
         self.transformacion_actual = nodo_transformacion
-        self.nivel_de_poder *= nodo_transformacion.multiplicador_nivel_de_poder
+        #self.nivel_de_poder *= nodo_transformacion.multiplicador_nivel_de_poder
+        self.evolucionar_poder(multiplicador=nodo_transformacion.multiplicador_nivel_de_poder)
         print(f"{self.nombre} se ha transformado en '{nombre_transformacion}', con nivel de poder multiplicado por {nodo_transformacion.multiplicador_nivel_de_poder}.")
+        ################################################################
+    def actualizar_max_exp(self):
+        exp_base = 100
+        max_exp_actualizada = self.nivel * exp_base
+        self.max_exp = max_exp_actualizada
+        return self.max_exp
+    
+
+    def incrementar_atributos(self):
+        """Aumenta gradualmente los atributos de velocidad, defensa y fuerza."""
+        incremento = 5  # Define cuánto se incrementarán los atributos por cada nivel de poder
+        self.nivel_de_poder += incremento
+        self.vida += incremento*100
+
+    def calcular_max_ki(self,multiplicador=None):
+        """Calcula el máximo de Ki basado en el nivel."""
+        if multiplicador :#Al estar tranformado utiliza un multiplicador que multiplica el ki
+            return (self.nivel * self.max_ki_base)*multiplicador
+        else:
+            return (self.nivel * self.max_ki_base)  # Ejemplo: 100 + 50 por cada nivel
+        
+
+    def subir_nivel(self):
+        #Sube el nivel del personaje si alcanza la experiencia necesaria.
+        if self.exp >= self.nivel * 100:  # Ejemplo: 100 exp por nivel
+            self.nivel += 1
+            self.max_ki = self.calcular_max_ki()  # Actualiza el máximo de Ki
+            self.incrementar_atributos()  # Aumenta los atributos al subir de nivel
+            self.actualizar_max_exp()#Actualiza la experiencia maxima para subir de nivel
+            # Llamada recursiva para verificar si se puede subir nuevamente
+            self.subir_nivel()
+    
+    def evolucionar_poder(self, combates_ganados= None, multiplicador=2):
+        """
+        Método recursivo para calcular la evolución del poder tras cada combate.
+        
+        :param combates_ganados: Número de combates ganados.
+        :param multiplicador: Multiplicador actual (por defecto es 2).
+        :return: Poder total tras los combates.
+        """
+        
+        if combates_ganados is not None:
+            if combates_ganados <= 0:
+                return self.nivel_de_poder
+                
+            # Calcular el nuevo poder
+            nuevo_poder = self.nivel_de_poder * multiplicador
+            nuevo_poder = round(nuevo_poder)
+            # Actualizar el poder actual
+            self.nivel_de_poder = nuevo_poder
+            
+            # Aumentar experiencia tras cada combate
+            self.exp += 50  # Ejemplo: ganar 50 exp por combate
+            
+            # Verificar si se debe subir de nivel
+            self.subir_nivel()
+            
+            # Llamada recursiva para el siguiente combate
+            return self.evolucionar_poder(combates_ganados - 1, multiplicador)
+        else:
+            
+            nuevo_poder = self.nivel_de_poder * multiplicador
+            nuevo_poder = round(nuevo_poder)
+            # Actualizar el poder actual en una transformacion
+            self.nivel_de_poder = nuevo_poder
+            print("tranfomacion")
+            return nuevo_poder
+
 
 base = NodoTransformacion("Base",0,None,1)
 ssj = NodoTransformacion("Super Saiyajin",4000,base,50)
@@ -218,15 +278,13 @@ ssj2 = NodoTransformacion("Super Saiyayin",5500,ssj,100)
 ssj3 = NodoTransformacion("Super Saiyajin 3",7000,ssj2,150)
 ssj4 = NodoTransformacion("Super Saiyajin 4",8500,ssj3,160)
 
+#Creamos el arbol
+arbol_transformaciones = ArbolGeneral(base)
+
 #jerarquias
 base.agregar_hijo(ssj)
 ssj.agregar_hijo(ssj2)
 ssj2.agregar_hijo(ssj3)
-#Creamos el arbol
-arbol_transformaciones = ArbolGeneral(base)
-
-
-    
 
 #Nodos de el arbol habilidad
 base_habilidad = NodoHabilidad("Ataque básico", 1000, 1000,base, "Un golpe básico con Ki.\n")
@@ -239,9 +297,18 @@ kamehameha.agregar_hijo(kamehameha_x10)
 arbol_habilidad = ArbolHabilidades(base_habilidad)
 
 
-goku = Personaje(nombre="Goku",vida=100000,raza="Saiyajin",estado="Normal",velocidad=50,defensa=60,fuerza=70,ki=0,max_ki=10000,transformaciones=arbol_transformaciones,transformacion_inicial=base,habilidades=arbol_habilidad,exp=0,max_exp=100,nivel_de_poder=8000)
-gohan = Personaje(nombre="Gohan",vida=100000,raza="Saiyajin",estado="Normal",velocidad=50,defensa=60,fuerza=70,ki=0,max_ki=10000,transformaciones=arbol_transformaciones,transformacion_inicial=base,habilidades=arbol_habilidad,exp=0,max_exp=100,nivel_de_poder=8000)
+goku = Personaje(nombre="Goku",vida=100000,raza="Saiyajin",estado="Normal",velocidad=50,defensa=60,fuerza=70,ki=0,max_ki=10000,transformaciones=arbol_transformaciones,transformacion_inicial=base,habilidades=arbol_habilidad,exp=0,max_exp=100,nivel_de_poder=8000,nivel=1, max_ki_base=10000)
+
+gohan = Personaje(nombre="Gohan",vida=100000,raza="Saiyajin",estado="Normal",velocidad=50,defensa=60,fuerza=70,ki=0,max_ki=10000,transformaciones=arbol_transformaciones,transformacion_inicial=base,habilidades=arbol_habilidad,exp=0,max_exp=100,nivel_de_poder=8000,nivel=1, max_ki_base=10000)
+
+combates_ganados = 2   
+gohan.evolucionar_poder(combates_ganados)
 goku.cargar_ki(1500,gohan)
+
 gohan.cargar_ki(1500,goku)
-goku.usar_habilidad(genkidama,gohan)
-gohan.transformarse(ssj)
+gohan.mostrar_stats()
+#goku.usar_habilidad(genkidama,gohan)
+
+gohan.transformarse(ssj.nombre)
+
+gohan.mostrar_stats()

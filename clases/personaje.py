@@ -1,105 +1,138 @@
-
-#time, que se utiliza para pausar la ejecución del programa durante un período específico, creando efectos de animación.
-import time
-
+import time 
+from clases.arbol__transformaciones import ArbolTransformaciones
+from clases.arbol_habilidades import ArbolHabilidades
 class Personaje:
-    """
-    La clase Personaje es la clase base que define las características y comportamientos comunes de todos los personajes en el juego.
-    """
-    def __init__(self, nombre:str, vida:int, raza:str, estado:str, velocidad:int, defensa:int, fuerza:int, ki:int, transformaciones:list, habilidades:list, exp:int, max_exp:int,nivel_poder:int,nivel:int=1,max_ki_base:int=10000,max_ki:int=10000):
-        #Si no se le pasan los parametros se crea una lista vacia, esta bueno porque al empezar todos los personajes empezaran sin habilidades
-        #Esta parte creo que se implementa con otra estructura de datos a revisar
-        if transformaciones is None:
-            transformaciones = []
-        if habilidades is None:
-            habilidades = []
+    def __init__(self,nombre:str,vida:int,raza:str,estado:str,ki:int,max_ki,transformaciones:ArbolTransformaciones,transformacion_inicial,habilidades:ArbolHabilidades,exp,max_exp,nivel_de_poder,nivel:int=1,max_ki_base:int=10000):
+        
         self.nombre = nombre
         self.vida = vida
         self.raza = raza
         self.estado = estado
-        self.velocidad = velocidad
-        self.defensa = defensa
-        self.fuerza = fuerza
         self.ki = ki
-        self.max_ki = max_ki #Inicializa el maximo de ki
+        self.max_ki = max_ki
         self.transformaciones = transformaciones
+        self.transformacion_actual =transformacion_inicial 
         self.habilidades = habilidades
         self.exp = exp
         self.max_exp = max_exp
-        self.nivel_poder = nivel_poder #este seria un parametro para la cola de prioridad o para separar personajes
-          #y que no sea desequlibrada la pelea ejem (satan vs goku) no seria posible    
-        self.nivel = nivel  # Se agrego nivel para tener una referencia de nivel del personaje y el max ki, ya que el nivel de pelea puede variar si realiza una transformacion pero el nivel de personaje no cambia
-        self.max_ki_base = max_ki_base# se agrego este atributo para tener una base al cual multiplicar cuando se actualiza el max ki segun el nivel del personaje
+        self.nivel_de_poder = nivel_de_poder
+        self.nivel = nivel
+        self.max_ki_base = max_ki_base
+        
+    
+    
     def mostrar_stats(self):
-        """ 
-        estas listas se convierten en cadenas separadas por comas utilizando ', '.join(...).
-        si esta vacia imprime ninguna
-        """
-                # Convertir las listas a cadenas separadas por comas
-        habilidades_str = ', '.join(self.habilidades) if self.habilidades else "Ninguna"
-        transformaciones_str = ', '.join(self.transformaciones) if self.transformaciones else "Ninguna"
-      
-        print (f"\n\nNombre: {self.nombre}\nNivel: {self.nivel}\nRaza: {self.raza}\nEstado: {self.estado}\nKi: {self.ki}\nMaximo de Ki: {self.max_ki}\nNivel de poder: {self.nivel_poder}\nVida: {self.vida} hp\nFuerza: {self.fuerza}\nVelocidad: {self.velocidad}\nDefensa: {self.defensa}\nExperiencia: {self.exp}/{self.max_exp}\nTransformaciones: {transformaciones_str}\nHabilidades: {habilidades_str}\n")
+        #Hay que arreglar que sea vea bien las habliidades y transformaciones
+        print (f"\nNombre: {self.nombre}\nNivel: {self.nivel}\nTransformacion actual: {self.transformacion_actual.nombre}\nKi: {self.ki}\nRaza: {self.raza}\nEstado: {self.estado}\nMaximo de Ki: {self.max_ki}\nVida: {self.vida} hp\nExperiencia: {self.exp}/{self.max_exp}\nTransformaciones: {self.transformaciones.mostrar_arbol()}\nHabilidades: {self.habilidades.mostrar_arbol()}\nnivel de Poder: {self.nivel_de_poder}\n")
     
-    def atacar(self,enemigo): #esto es una implementacion algo basica que puede cambiar.
-        if self.ki >=   1000:  #el personaje necesita un min de 100/1000 para hacer un ataque normal
-            daño = int(self.fuerza * 10)
-            print(f"{self.nombre} infligio un daño de: {daño}.")
-
-
-            daño_efectivo = max(daño - self.defensa, 0) #el daño no puede ser negativo.
+    def ataque_basico(self,enemigo): #esto es una implementacion algo basica que puede cambiar.
+        if self.ki >=   1000:  #el personaje necesita un min de 1000/100000 para hacer un ataque normal
+            daño = int((self.nivel_de_poder))
+            print(f"{self.nombre} infligio un daño de: {daño}.\n")
+            
+            daño_efectivo = max(daño,0) #el daño no puede ser negativo.
             enemigo.recibir_daño(daño_efectivo,enemigo)
-
-
-            self.ki -= 1000  # Reduce ki al atacar
+            
+            self.ki -= 1000
+            
         else:
-          print ("No se puede atacar, ya que no contas con la cant. de ki necesario. Te recomiendo cargar el ki.")
-
+            print ("No se puede ataque_basico, ya que no contas con la cant. de ki necesario. Te recomiendo cargar el ki.")
     
-    def cargar_ki(self, incremento):  # Se incrementará de 100 en cien
-    #hay qe ver si carga hasta el maximo ki o no dentro de la pelea, implemente que el maximoki aumento cada vez que suba de nivel
+    #habria que ver de no dar un valor muy alto a incremento romperia el codigo    
+    def cargar_ki(self, incremento:int):  # Se incrementará de 1000 en cien
+        
         while self.ki < self.max_ki:
             self.ki += incremento
             # Asegurarse de que ki no supere max_ki
-            if self.ki > self.max_ki:
-                self.ki = self.max_ki
+            #if self.ki > self.max_ki:
+             #   self.ki = self.max_ki
             # Imprimir la carga actual
             print(f"\r{self.nombre} está cargando ki... Ki actual: {self.ki}/{self.max_ki}", end="") #el \r acualiza la linea en lugar de generar una sobre otra
-            time.sleep(0.02) #pasa 0.5 segundos antes de cargar para hacer tipo una animacion
+            time.sleep(0.2) #pasa 0.5 segundos antes de cargar para hacer tipo una animacion
         
         print(f"\n{self.nombre} ha cargado su ki al máximo: {self.ki}/{self.max_ki}")
-        
-    #Agrega una habilidad, se puede aprender con los entrenamientos o al subir nivel
-    def aprender_habilidad(self, habilidad):
-        self.habilidades.append(habilidad)
-        
-    
-            
+                
     def defender(self):
-      pass
-    
-    def usar_tecnica(self):
-      pass
-    
+        self.estado = "defensivo"
+        print(f"{self.nombre} esta en guardia y el proximo turno del oponente el daño se reducira a la mitad.")
+        return 0
+
     def recibir_daño(self,daño_recibido,personaje):
 
-      if personaje.defensa >= daño_recibido:
-        print("No se recibio daño")
-        return
-      else:
-        personaje.vida -=daño_recibido
-        if personaje.vida < 0 :
-          #No puede llegar la vida a menos de 0 
-          personaje.vida = 0
-          print(f"{personaje.nombre} ha sido derrotado")
+        if self.estado == "defensivo":
+            self.vida -= round(daño_recibido/2)
+            if personaje.vida < 0 :
+            #No puede llegar la vida a menos de 0 
+                personaje.vida = 0
+                print(f"{personaje.nombre} ha sido derrotado")
+            
+                self.estado = "Normal"
+
+            print(f"{self.nombre} recibio daño reducido debido a su defensa y su vida se redujo a: {self.vida}.")
+      
+        else: #self.estodo != "defensivo":
+            self.vida -=daño_recibido
+                
+            if personaje.vida < 0 :
+            #No puede llegar la vida a menos de 0 
+                personaje.vida = 0
+                print(f"{personaje.nombre} ha sido derrotado")
+            
+            print(f"{personaje.nombre} Recibiste daño efectivo: {daño_recibido}\nTu vida restante es: {self.vida}")
+
+    def usar_habilidad(self, habilidad_nombre, enemigo):
+    # Buscar la habilidad en el árbol
+        nodo_habilidad = self.habilidades.buscar_habilidad(habilidad_nombre)
+    
+    # Verificar si la habilidad existe
+        if nodo_habilidad is None:
+            print(f"La habilidad '{habilidad_nombre}' no existe.")
+            return
+
+    # Verificar si cumple con la transformación requerida
+        if nodo_habilidad.transformacion_requerida != self.transformacion_actual:
+            print(f"No puedes usar '{habilidad_nombre}' sin estar en la transformación '{nodo_habilidad.transformacion_requerida.nombre}'.")
+            return
+
+    # Verificar si tiene suficiente Ki
+        if self.ki < nodo_habilidad.costo_ki:
+            
+            print(f"No tienes suficiente Ki para usar '{habilidad_nombre}'. Necesitas {nodo_habilidad.costo_ki}.")
+            return
+
+    # Usar la habilidad
+        self.ki -= nodo_habilidad.costo_ki
+        daño = nodo_habilidad.daño
+        enemigo.recibir_daño(daño)
+        print(f"{self.nombre} usó '{habilidad_nombre}', infligiendo {daño} puntos de daño a {enemigo.nombre}.")
+
+    def transformarse(self, nombre_transformacion):
         
-      print(f"{personaje.nombre} Recibiste daño efectivo: {daño_recibido}, tu vida restante es: {self.vida}")
+    # Buscar la transformación en el árbol
+        nodo_transformacion = self.transformaciones.buscar_nodo(nombre_transformacion)
+    
+        if nodo_transformacion is None:
+            print(f"La transformación '{nombre_transformacion}' no existe.")
+            return
 
-    def ataque_especial(self, enemigo):
-        """Método para realizar un ataque especial (por definir en subclases)."""
-        raise NotImplementedError("Este método debe ser implementado en las subclases.")
+    # Verificar si cumple con los requisitos de transformación
+        if self.ki < nodo_transformacion.ki_necesario:
+            print(f"No tienes suficiente Ki para transformarte en '{nombre_transformacion}'. Necesitas {nodo_transformacion.ki_necesario}.")
+            return
 
-    ################################################################
+        if self.transformacion_actual.nombre != nodo_transformacion.transformacion_requerida.nombre:
+            print(f"No puedes transformarte en '{nombre_transformacion}' sin antes estar en '{nodo_transformacion.transformacion_requerida.nombre}'.")
+            return
+
+    # Realizar la transformación
+        self.ki -= nodo_transformacion.ki_necesario
+        self.transformacion_actual = nodo_transformacion
+        
+        #Evoluciona el poder pasandole el multiplicador como parametro
+        self.evolucionar_poder(multiplicador=nodo_transformacion.multiplicador_nivel_de_poder)
+        
+        print(f"{self.nombre} se ha transformado en '{nombre_transformacion}', con nivel de poder multiplicado por {nodo_transformacion.multiplicador_nivel_de_poder}.")
+        ################################################################
     def actualizar_max_exp(self):
         exp_base = 100
         max_exp_actualizada = self.nivel * exp_base
@@ -110,15 +143,18 @@ class Personaje:
     def incrementar_atributos(self):
         """Aumenta gradualmente los atributos de velocidad, defensa y fuerza."""
         incremento = 5  # Define cuánto se incrementarán los atributos por cada nivel de poder
-        self.velocidad += incremento
-        self.defensa += incremento
-        self.fuerza += incremento
+        self.nivel_de_poder += incremento
         self.vida += incremento*100
 
-    def calcular_max_ki(self):
+    def calcular_max_ki(self,multiplicador=None):
         """Calcula el máximo de Ki basado en el nivel."""
-                
-        return (self.nivel * self.max_ki_base)  # Ejemplo: 100 + 50 por cada nivel
+        if multiplicador :#Al estar tranformado utiliza un multiplicador que multiplica el ki
+            
+            max_ki= (self.nivel * self.max_ki_base)*multiplicador
+            
+            return max_ki
+        else:
+            return (self.nivel * self.max_ki_base)  # Ejemplo: 100 + 50 por cada nivel
         
 
     def subir_nivel(self):
@@ -131,7 +167,7 @@ class Personaje:
             # Llamada recursiva para verificar si se puede subir nuevamente
             self.subir_nivel()
     
-    def evolucionar_poder(self, combates_ganados, multiplicador=2):
+    def evolucionar_poder(self, combates_ganados= None, multiplicador=2):
         """
         Método recursivo para calcular la evolución del poder tras cada combate.
         
@@ -139,22 +175,34 @@ class Personaje:
         :param multiplicador: Multiplicador actual (por defecto es 2).
         :return: Poder total tras los combates.
         """
-        if combates_ganados <= 0:
-            return self.nivel_poder
         
-        # Calcular el nuevo poder
-        nuevo_poder = self.nivel_poder * multiplicador
-        nuevo_poder = round(nuevo_poder)
-        # Actualizar el poder actual
-        self.nivel_poder = nuevo_poder
-        
-        # Aumentar experiencia tras cada combate
-        self.exp += 50  # Ejemplo: ganar 50 exp por combate
-        
-        # Verificar si se debe subir de nivel
-        self.subir_nivel()
-        
-        # Llamada recursiva para el siguiente combate
-        return self.evolucionar_poder(combates_ganados - 1, multiplicador)
-      
-      
+        if combates_ganados is not None:
+            if combates_ganados <= 0:
+                return self.nivel_de_poder
+                
+            # Calcular el nuevo poder
+            nuevo_poder = self.nivel_de_poder * multiplicador
+            nuevo_poder = round(nuevo_poder)
+            # Actualizar el poder actual
+            self.nivel_de_poder = nuevo_poder
+            
+            # Aumentar experiencia tras cada combate
+            self.exp += 50  # Ejemplo: ganar 50 exp por combate
+            
+            # Verificar si se debe subir de nivel
+            self.subir_nivel()
+            
+            # Llamada recursiva para el siguiente combate
+            return self.evolucionar_poder(combates_ganados - 1, multiplicador)
+        else:
+            
+            nuevo_poder = self.nivel_de_poder * multiplicador
+            nuevo_poder = round(nuevo_poder)
+            # Actualizar el poder actual en una transformacion
+            self.nivel_de_poder = nuevo_poder
+            
+            self.max_ki = self.calcular_max_ki(multiplicador)
+            self.vida *= multiplicador
+            print("tranfomacion")
+            return nuevo_poder
+
