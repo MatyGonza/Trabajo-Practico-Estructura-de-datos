@@ -1,11 +1,11 @@
 from clases.personaje import Personaje
 from clases.personaje import Personaje
 from clases.arbol__transformaciones import ArbolTransformaciones,NodoTransformacion
-from clases.arbol_habilidades import ArbolHabilidades,NodoHabilidad
+from clases.arbol_habilidades import crear_arbol_habilidades
 
 class Androide(Personaje):
-    def __init__(self, nombre: str):
-        super().__init__(nombre, vida=1000, raza="Androide", estado="Normal", ki=0, max_ki=100, transformaciones=self.crear_arbol_transformaciones(), transformacion_inicial=self.crear_arbol_transformaciones().raiz, habilidades=self.crear_arbol_habilidades(), exp=0, max_exp=100, nivel_de_poder=1, nivel=1, max_ki_base=1000)
+    def __init__(self, nombre: str,arbol_habilidades_data):
+        super().__init__(nombre, vida=1000, raza="Androide", estado="Normal", ki=0, max_ki=100, transformaciones=self.crear_arbol_transformaciones(), transformacion_inicial=self.crear_arbol_transformaciones().raiz, habilidades=self.crear_arbol_habilidades(arbol_habilidades_data), exp=0, max_exp=100, nivel_de_poder=1, nivel=1, max_ki_base=1000)
     
     def ataque_especial(self, enemigo):
         """Ataque especial del Andriode."""
@@ -46,18 +46,7 @@ class Androide(Personaje):
         fase1.agregar_hijo(fase2)
         fase2.agregar_hijo(fase3)
         fase3.agregar_hijo(fase4)
-
         return ArbolTransformaciones(base)
 
-    def crear_arbol_habilidades(self):
-        """Crea el árbol de habilidades para el Saiyajin."""
-        base_habilidad = NodoHabilidad("Ataque básico", 1000, 1000, None,"Un golpe básico con Ki.")
-        robar_energia = NodoHabilidad("Robar energia", 1500, 3000, None,"Consume la energia del enemigo")
-        rayo_laser = NodoHabilidad("Rayo laser", 2000, 4000, None,"Un rayo de energía muy poderoso.")
-        explosion_de_energia = NodoHabilidad("Explosion de energia", 5000, 40000, None, "Explosion de energia.")
-        # Jerarquías
-        base_habilidad.agregar_hijo(robar_energia)
-        robar_energia.agregar_hijo(rayo_laser)
-        rayo_laser.agregar_hijo(explosion_de_energia)
-
-        return ArbolHabilidades(base_habilidad)
+    def crear_arbol_habilidades(self,arbol_habilidades_data):
+            return crear_arbol_habilidades(arbol_habilidades_data)

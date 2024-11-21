@@ -1,7 +1,7 @@
 
 #Nodo de las habilidades
 class NodoHabilidad:
-    def __init__(self, nombre: str, costo_ki: int, daño: int, transformacion_requerida,descripcion: str):
+    def __init__(self, nombre: str, costo_ki: int, daño: int, transformacion_requerida,descripcion: list):
         """
         Inicializa una habilidad con su nombre, costo de Ki, daño, y descripción.
         """
@@ -49,3 +49,31 @@ class ArbolHabilidades:
             if resultado:
                 return resultado
         return None
+
+    
+def crear_arbol_habilidades(datos):
+    def construir_nodo(nombre, info):
+        # Crea un NodoHabilidad a partir de la información dada.
+        return NodoHabilidad(
+            nombre,
+            info['costo'],
+            info['poder'],
+            info['transformacion_requerida'],
+            info['descripcion']
+        )
+    
+    def construir_arbol_recursivo(data):
+        # Construye el árbol recursivamente.
+        nodo = construir_nodo(data['nombre'], data)
+        for hijo_nombre, hijo_info in data['hijos'].items():
+            hijo_nodo = construir_arbol_recursivo({**hijo_info, 'nombre': hijo_nombre})
+            nodo.agregar_hijo(hijo_nodo)
+        return nodo
+    
+    # Comenzamos desde la raíz del árbol.
+    raiz_nombre = list(datos.keys())[0]
+    raiz_info = datos[raiz_nombre]
+    raiz_nodo = construir_arbol_recursivo({**raiz_info, 'nombre': raiz_nombre})
+    
+    return ArbolHabilidades(raiz_nodo)
+

@@ -3,9 +3,43 @@ from clases.sayayin import Sayayin
 from clases.andriode import Androide
 from clases.juego import Juego
 
+arbol_habilidades_data = {
+    "Ataque básica": {
+        "poder": 1000,
+        "costo": 1000,
+        "transformacion_requerida":  ["Base","Super Saiyajin","Super Saiyajin 2","Super Saiyajin 3"],
+        "descripcion": "Un golpe básico con Ki.",
+        "hijos": {
+            "Kamehameha": {
+                "poder": 2000,
+                "costo": 4000,
+                "transformacion_requerida":  ["Base","Super Saiyajin","Super Saiyajin 2","Super Saiyajin 3"],
+                "descripcion": "Un rayo de energía muy poderoso.",
+                "hijos": {
+                    "Genkidama": {
+                        "poder": 1500,
+                        "costo": 3000,
+                        "transformacion_requerida":  ["Base","Super Saiyajin","Super Saiyajin 2","Super Saiyajin 3"],
+                        "descripcion": "El poder de todos los seres vivos en un solo ataque.",
+                        "hijos": {
+                            "Kamehameha x10": {
+                                "poder": 5000,
+                                "costo": 40000,
+                                "transformacion_requerida":  ["Base","Super Saiyajin","Super Saiyajin 2","Super Saiyajin 3"],
+                                "descripcion": "El Kamehameha aumentado 10 veces.",
+                                "hijos": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 #se instancias 2 clases de sayayin que ya tienen todos sus atributos cargados por defecto
-goku = Sayayin("goku")
-vegeta = Sayayin("Vegeta")
+goku = Sayayin("goku",arbol_habilidades_data)
+#vegeta = Sayayin("Vegeta")
 
 
 #test
@@ -14,7 +48,8 @@ combates_ganados = 6
 
 # Mostrar estadísticas iniciales
 goku.mostrar_stats()
-vegeta.mostrar_stats()
+#vegeta.mostrar_stats()
+""" 
 
 #cargan el ki ya que inician en 0 
 goku.cargar_ki(1000)
@@ -39,6 +74,7 @@ goku.cargar_ki(10000)
 vegeta.cargar_ki(10000)
 goku.transformarse("Super Saiyajin 2")
 vegeta.transformarse("Super Saiyajin 2")
+vegeta.usar_habilidad("Genkidama",goku)
 vegeta.mostrar_stats()
 goku.mostrar_stats()
 
@@ -53,3 +89,4 @@ juego = Juego(goku,vegeta)
 
 #Iniciamos el combate
 #juego.iniciar_combate()
+"""

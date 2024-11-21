@@ -1,10 +1,10 @@
 from clases.personaje import Personaje
 from clases.arbol__transformaciones import ArbolTransformaciones,NodoTransformacion
-from clases.arbol_habilidades import ArbolHabilidades,NodoHabilidad
+from clases.arbol_habilidades import crear_arbol_habilidades
 
 class Sayayin(Personaje):
-    def __init__(self, nombre: str):
-        super().__init__(nombre, vida=1000, raza="Sayayin", estado="Normal", ki=0, max_ki=100, transformaciones=self.crear_arbol_transformaciones(), transformacion_inicial=self.crear_arbol_transformaciones().raiz, habilidades=self.crear_arbol_habilidades(), exp=0, max_exp=100, nivel_de_poder=1, nivel=1, max_ki_base=1000)
+    def __init__(self, nombre: str,arbol_habilidades_data):
+        super().__init__(nombre, vida=1000, raza="Sayayin", estado="Normal", ki=0, max_ki=100, transformaciones=self.crear_arbol_transformaciones(), transformacion_inicial=self.crear_arbol_transformaciones().raiz, habilidades=self.crear_arbol_habilidades(arbol_habilidades_data), exp=0, max_exp=100, nivel_de_poder=1, nivel=1, max_ki_base=1000)
     
     def ataque_especial(self, enemigo):
         """Ataque especial del Sayayin."""
@@ -46,16 +46,6 @@ class Sayayin(Personaje):
         ssj3.agregar_hijo(ssj4)
 
         return ArbolTransformaciones(base)
-
-    def crear_arbol_habilidades(self):
-        """Crea el árbol de habilidades para el Saiyajin."""
-        base_habilidad = NodoHabilidad("Ataque básico", 1000, 1000, None,"Un golpe básico con Ki.")
-        genkidama = NodoHabilidad("Genkidama", 1500, 3000, None,"El poder de todos los seres vivos en un solo ataque.")
-        kamehameha = NodoHabilidad("Kamehameha", 2000, 4000, None,"Un rayo de energía muy poderoso.")
-        kamehameha_x10 = NodoHabilidad("Kamehameha x10", 5000, 40000, None, "El Kamehameha aumentado 10 veces.")
-        # Jerarquías
-        base_habilidad.agregar_hijo(kamehameha)
-        kamehameha.agregar_hijo(genkidama)
-        genkidama.agregar_hijo(kamehameha_x10)
-
-        return ArbolHabilidades(base_habilidad)
+    
+    def crear_arbol_habilidades(self,arbol_habilidades_data):
+        return crear_arbol_habilidades(arbol_habilidades_data)
