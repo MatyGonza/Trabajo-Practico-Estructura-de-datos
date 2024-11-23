@@ -91,20 +91,20 @@ class Personaje:
 
     # Verificar si cumple con la transformación requerida
         if self.transformacion_actual.nombre in  nodo_habilidad.transformacion_requerida:
-
-    # Verificar si tiene suficiente Ki
-            if self.ki < nodo_habilidad.costo_ki:
             
-                print(f"No tienes suficiente Ki para usar '{habilidad_nombre}'. Necesitas {nodo_habilidad.costo_ki}.")
+    # Verificar si tiene suficiente Ki
+            if self.ki > nodo_habilidad.costo_ki:
+            
             
 
     # Usar la habilidad
-            self.ki -= nodo_habilidad.costo_ki
-            daño = nodo_habilidad.daño
-            enemigo.recibir_daño(daño,enemigo)
+                self.ki -= nodo_habilidad.costo_ki
+                daño = nodo_habilidad.daño
+                enemigo.recibir_daño(daño,enemigo)
+                print(f"{self.nombre} usó '{habilidad_nombre}', infligiendo {daño} puntos de daño a {enemigo.nombre}.")
+            else:
+                print(f"No tienes suficiente Ki para usar '{habilidad_nombre}'. Necesitas {nodo_habilidad.costo_ki}.")
             
-            
-            print(f"{self.nombre} usó '{habilidad_nombre}', infligiendo {daño} puntos de daño a {enemigo.nombre}.")
         else:
             print(f"No puedes usar '{habilidad_nombre}' sin estar en la transformación '{nodo_habilidad.transformacion_requerida.nombre}'.")
             return

@@ -1,7 +1,7 @@
 
 #Nodo de las habilidades
 class NodoHabilidad:
-    def __init__(self, nombre: str, costo_ki: int, daño: int, transformacion_requerida,descripcion: list):
+    def __init__(self, nombre: str, costo_ki: int, daño: int, transformacion_requerida:list,descripcion: str):
         """
         Inicializa una habilidad con su nombre, costo de Ki, daño, y descripción.
         """

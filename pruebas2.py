@@ -3,7 +3,6 @@ from personajes.personajes_androide import andriode16,andriode17,andriode18
 
 from clases.personaje import Personaje
 from clases.sayayin import Sayayin  # Asegúrate de importar la clase correcta
-#from clases.habilidades import crear_arbol_habilidades  # Importar la función para crear habilidades
 import random
 
 class Juego:
@@ -33,27 +32,78 @@ class Juego:
             print(f"Vida de {self.maquina.nombre}: {self.maquina.vida} HP")
             print("Habilidades disponibles:")
             
+            
+            habilidades = []
+            for habilidad in self.jugador.habilidades.raiz.hijos:
+                habilidades.append(habilidad)
+                #print(habilidad)
+                for abilidad in habilidad.hijos:
+                    habilidades.append(abilidad)
+                    #print(abilidad)
+                    for bilidad in abilidad.hijos:
+                        habilidades.append(bilidad)
+                        #print(bilidad)
+                        for ilidad in bilidad.hijos:
+                            habilidades.append(ilidad)
+                            #print(ilidad)    
+    
+            
             # Acceder a las habilidades desde la raíz del árbol
-            for i, habilidad in enumerate(self.jugador.habilidades.raiz.hijos):
+            #lis=self.busqueda_habilidades(self.jugador.habilidades.raiz.hijos)
+            
+            for i, habilidad in enumerate(habilidades):
                 print(f"{i + 1}. {habilidad.nombre} (Costo Ki: {habilidad.costo_ki}, Daño: {habilidad.daño})")
-
+            """
+            
+            """
             accion = input("¿Quieres usar una habilidad (número) o cargar ki (c)? ").strip().lower()
             
-            if accion.isdigit() and 1 <= int(accion) <= len(self.jugador.habilidades.raiz.hijos):
-                habilidad_seleccionada = self.jugador.habilidades.raiz.hijos[int(accion) - 1]
-                self.jugador.usar_habilidad(habilidad_seleccionada, self.maquina)
+
+            if accion.isdigit() and 1 <= int(accion) <= len(habilidades):
+                habilidad_seleccionada = habilidades[int(accion) - 1]
+                self.jugador.usar_habilidad(habilidad_seleccionada.nombre, self.maquina)
                 break
             elif accion == 'c':
                 self.jugador.cargar_ki(1000)
                 break
             else:
                 print("Acción no válida. Por favor, elige un número válido o 'c' para cargar ki.")
+    
+    
+
+    def busqueda_habilidades(self,hijos):
+        habilidades=[]
+        for c in hijos:
+            if c in hijos is None:
+                return None
+            else:
+                habilidades.append(c)
+                print(c)
+                self.busqueda_habilidades(c.hijos)
+                return habilidades
+        
+    
     def turno_maquina(self):
         print(f"\nTurno de {self.maquina.nombre}.")
         if self.maquina.ki >= 100 and random.choice([True, False]):
             # Acceder a las habilidades desde la raíz del árbol
-            habilidad_aleatoria = random.choice(self.maquina.habilidades.raiz.hijos)
-            self.maquina.usar_habilidad(habilidad_aleatoria, self.jugador)
+            habilidades = []
+            for habilidad in self.maquina.habilidades.raiz.hijos:
+                habilidades.append(habilidad)
+                #print(habilidad)
+                for abilidad in habilidad.hijos:
+                    habilidades.append(abilidad)
+                    #print(abilidad)
+                    for bilidad in abilidad.hijos:
+                        habilidades.append(bilidad)
+                        #print(bilidad)
+                        for ilidad in bilidad.hijos:
+                            habilidades.append(ilidad)
+                            #print(ilidad)    
+    
+
+            habilidad_aleatoria = random.choice(habilidades)
+            self.maquina.usar_habilidad(habilidad_aleatoria.nombre, self.jugador)
         else:
             self.maquina.cargar_ki(1000)
 
@@ -63,9 +113,6 @@ def seleccionar_contrincante(personajes):
 
 # Ejemplo de uso
 if __name__ == "__main__":
-    # Crear personajes (asegúrate de que estas clases existan y estén correctamente definidas)
-    #goku = Sayayin("Goku", arbol_habilidades_data)
-    #vegeta = Sayayin("Vegeta", arbol_habilidades_data)
     personajes = [goku, vegeta]
 
     # Seleccionar un contrincante aleatorio
