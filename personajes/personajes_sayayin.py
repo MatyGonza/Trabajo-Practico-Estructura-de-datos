@@ -88,7 +88,7 @@ arbol_habilidades_data_gohan = {
                         "poder": 1500,
                         "costo": 3000,
                         "transformacion_requerida":  ["Base","Super Saiyajin","Super Saiyajin 2","Super Saiyajin 3"],
-                        "descripcion": "n rayo de energía muy poderoso.",
+                        "descripcion": "Un rayo de energía muy poderoso.",
                         "hijos": {
                             "Kamehameha x10": {
                                 "poder": 5000,
