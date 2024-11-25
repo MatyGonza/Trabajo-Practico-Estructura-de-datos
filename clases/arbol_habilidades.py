@@ -84,10 +84,10 @@ def crear_arbol_habilidades(datos):
         """
         return NodoHabilidad(
             nombre=nombre,
-            costo_ki=info['costo'], # Costo en puntos de ki para usar la habilidad
-            daño=info['poder'], # Daño que inflige la habilidad
-            transformacion_requerida=info['transformacion_requerida'], # Transformaciones necesarias para usarla
-            descripcion=info['descripcion'] # Breve descripción de la habilidad
+            costo_ki=info["costo"], # Costo en puntos de ki para usar la habilidad
+            daño=info["poder"], # Daño que inflige la habilidad
+            transformacion_requerida=info["transformacion_requerida"], # Transformaciones necesarias para usarla
+            descripcion=info["descripcion"] # Breve descripción de la habilidad
         )
     
     def construir_arbol_recursivo(data):
@@ -101,21 +101,21 @@ def crear_arbol_habilidades(datos):
             NodoHabilidad: El nodo raíz del subárbol construido.
         """
         # Crear un nodo para la habilidad actual
-        nodo = construir_nodo(data['nombre'], data)
+        nodo = construir_nodo(data["nombre"], data)
         # Procesar los hijos de este nodo
-        for hijo_nombre, hijo_info in data['hijos'].items():
+        for hijo_nombre, hijo_info in data["hijos"].items():
             # Crear un nodo hijo recursivamente
-            hijo_nodo = construir_arbol_recursivo({**hijo_info, 'nombre': hijo_nombre})
+            hijo_nodo = construir_arbol_recursivo({**hijo_info, "nombre": hijo_nombre})
             # Agregar el nodo hijo al nodo actual como hijo en el árbol
             arbol.agregar_hijo(nodo, hijo_nodo)
         return nodo # Devuelve el nodo actual como raíz del subárbol
     
     # Construimos el nodo raíz del árbol a partir de los datos iniciales
-    raiz = construir_nodo(datos['nombre'], datos)
+    raiz = construir_nodo(datos["nombre"], datos)
     # Creamos la instancia del árbol con el nodo raíz
     arbol = ArbolHabilidades(raiz)
     # Procesamos los hijos del nodo raíz y los añadimos al árbol
-    for hijo_nombre, hijo_info in datos['hijos'].items():
+    for hijo_nombre, hijo_info in datos["hijos"].items():
         # Crear un nodo hijo recursivamente
         hijo_nodo = construir_arbol_recursivo({**hijo_info, 'nombre': hijo_nombre})
         # Agregar el nodo hijo al nodo raíz
