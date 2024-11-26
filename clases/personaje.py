@@ -2,7 +2,7 @@ import time
 from clases.arbol__transformaciones import ArbolTransformaciones
 from clases.arbol_habilidades import ArbolHabilidades
 class Personaje:
-    def __init__(self,nombre:str,vida:int,raza:str,estado:str,ki:int,max_ki,transformaciones:ArbolTransformaciones,transformacion_inicial,habilidades:ArbolHabilidades,exp,max_exp,nivel_de_poder,nivel:int=1,max_ki_base:int=10000):
+    def __init__(self,nombre:str,vida:int,raza:str,estado:str,ki:int,max_ki,transformaciones:ArbolTransformaciones,transformacion_inicial,habilidades:ArbolHabilidades,exp,max_exp,nivel_de_poder,nivel:int=1,max_ki_base:int=10000,combates_ganados=1):
         
         self.nombre = nombre
         self.vida = vida
@@ -18,9 +18,19 @@ class Personaje:
         self.nivel_de_poder = nivel_de_poder
         self.nivel = nivel
         self.max_ki_base = max_ki_base
+        self.combates_ganados = combates_ganados
+        self.evolucionar_poder(combates_ganados=self.combates_ganados)
+    
+    def ganar_combate(self):
+        """Método para registrar un combate ganado y evolucionar el poder."""
+        self.combates_ganados += 1  # Incrementa el contador de combates ganados
+        print(f"{self.nombre} ha ganado un combate!")
         
-    
-    
+        # Llamar a evolucionar poder después de ganar un combate
+        nuevo_poder = self.evolucionar_poder(combates_ganados=self.combates_ganados)
+        
+        
+        
     def mostrar_stats(self):
         #Hay que arreglar que sea vea bien las habliidades y transformaciones
         print (f"\nNombre: {self.nombre}\nNivel: {self.nivel}\nTransformacion actual: {self.transformacion_actual.nombre}\nKi: {self.ki}\nRaza: {self.raza}\nEstado: {self.estado}\nMaximo de Ki: {self.max_ki}\nVida: {self.vida} hp\nExperiencia: {self.exp}/{self.max_exp}\nTransformaciones: {self.transformaciones.mostrar_arbol()}\nHabilidades: {self.habilidades.mostrar_arbol()}\nnivel de Poder: {self.nivel_de_poder}\n")
@@ -96,10 +106,11 @@ class Personaje:
                 # Usar la habilidad
                 self.ki -= nodo_habilidad.costo_ki
                 daño = nodo_habilidad.daño
-                enemigo.recibir_daño(daño)  # Ajustamos la llamada para que no pase el enemigo de más
+                enemigo.recibir_daño(daño,enemigo)  # Ajustamos la llamada para que no pase el enemigo de más
                 print(f"{self.nombre} usó '{habilidad_nombre}', infligiendo {daño} puntos de daño a {enemigo.nombre}.")
             else:
-                print(f"No tienes suficiente Ki para usar '{habilidad_nombre}'. Necesitas {nodo_habilidad.costo_ki}.")
+                print(f"\nNo tienes suficiente Ki para usar '{habilidad_nombre}'. Necesitas {nodo_habilidad.costo_ki}.")
+            
         else:
             # Si no tiene la transformación requerida
             print(f"No puedes usar '{habilidad_nombre}' sin estar en una de las transformaciones requeridas: {', '.join(nodo_habilidad.transformacion_requerida)}.")
@@ -152,7 +163,11 @@ class Personaje:
         else:
             return (self.nivel * self.max_ki_base)  # Ejemplo: 100 + 50 por cada nivel
         
-
+    def actualizar_max_exp(self):
+        """Actualiza la experiencia máxima necesaria para subir de nivel."""
+        exp_base = 100  # Base de experiencia por nivel
+        self.max_exp = self.nivel * exp_base
+        
     def subir_nivel(self):
         #Sube el nivel del personaje si alcanza la experiencia necesaria.
         if self.exp >= self.nivel * 100:  # Ejemplo: 100 exp por nivel

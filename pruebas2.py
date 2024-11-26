@@ -28,38 +28,17 @@ class Juego:
 
     def turno_jugador(self):
         while True:
-            print(f"\nTurno de {self.jugador.nombre}.")
-            print(f"Vida de {self.maquina.nombre}: {self.maquina.vida} HP")
-            print("Habilidades disponibles:")
-            
-            print(type(self.jugador.habilidades.raiz.hijo))
+            print(f"""\nTurno de {self.jugador.nombre} -- ki:{self.jugador.ki}/{self.jugador.max_ki} -- vida:{self.jugador.vida} -- nivel:{self.jugador.nivel} -- transformacion actual: {self.jugador.transformacion_actual.nombre}
+                  combates ganados: {self.jugador.combates_ganados} -- experiencia: {self.jugador.exp}/{self.jugador.max_exp}\n""")
+            print(f"Vida del oponente {self.maquina.nombre}: {self.maquina.vida} HP")
+            print("\nHabilidades disponibles:")
             
             habilidades = self.jugador.habilidades.listar_habilidades()
-            #for habilidad in self.jugador.habilidades.raiz.hijo:
-                #habilidades.append(habilidad)
-                #print(habilidad)
-                #for abilidad in habilidad.hijo:
-                 #   habilidades.append(abilidad)
-                  #  #print(abilidad)
-                   # for bilidad in abilidad.hijo:
-                    #    habilidades.append(bilidad)
-                        #print(bilidad)
-                     #   for ilidad in bilidad.hijo:
-                      #      habilidades.append(ilidad)
-                            #print(ilidad)    
-    
-            
-            # Acceder a las habilidades desde la raíz del árbol
-            #lis=self.busqueda_habilidades(self.jugador.habilidades.raiz.hijos)
             
             for i, habilidad in enumerate(habilidades):
                 print(f"{i + 1}. {habilidad.nombre} (Costo Ki: {habilidad.costo_ki}, Daño: {habilidad.daño})")
-            """
-            
-            """
             accion = input("¿Quieres usar una habilidad (número) o cargar ki (c)? ").strip().lower()
             
-
             if accion.isdigit() and 1 <= int(accion) <= len(habilidades):
                 habilidad_seleccionada = habilidades[int(accion) - 1]
                 self.jugador.usar_habilidad(habilidad_seleccionada.nombre, self.maquina)
@@ -68,7 +47,9 @@ class Juego:
                 self.jugador.cargar_ki(1000)
                 break
             else:
-                print("Acción no válida. Por favor, elige un número válido o 'c' para cargar ki.")
+                print("\nAcción no válida. Por favor, elige un número válido o 'c' para cargar ki.")
+            
+        print("---"*20)
     
     
 
@@ -85,7 +66,9 @@ class Juego:
         
     
     def turno_maquina(self):
-        print(f"\nTurno de {self.maquina.nombre}.")
+        print(f"""\nTurno del oponente {self.maquina.nombre} -- ki:{self.maquina.ki}/{self.maquina.max_ki} -- vida:{self.maquina.vida} -- nivel:{self.maquina.nivel} -- transformacion actual: {self.maquina.transformacion_actual.nombre}
+                  combates ganados: {self.maquina.combates_ganados} -- experiencia: {self.maquina.exp}/{self.maquina.max_exp}\n""")
+        
         if self.maquina.ki >= 100 and random.choice([True, False]):
             # Acceder a las habilidades desde la raíz del árbol
             habilidades = self.maquina.habilidades.listar_habilidades()
@@ -94,6 +77,8 @@ class Juego:
             self.maquina.usar_habilidad(habilidad_aleatoria.nombre, self.jugador)
         else:
             self.maquina.cargar_ki(1000)
+            
+        print("---"*20)
 
 # Función para seleccionar un contrincante aleatorio
 def seleccionar_contrincante(personajes):
