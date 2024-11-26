@@ -32,19 +32,20 @@ class Juego:
             print(f"Vida de {self.maquina.nombre}: {self.maquina.vida} HP")
             print("Habilidades disponibles:")
             
+            print(type(self.jugador.habilidades.raiz.hijo))
             
-            habilidades = []
-            for habilidad in self.jugador.habilidades.raiz.hijos:
-                habilidades.append(habilidad)
+            habilidades = self.jugador.habilidades.listar_habilidades()
+            #for habilidad in self.jugador.habilidades.raiz.hijo:
+                #habilidades.append(habilidad)
                 #print(habilidad)
-                for abilidad in habilidad.hijos:
-                    habilidades.append(abilidad)
-                    #print(abilidad)
-                    for bilidad in abilidad.hijos:
-                        habilidades.append(bilidad)
+                #for abilidad in habilidad.hijo:
+                 #   habilidades.append(abilidad)
+                  #  #print(abilidad)
+                   # for bilidad in abilidad.hijo:
+                    #    habilidades.append(bilidad)
                         #print(bilidad)
-                        for ilidad in bilidad.hijos:
-                            habilidades.append(ilidad)
+                     #   for ilidad in bilidad.hijo:
+                      #      habilidades.append(ilidad)
                             #print(ilidad)    
     
             
@@ -87,21 +88,8 @@ class Juego:
         print(f"\nTurno de {self.maquina.nombre}.")
         if self.maquina.ki >= 100 and random.choice([True, False]):
             # Acceder a las habilidades desde la raíz del árbol
-            habilidades = []
-            for habilidad in self.maquina.habilidades.raiz.hijos:
-                habilidades.append(habilidad)
-                #print(habilidad)
-                for abilidad in habilidad.hijos:
-                    habilidades.append(abilidad)
-                    #print(abilidad)
-                    for bilidad in abilidad.hijos:
-                        habilidades.append(bilidad)
-                        #print(bilidad)
-                        for ilidad in bilidad.hijos:
-                            habilidades.append(ilidad)
-                            #print(ilidad)    
-    
-
+            habilidades = self.maquina.habilidades.listar_habilidades()
+            
             habilidad_aleatoria = random.choice(habilidades)
             self.maquina.usar_habilidad(habilidad_aleatoria.nombre, self.jugador)
         else:

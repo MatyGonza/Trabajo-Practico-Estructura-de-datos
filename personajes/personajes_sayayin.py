@@ -38,7 +38,7 @@ arbol_habilidades_data_goku = {
 }
 
 arbol_habilidades_data_vegeta = {
-    "Ataque básico": {
+        "nombre": "Ataque básica",
         "poder": 1000,
         "costo": 1000,
         "transformacion_requerida":  ["Base","Super Saiyajin","Super Saiyajin 2","Super Saiyajin 3"],
@@ -69,7 +69,7 @@ arbol_habilidades_data_vegeta = {
             }
         }
     }
-}
+
 
 
 arbol_habilidades_data_gohan = {

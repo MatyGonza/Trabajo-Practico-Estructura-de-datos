@@ -48,7 +48,32 @@ class ArbolHabilidades:
             while actual.hermano is not None:
                 actual = actual.hermano
             actual.hermano = hijo
+    
+    
+    def listar_habilidades(self):
+        """
+        Devuelve una lista de todas las habilidades en el árbol.
+        """
+        habilidades = []
+        self._listar_habilidades_recursivo(self.raiz, habilidades)
+        return habilidades
 
+    def _listar_habilidades_recursivo(self, nodo: NodoHabilidad, habilidades: list):
+        if nodo is not None:
+            habilidades.append(nodo)  # Agrega la habilidad actual a la lista
+            if nodo.hijo:
+                self._listar_habilidades_recursivo(nodo.hijo, habilidades)  # Recurre al hijo
+            if nodo.hermano:
+                self._listar_habilidades_recursivo(nodo.hermano, habilidades)  # Recurre al hermano
+
+    
+    def __iter__(self):
+            """Permite iterar sobre las habilidades hijas y hermanos."""
+            current = self.hijo
+            while current is not None:
+                yield current  # Devuelve el nodo hijo actual
+                current = current.hermano  # Avanza al siguiente hermano
+    
     def buscar_habilidad(self, nombre: str, nodo=None):
         """
         Busca una habilidad por nombre en el árbol.
