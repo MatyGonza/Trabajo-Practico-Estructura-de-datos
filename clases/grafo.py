@@ -174,10 +174,10 @@ class GrafoDragonBall:
 
 
 
-
+#test
 
 # Crear el grafo
-planetas = ["Tierra", "Namek", "Vegeta", "Kaiosama"]
+planetas = ["Tierra", "Namek", "Vegeta", "Kaiosama","Infierno","Paraiso"]
 grafo = GrafoDragonBall(planetas)
 
 # Agregar rutas entre planetas

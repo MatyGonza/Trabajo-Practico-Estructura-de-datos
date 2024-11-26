@@ -81,62 +81,56 @@ class Personaje:
             print(f"{personaje.nombre} Recibiste daño efectivo: {daño_recibido}\nTu vida restante es: {self.vida}")
 
     def usar_habilidad(self, habilidad_nombre, enemigo):
-    # Buscar la habilidad en el árbol
+        # Buscar la habilidad en el árbol
         nodo_habilidad = self.habilidades.buscar_habilidad(habilidad_nombre)
     
-    # Verificar si la habilidad existe
+        # Verificar si la habilidad existe
         if nodo_habilidad is None:
             print(f"La habilidad '{habilidad_nombre}' no existe.")
             return
 
-    # Verificar si cumple con la transformación requerida
-        if self.transformacion_actual.nombre in  nodo_habilidad.transformacion_requerida:
-            
-    # Verificar si tiene suficiente Ki
-            if self.ki > nodo_habilidad.costo_ki:
-            
-            
-
-    # Usar la habilidad
+        # Verificar si cumple con la transformación requerida
+        if any(transformacion in self.transformacion_actual.nombre for transformacion in nodo_habilidad.transformacion_requerida):
+            # Verificar si tiene suficiente Ki
+            if self.ki >= nodo_habilidad.costo_ki:
+                # Usar la habilidad
                 self.ki -= nodo_habilidad.costo_ki
                 daño = nodo_habilidad.daño
-                enemigo.recibir_daño(daño,enemigo)
+                enemigo.recibir_daño(daño)  # Ajustamos la llamada para que no pase el enemigo de más
                 print(f"{self.nombre} usó '{habilidad_nombre}', infligiendo {daño} puntos de daño a {enemigo.nombre}.")
             else:
                 print(f"\nNo tienes suficiente Ki para usar '{habilidad_nombre}'. Necesitas {nodo_habilidad.costo_ki}.")
             
         else:
-            print(f"No puedes usar '{habilidad_nombre}' sin estar en la transformación '{nodo_habilidad.transformacion_requerida.nombre}'.")
-            return
+            # Si no tiene la transformación requerida
+            print(f"No puedes usar '{habilidad_nombre}' sin estar en una de las transformaciones requeridas: {', '.join(nodo_habilidad.transformacion_requerida)}.")
             
     def transformarse(self, nombre_transformacion):
-        
-    # Buscar la transformación en el árbol
+        # Buscar la transformación en el árbol
         nodo_transformacion = self.transformaciones.buscar_nodo(nombre_transformacion)
-    
+        
         if nodo_transformacion is None:
             print(f"La transformación '{nombre_transformacion}' no existe.")
             return
 
-    # Verificar si cumple con los requisitos de transformación
+        # Verificar si cumple con los requisitos de transformación
         if self.ki < nodo_transformacion.ki_necesario:
             print(f"No tienes suficiente Ki para transformarte en '{nombre_transformacion}'. Necesitas {nodo_transformacion.ki_necesario}.")
             return
 
-        if self.transformacion_actual.nombre != nodo_transformacion.transformacion_requerida.nombre:
-            print(f"No puedes transformarte en '{nombre_transformacion}' sin antes estar en '{nodo_transformacion.transformacion_requerida.nombre}'.")
+        # Verificar si la transformación requerida es la actual del personaje
+        if self.transformacion_actual is None or self.transformacion_actual.nombre != nodo_transformacion.transformacion_requerida:
+            print(f"No puedes transformarte en '{nombre_transformacion}' sin antes estar en '{nodo_transformacion.transformacion_requerida}'.")
             return
 
-    # Realizar la transformación
+        # Realizar la transformación
         self.ki -= nodo_transformacion.ki_necesario
         self.transformacion_actual = nodo_transformacion
         
-        #Evoluciona el poder pasandole el multiplicador como parametro
-        self.evolucionar_poder(multiplicador=nodo_transformacion.multiplicador_nivel_de_poder)
+        # Evolucionar el poder del personaje con el multiplicador de la transformación
+        self.evolucionar_poder(nodo_transformacion.multiplicador_nivel_de_poder)
         
         print(f"{self.nombre} se ha transformado en '{nombre_transformacion}', con nivel de poder multiplicado por {nodo_transformacion.multiplicador_nivel_de_poder}.")
-        ################################################################
-    def actualizar_max_exp(self):
         exp_base = 100
         max_exp_actualizada = self.nivel * exp_base
         self.max_exp = max_exp_actualizada
