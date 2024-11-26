@@ -4,7 +4,7 @@ from clases.arbol_habilidades import crear_arbol_habilidades
 
 class Sayayin(Personaje):
     def __init__(self, nombre: str,arbol_habilidades_data):
-        super().__init__(nombre, vida=1000, raza="Sayayin", estado="Normal", ki=0, max_ki=100, transformaciones=self.crear_arbol_transformaciones(), transformacion_inicial=self.crear_arbol_transformaciones().raiz, habilidades=self.crear_arbol_habilidades(arbol_habilidades_data), exp=0, max_exp=100, nivel_de_poder=1, nivel=1, max_ki_base=1000)
+        super().__init__(nombre, vida=1000, raza="Sayayin", estado="Normal", ki=0, max_ki=10000, transformaciones=self.crear_arbol_transformaciones(), transformacion_inicial=self.crear_arbol_transformaciones().raiz, habilidades=self.crear_arbol_habilidades(arbol_habilidades_data), exp=0, max_exp=100, nivel_de_poder=1, nivel=1, max_ki_base=1000)
     
     def ataque_especial(self, enemigo):
         """Ataque especial del Sayayin."""
