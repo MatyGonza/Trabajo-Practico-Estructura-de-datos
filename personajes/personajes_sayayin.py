@@ -4,7 +4,7 @@ from clases.sayayin import Sayayin
 arbol_habilidades_data_goku = {
     "nombre": "Ataque básico",
     "poder": 1000,
-    "costo": 1000,
+    "costo": 100,
     "transformacion_requerida": ["Base", "Super Saiyajin", "Super Saiyajin 2", "Super Saiyajin 3"],
     "descripcion": "Un golpe básico con Ki.",
     "hijos": {
@@ -38,9 +38,9 @@ arbol_habilidades_data_goku = {
 }
 
 arbol_habilidades_data_vegeta = {
-        "nombre": "Ataque básica",
+        "nombre": "Ataque básico",
         "poder": 1000,
-        "costo": 1000,
+        "costo": 100,
         "transformacion_requerida":  ["Base","Super Saiyajin","Super Saiyajin 2","Super Saiyajin 3"],
         "descripcion": "Un golpe básico con Ki.",
         "hijos": {
@@ -73,9 +73,9 @@ arbol_habilidades_data_vegeta = {
 
 
 arbol_habilidades_data_gohan = {
-    "nombre": "Ataque básica",
+    "nombre": "Ataque básico",
     "poder": 1000,
-    "costo": 1000,
+    "costo": 100,
     "transformacion_requerida": ["Base", "Super Saiyajin", "Super Saiyajin 2", "Super Saiyajin 3"],
     "descripcion": "Un golpe básico con Ki.",
     "hijos": {
