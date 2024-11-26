@@ -48,7 +48,37 @@ class ArbolHabilidades:
             while actual.hermano is not None:
                 actual = actual.hermano
             actual.hermano = hijo
+    def ordenamiento_topologico(self):
+        """
+        Realiza el ordenamiento topológico del árbol de habilidades.
+        """
+        def dfs(nodo, visitado, pila):
+            """
+            Realiza un DFS para ordenar topológicamente las habilidades.
+            """
+            # Marcamos el nodo como visitado
+            if nodo not in visitado:
+                visitado.add(nodo)
+            
+                # Recurrimos a los hijos de este nodo
+                if nodo.hijo:
+                    dfs(nodo.hijo, visitado, pila)
+                
+                # Recurrimos a los hermanos de este nodo
+                if nodo.hermano:
+                    dfs(nodo.hermano, visitado, pila)
+            
+                # Una vez procesado, agregamos el nodo a la pila
+                pila.append(nodo)
     
+        pila = []  # Esta pila almacenará las habilidades en el orden topológico
+        visitado = set()  # Conjunto de nodos visitados para evitar ciclos
+
+        # Realizamos DFS desde la raíz
+        dfs(self.raiz, visitado, pila)
+    
+        # Devolvemos la pila invertida, ya que el último nodo procesado debe aparecer primero
+        return pila[::-1]    
     
     def listar_habilidades(self):
         """
@@ -147,3 +177,35 @@ def crear_arbol_habilidades(datos):
         arbol.agregar_hijo(raiz, hijo_nodo)
     return arbol # Devuelve el árbol completo
 
+#test
+# Crear un árbol de habilidades
+datos_habilidades = {
+    "nombre": "Kamehameha",
+    "costo": 50,
+    "poder": 100,
+    "transformacion_requerida": [],
+    "descripcion": "Un potente rayo de energía.",
+    "hijos": {
+        "Kaio-Ken": {
+            "costo": 30,
+            "poder": 50,
+            "transformacion_requerida": [],
+            "descripcion": "Técnica que multiplica la fuerza.",
+            "hijos": {}
+        },
+        "Genki-Dama": {
+            "costo": 80,
+            "poder": 150,
+            "transformacion_requerida": ["Kaio-Ken"],
+            "descripcion": "Rayo de energía concentrada en una esfera gigante.",
+            "hijos": {}
+        }
+    }
+}
+# Crear el árbol de habilidades
+arbol_habilidades = crear_arbol_habilidades(datos_habilidades)
+
+# Obtener el orden topológico de las habilidades
+orden = arbol_habilidades.ordenamiento_topologico()
+for habilidad in orden:
+    print(habilidad)
