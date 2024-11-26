@@ -4,7 +4,7 @@ from clases.andriode import Androide
 from clases.juego import Juego
 
 arbol_habilidades_data = {
-    "Ataque básica": {
+        "nombre":"Ataque básica",
         "poder": 1000,
         "costo": 1000,
         "transformacion_requerida":  ["Base","Super Saiyajin","Super Saiyajin 2","Super Saiyajin 3"],
@@ -35,7 +35,6 @@ arbol_habilidades_data = {
             }
         }
     }
-}
 
 #se instancias 2 clases de sayayin que ya tienen todos sus atributos cargados por defecto
 goku = Sayayin("goku",arbol_habilidades_data)
