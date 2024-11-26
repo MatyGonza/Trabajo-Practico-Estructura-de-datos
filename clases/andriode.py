@@ -4,8 +4,10 @@ from clases.arbol__transformaciones import ArbolTransformaciones,NodoTransformac
 from clases.arbol_habilidades import crear_arbol_habilidades
 
 class Androide(Personaje):
-    def __init__(self, nombre: str,arbol_habilidades_data):
+    def __init__(self, nombre: str,arbol_habilidades_data,combates_ganados):
         super().__init__(nombre, vida=1000, raza="Androide", estado="Normal", ki=0, max_ki=100, transformaciones=self.crear_arbol_transformaciones(), transformacion_inicial=self.crear_arbol_transformaciones().raiz, habilidades=self.crear_arbol_habilidades(arbol_habilidades_data), exp=0, max_exp=100, nivel_de_poder=1, nivel=1, max_ki_base=1000)
+        self.combates_ganados = combates_ganados
+        self.evolucionar_poder(combates_ganados=self.combates_ganados)
     
     def ataque_especial(self, enemigo):
         """Ataque especial del Andriode."""

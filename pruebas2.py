@@ -28,7 +28,8 @@ class Juego:
 
     def turno_jugador(self):
         while True:
-            print(f"""\nTurno de {self.jugador.nombre} -- ki:{self.jugador.ki}/{self.jugador.max_ki} -- vida:{self.jugador.vida} -- nivel:{self.jugador.nivel} -- transformacion actual: {self.jugador.transformacion_actual.nombre}\n""")
+            print(f"""\nTurno de {self.jugador.nombre} -- ki:{self.jugador.ki}/{self.jugador.max_ki} -- vida:{self.jugador.vida} -- nivel:{self.jugador.nivel} -- transformacion actual: {self.jugador.transformacion_actual.nombre}
+                  combates ganados: {self.jugador.combates_ganados} -- experiencia: {self.jugador.exp}/{self.jugador.max_exp}\n""")
             print(f"Vida del oponente {self.maquina.nombre}: {self.maquina.vida} HP")
             print("\nHabilidades disponibles:")
             
@@ -65,7 +66,8 @@ class Juego:
         
     
     def turno_maquina(self):
-        print(f"""\nTurno del oponente {self.maquina.nombre} -- ki:{self.jugador.ki}/{self.jugador.max_ki} -- vida:{self.jugador.vida} -- nivel:{self.jugador.nivel} -- transformacion actual: {self.jugador.transformacion_actual.nombre}\n""")
+        print(f"""\nTurno del oponente {self.maquina.nombre} -- ki:{self.maquina.ki}/{self.maquina.max_ki} -- vida:{self.maquina.vida} -- nivel:{self.maquina.nivel} -- transformacion actual: {self.maquina.transformacion_actual.nombre}
+                  combates ganados: {self.maquina.combates_ganados} -- experiencia: {self.maquina.exp}/{self.maquina.max_exp}\n""")
         
         if self.maquina.ki >= 100 and random.choice([True, False]):
             # Acceder a las habilidades desde la raíz del árbol

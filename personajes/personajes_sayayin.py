@@ -1,6 +1,5 @@
 from clases.sayayin import Sayayin
 
-
 arbol_habilidades_data_goku = {
     "nombre": "Ataque básico",
     "poder": 1000,
@@ -108,9 +107,9 @@ arbol_habilidades_data_gohan = {
     }
 }
 # Instanciando los personajes
-goku = Sayayin("Goku", arbol_habilidades_data_goku)
-vegeta = Sayayin("Vegeta", arbol_habilidades_data_vegeta)
-gohan = Sayayin("Gohan", arbol_habilidades_data_gohan)
+goku = Sayayin("Goku", arbol_habilidades_data_goku,4)
+vegeta = Sayayin("Vegeta", arbol_habilidades_data_vegeta,10)
+gohan = Sayayin("Gohan", arbol_habilidades_data_gohan,20)
 
 # Puedes exportar las instancias si lo deseas
 __all__ = ['goku', 'vegeta', 'gohan']

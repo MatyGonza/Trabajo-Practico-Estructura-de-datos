@@ -108,11 +108,11 @@ arbol_habilidades_data_18 = {
     }
 }
 
-andriode16=Androide("Androide 16",arbol_habilidades_data_16)
+andriode16=Androide("Androide 16",arbol_habilidades_data_16,20)
 
-andriode17=Androide("Androide 17",arbol_habilidades_data_17)
+andriode17=Androide("Androide 17",arbol_habilidades_data_17,8)
 
-andriode18=Androide("Androide 18",arbol_habilidades_data_18)
+andriode18=Androide("Androide 18",arbol_habilidades_data_18,4)
 
 # Puedes exportar las instancias si lo deseas
 __all__ = ['androide16', 'androide17', 'androide18']
