@@ -174,20 +174,17 @@ class GrafoDragonBall:
 
 
 
-#test
+#Creacion del universo
+#se va a utlizar para el torneo
 
-# Crear el grafo
-planetas = ["Tierra", "Namek", "Vegeta", "Kaiosama","Infierno","Paraiso"]
-grafo = GrafoDragonBall(planetas)
-
-# Agregar rutas entre planetas
-grafo.agregar_ruta("Tierra", "Namek", 50)
-grafo.agregar_ruta("Tierra", "Vegeta", 100)
-grafo.agregar_ruta("Namek", "Vegeta", 75)
-grafo.agregar_ruta("Vegeta", "Kaiosama", 150)
+universo_dragonball =  ["Tierra","Namek","Vegeta","Planeta Kaio","Reino de los demonios","Planeta de Bills"]
+grafo = GrafoDragonBall(universo_dragonball)
+grafo.agregar_ruta("Tierra","Namek",40)
+grafo.agregar_ruta("Namek","Vegeta",70)
+grafo.agregar_ruta("Tierra","Reino de los demonios",60)
+grafo.agregar_ruta("Vegeta","Planeta Kaio",30)
+grafo.agregar_ruta("Tierra","Planeta de Bills",200)
 
 
-distancias = grafo.dijkstra("Tierra")
-print("Distancias más cortas desde Tierra:")
-for planeta, distancia in distancias.items():
-    print(f"{planeta}: {distancia}")
+
+

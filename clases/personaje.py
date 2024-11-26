@@ -1,8 +1,9 @@
 import time 
-from clases.arbol__transformaciones import ArbolTransformaciones
+from clases.arbol_transformaciones import ArbolTransformaciones
 from clases.arbol_habilidades import ArbolHabilidades
+from clases.grafo import GrafoDragonBall
 class Personaje:
-    def __init__(self,nombre:str,vida:int,raza:str,estado:str,ki:int,max_ki,transformaciones:ArbolTransformaciones,transformacion_inicial,habilidades:ArbolHabilidades,exp,max_exp,nivel_de_poder,nivel:int=1,max_ki_base:int=10000,combates_ganados=1):
+    def __init__(self,nombre:str,vida:int,raza:str,estado:str,ki:int,max_ki,transformaciones:ArbolTransformaciones,transformacion_inicial,habilidades:ArbolHabilidades,exp,max_exp,nivel_de_poder,nivel:int=1,max_ki_base:int=10000,combates_ganados=1,planeta_actual = "Tierra"):
         
         self.nombre = nombre
         self.vida = vida
@@ -20,6 +21,7 @@ class Personaje:
         self.max_ki_base = max_ki_base
         self.combates_ganados = combates_ganados
         self.evolucionar_poder(combates_ganados=self.combates_ganados)
+        self.planeta_actual = planeta_actual
     
     def ganar_combate(self):
         """Método para registrar un combate ganado y evolucionar el poder."""
@@ -217,3 +219,47 @@ class Personaje:
             print("tranfomacion")
             return nuevo_poder
 
+    def escapar_a(self, grafo, planeta_destino):
+        """
+        Permite al personaje escapar a un planeta especificado,
+        sin necesidad de verificar las rutas (cambia el planeta directamente).
+        
+        :param grafo: El grafo de planetas.
+        :param planeta_destino: El planeta al que el personaje quiere escapar.
+        """
+        # Verificar si el planeta destino existe en el grafo
+        if planeta_destino in grafo.planetas:
+            self.planeta_actual = planeta_destino
+            print(f"{self.nombre} ha escapado a {planeta_destino}.")
+        else:
+            print(f"El planeta {planeta_destino} no existe en el grafo.")
+    
+    def viajar_a(self, grafo, planeta_destino):
+        """
+        Permite al personaje viajar a un planeta conectado al planeta actual,
+        si existe una ruta entre los planetas.
+        
+        :param grafo: El grafo de planetas.
+        :param planeta_destino: El planeta al que el personaje quiere viajar.
+        """
+        # Verificar si el planeta destino está conectado al planeta actual
+        if grafo.obtener_peso(self.planeta_actual, planeta_destino) > 0:
+            self.planeta_actual = planeta_destino
+            print(f"{self.nombre} ha viajado a {planeta_destino}.")
+        else:
+            print(f"No hay ruta entre {self.planeta_actual} y {planeta_destino}.")
+
+
+
+
+# Crear el grafo de planetas
+universo_planetas = ["Tierra", "Namek", "Vegeta"]
+grafo_universo = GrafoDragonBall(universo_planetas)
+
+# Agregar rutas entre planetas
+grafo_universo.agregar_ruta("Tierra", "Namek", 10)
+grafo_universo.agregar_ruta("Tierra", "Vegeta", 5)
+grafo_universo.agregar_ruta("Namek", "Vegeta", 15)
+ 
+
+goku = Personaje("Goku",)

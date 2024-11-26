@@ -1,18 +1,15 @@
 from clases.personaje import Personaje
 from clases.personaje import Personaje
-from clases.arbol__transformaciones import ArbolTransformaciones,NodoTransformacion
+from clases.arbol_transformaciones import ArbolTransformaciones,NodoTransformacion
 from clases.arbol_habilidades import crear_arbol_habilidades
 
 class Androide(Personaje):
-<<<<<<< HEAD
     def __init__(self, nombre: str,arbol_habilidades_data):#el max ki cambiar su unidad a 10000
-        super().__init__(nombre, vida=1000, raza="Androide", estado="Normal", ki=0, max_ki=10000, transformaciones=self.crear_arbol_transformaciones(), transformacion_inicial=self.crear_arbol_transformaciones().raiz, habilidades=self.crear_arbol_habilidades(arbol_habilidades_data), exp=0, max_exp=100, nivel_de_poder=1, nivel=1, max_ki_base=1000)
-=======
+        super().__init__(nombre, vida=1000, raza="Androide", estado="Normal", ki=0, max_ki=10000, transformaciones=self.crear_arbol_transformaciones(), transformacion_inicial=self.crear_arbol_transformaciones().raiz, habilidades=self.crear_arbol_habilidades(arbol_habilidades_data), exp=0, max_exp=100, nivel_de_poder=1, nivel=1, max_ki_base=1000,planeta_actual="Tierra")
     def __init__(self, nombre: str,arbol_habilidades_data,combates_ganados):
         super().__init__(nombre, vida=1000, raza="Androide", estado="Normal", ki=0, max_ki=100, transformaciones=self.crear_arbol_transformaciones(), transformacion_inicial=self.crear_arbol_transformaciones().raiz, habilidades=self.crear_arbol_habilidades(arbol_habilidades_data), exp=0, max_exp=100, nivel_de_poder=1, nivel=1, max_ki_base=1000)
         self.combates_ganados = combates_ganados
         self.evolucionar_poder(combates_ganados=self.combates_ganados)
->>>>>>> 13e8862d62ca0618c125f16f8ce318d2964db99c
     
     def ataque_especial(self, enemigo):
         """Ataque especial del Andriode."""

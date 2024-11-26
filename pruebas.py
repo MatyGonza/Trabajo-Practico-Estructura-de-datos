@@ -1,5 +1,5 @@
 
-from clases.sayayin import Sayayin
+from clases.saiyajin import Saiyajin
 from clases.andriode import Androide
 from clases.juego import Juego
 
@@ -37,7 +37,7 @@ arbol_habilidades_data = {
     }
 
 #se instancias 2 clases de sayayin que ya tienen todos sus atributos cargados por defecto
-goku = Sayayin("goku",arbol_habilidades_data)
+goku = Saiyajin("goku",arbol_habilidades_data)
 #vegeta = Sayayin("Vegeta")
 
 

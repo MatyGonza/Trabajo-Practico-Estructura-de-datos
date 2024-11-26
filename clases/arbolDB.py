@@ -1,4 +1,4 @@
-
+from clases.personaje import Personaje
 
 
 

@@ -1,8 +1,8 @@
-from personajes.personajes_sayayin import goku,gohan,vegeta
+from personajes.personajes_saiyajin import goku,gohan,vegeta
 from personajes.personajes_androide import andriode16,andriode17,andriode18
 
 from clases.personaje import Personaje
-from clases.sayayin import Sayayin  # Asegúrate de importar la clase correcta
+from clases.saiyajin import Saiyajin # Asegúrate de importar la clase correcta
 import random
 
 class Juego:
