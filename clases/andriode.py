@@ -14,6 +14,9 @@ class Androide(Personaje):
         self.combates_ganados = combates_ganados
         self.evolucionar_poder(combates_ganados=self.combates_ganados)
     
+    def __str__(self):
+        return f"{self.nombre} Nivel de poder: {self.nivel_de_poder}"
+    
     def ataque_especial(self, enemigo):
         """Ataque especial del Saiyajin."""
         if self.ki >= 5000:

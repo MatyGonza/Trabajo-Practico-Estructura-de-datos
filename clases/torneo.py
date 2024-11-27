@@ -1,5 +1,4 @@
 from pruebas2 import Juego
-from clases.personaje import Personaje
 from clases.cola_prioridad import ColaDePrioridad
 from clases.grafo import GrafoDragonBall
 from personajes.personajes_androide import andriode16, andriode17, andriode18
@@ -110,7 +109,7 @@ class MenuPrincipal:
             print(habilidad.nombre)  # Se imprime cada habilidad en el orden obtenido
 
 
-# Crear los objetos y ejecutar el menú
+
 
 
 

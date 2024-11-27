@@ -1,7 +1,7 @@
 from clases.saiyajin import Saiyajin
 
 arbol_habilidades_data_goku = {
-    "nombre": "Ataque básico",
+    "nombre": "Ataque basico",
     "poder": 1000,
     "costo": 100,
     "transformacion_requerida": ["Base", "Super Saiyajin", "Super Saiyajin 2", "Super Saiyajin 3"],
@@ -37,7 +37,7 @@ arbol_habilidades_data_goku = {
 }
 
 arbol_habilidades_data_vegeta = {
-        "nombre": "Ataque básico",
+        "nombre": "Ataque basico",
         "poder": 10000,
         "costo": 1500,
         "transformacion_requerida":  ["Base","Super Saiyajin","Super Saiyajin 2","Super Saiyajin 3"],
@@ -72,7 +72,7 @@ arbol_habilidades_data_vegeta = {
 
 
 arbol_habilidades_data_gohan = {
-    "nombre": "Ataque básico",
+    "nombre": "Ataque basico",
     "poder": 1500,
     "costo": 1000,
     "transformacion_requerida": ["Base", "Super Saiyajin", "Super Saiyajin 2", "Super Saiyajin 3"],

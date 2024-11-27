@@ -121,39 +121,8 @@ combates ganados: {self.jugador.combates_ganados} -- experiencia: {self.jugador.
 
         print("---" * 20)
         time.sleep(5)
-    def turno_jugador(self):
-        while True:
-            print(f"""\nTurno de {self.jugador.nombre} -- Vida: {self.jugador.vida} -- Ki: {self.jugador.ki}/{self.jugador.max_ki}""")
-            print("Opciones: (1) Usar habilidad, (2) Cargar Ki, (3) Transformarse, (4) Escapar")
-            accion = input("Elige tu acción: ").strip()
-            if accion == "1":
-                habilidades = self.jugador.habilidades.listar_habilidades()
-                for i, habilidad in enumerate(habilidades):
-                    print(f"{i + 1}. {habilidad.nombre} (Ki: {habilidad.costo_ki}, Daño: {habilidad.daño})")
-                seleccion = int(input("Selecciona una habilidad: "))
-                self.jugador.usar_habilidad(habilidades[seleccion - 1].nombre, self.maquina)
-                break
-            elif accion == "2":
-                self.jugador.cargar_ki(1000)
-                break
-            elif accion == "3":
-                transformacion = input("¿A qué transformación deseas ir? ")
-                self.jugador.transformarse(transformacion)
-                break
-            elif accion == "4":
-                print("¡Has escapado del combate!")
-                return
-            else:
-                print("Opción inválida, intenta de nuevo.")
-        print("------"*20)
 
-    def turno_maquina(self):
-        if self.maquina.ki >= 100 and random.choice([True, False]):
-            habilidades = self.maquina.habilidades.listar_habilidades()
-            habilidad = random.choice(habilidades)
-            self.maquina.usar_habilidad(habilidad.nombre, self.jugador)
-        else:
-            self.maquina.cargar_ki(1000)
+
 
     def busqueda_habilidades(self,hijos):
         habilidades=[]

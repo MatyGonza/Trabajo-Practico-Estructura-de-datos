@@ -1,31 +1,9 @@
+from personajes.personajes_saiyajin import * 
 
 #utilizamos el modulo de cola de phyton
 
 import heapq
-#test con la clase personaje
-class Personaje:
-    def __init__(self,nombre:str,vida:int,raza:str,estado:str,ki:int,max_ki,transformaciones:None,transformacion_inicial,habilidades:None,exp,max_exp,nivel_de_poder,nivel:int=1,max_ki_base:int=10000):
-        
-        self.nombre = nombre
-        self.vida = vida
-        self.raza = raza
-        self.estado = estado
-        self.ki = ki
-        self.max_ki = max_ki
-        self.transformaciones = transformaciones
-        self.transformacion_actual =transformacion_inicial 
-        self.habilidades = habilidades
-        self.exp = exp
-        self.max_exp = max_exp
-        self.nivel_de_poder = nivel_de_poder #este parametro se usara
-        self.nivel = nivel
-        self.max_ki_base = max_ki_base
 
-    def __str__(self):
-        """
-        Representación en texto del personaje.
-        """
-        return f"{self.nombre} (Nivel de Poder: {self.nivel_de_poder})"
     
 
 # Clase que implementa una cola de prioridades utilizando un heap binario
@@ -63,10 +41,10 @@ if __name__ == "__main__":
 
 
     # Crear personajes
-    goku = Personaje("Goku", 1000, "Saiyajin", "Normal", 500, 1000, None,
-                     "Base", None, 0, 100, 9000)
-    vegeta = Personaje("Vegeta", 1000, "Saiyajin", "Normal", 400, 900, None,
-                       "Base", None, 0, 100, 8500)
+    #goku = Personaje("Goku", 1000, "Saiyajin", "Normal", 500, 1000, None,
+                     #"Base", None, 0, 100, 9000)
+    #vegeta = Personaje("Vegeta", 1000, "Saiyajin", "Normal", 400, 900, None,
+                       #"Base", None, 0, 100, 8500)
 
     # Crear cola de prioridad
     cola = ColaDePrioridad()
