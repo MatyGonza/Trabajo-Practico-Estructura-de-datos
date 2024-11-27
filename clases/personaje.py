@@ -43,7 +43,7 @@ class Personaje:
         
     def mostrar_stats(self):
         #Hay que arreglar que sea vea bien las habliidades y transformaciones
-        print (f"\nNombre: {self.nombre}\nNivel: {self.nivel}\nTransformacion actual: {self.transformacion_actual.nombre}\nKi: {self.ki}\nRaza: {self.raza}\nEstado: {self.estado}\nMaximo de Ki: {self.max_ki}\nVida: {self.vida} hp\nExperiencia: {self.exp}/{self.max_exp}\nTransformaciones: {self.transformaciones.mostrar_arbol()}\nHabilidades: {self.habilidades.mostrar_arbol()}\nnivel de Poder: {self.nivel_de_poder}\n")
+        print (f"\nNombre: {self.nombre}\nNivel: {self.nivel}\nTransformacion actual: {self.transformacion_actual.nombre}\nKi: {self.ki}\nRaza: {self.raza}\nEstado: {self.estado}\nMaximo de Ki: {self.max_ki}\nVida: {self.vida} hp\nExperiencia: {self.exp}/{self.max_exp}\nTransformaciones:\nHabilidades: \nnivel de Poder: {self.nivel_de_poder}\n")
     
     def ataque_basico(self,enemigo): #esto es una implementacion algo basica que puede cambiar.
         if self.ki >=   1000:  #el personaje necesita un min de 1000/100000 para hacer un ataque normal
@@ -92,11 +92,11 @@ class Personaje:
                 
    
             
-            print(f"{self.nombre} Recibiste daño efectivo de {personaje.nombre}: {daño_recibido}\nTu vida restante es: {self.vida}")
+            print(f"{personaje.nombre} Recibiste daño efectivo: {daño_recibido}..Tu vida restante es: {self.vida}")
 
     def usar_habilidad(self, habilidad_nombre, enemigo):
         # Buscar la habilidad en el árbol
-        nodo_habilidad = self.habilidades.buscar_habilidad(habilidad_nombre)
+        nodo_habilidad = self.habilidades.buscar_habilidad(habilidad_nombre.lower())
     
         # Verificar si la habilidad existe
         if nodo_habilidad is None:
@@ -110,8 +110,8 @@ class Personaje:
                 # Usar la habilidad
                 self.ki -= nodo_habilidad.costo_ki
                 daño = nodo_habilidad.daño
-                enemigo.recibir_daño(daño,enemigo)  # Ajustamos la llamada para que no pase el enemigo de más
                 print(f"{self.nombre} usó '{habilidad_nombre}', infligiendo {daño} puntos de daño a {enemigo.nombre}.")
+                enemigo.recibir_daño(daño,enemigo)  # Ajustamos la llamada para que no pase el enemigo de más
             else:
                 print(f"\nNo tienes suficiente Ki para usar '{habilidad_nombre}'. Necesitas {nodo_habilidad.costo_ki}.")
             
@@ -120,6 +120,7 @@ class Personaje:
             print(f"No puedes usar '{habilidad_nombre}' sin estar en una de las transformaciones requeridas: {', '.join(nodo_habilidad.transformacion_requerida)}.")
             
     def transformarse(self, nombre_transformacion):
+        
         # Buscar la transformación en el árbol
         nodo_transformacion = self.transformaciones.buscar_nodo(nombre_transformacion)
         
@@ -133,8 +134,8 @@ class Personaje:
             return
 
         # Verificar si la transformación requerida es la actual del personaje
-        if self.transformacion_actual is None or self.transformacion_actual.nombre != nodo_transformacion.transformacion_requerida:
-            print(f"No puedes transformarte en '{nombre_transformacion}' sin antes estar en '{nodo_transformacion.transformacion_requerida}'.")
+        if self.transformacion_actual.nombre is None or self.transformacion_actual.nombre != nodo_transformacion.transformacion_requerida:
+            print(f"No puedes transformarte en '{nombre_transformacion}' sin antes estar en '{nodo_transformacion.transformacion_requerida.nombre}'.")
             return
 
         # Realizar la transformación

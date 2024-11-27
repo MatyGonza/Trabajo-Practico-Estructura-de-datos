@@ -31,10 +31,10 @@ class Androide(Personaje):
     
     def crear_arbol_transformaciones(self):
         base = NodoTransformacion("Base", 0, None, 1)
-        fase1 = NodoTransformacion("Fase 1", 4000, base, 50)
-        fase2 = NodoTransformacion("Fase 2", 5500, fase1, 100)
-        fase3 = NodoTransformacion("Fase 3", 7000, fase2, 150)
-        fase4 = NodoTransformacion("Fase 4", 8500, fase3, 160)
+        fase1 = NodoTransformacion("Fase 1", 4000, "Base", 50)
+        fase2 = NodoTransformacion("Fase 2", 5500,"Fase 1", 100)
+        fase3 = NodoTransformacion("Fase 3", 7000, "Fase 2", 150)
+        fase4 = NodoTransformacion("Fase 4", 8500, "Fase 3", 160)
 
         base.agregar_hijo(fase1)
         fase1.agregar_hijo(fase2)

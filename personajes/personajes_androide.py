@@ -1,28 +1,28 @@
 from clases.andriode import Androide
 
 arbol_habilidades_data_16 = {
-    "nombre": "Ataque básico",
+    "nombre": "Ataque basico",
     "poder": 1000,
     "costo": 1000,
     "transformacion_requerida": ["Base", "Fase 1", "Fase 2", "Fase 3", "Fase 4"],
     "descripcion": "Un golpe básico con Ki.",
     "hijos": {
-        "Súper Dodonpa": {
-            "nombre": "Súper Dodonpa",
+        "Super Dodonpa": {
+            "nombre": "Super Dodonpa",
             "poder": 2000,
             "costo": 4000,
             "transformacion_requerida": ["Base", "Fase 1", "Fase 2", "Fase 3", "Fase 4"],
             "descripcion": "Un ataque de energía que lanza un rayo devastador, capaz de causar un gran daño a sus oponentes.",
             "hijos": {
-                "Absorción de Ki": { #Faltaria un atributo que absorba el ki o lo podriamos cambiar por absorcion de energia.
-                    "nombre": "Absorción de Ki",
+                "Absorcion de Ki": { #Faltaria un atributo que absorba el ki o lo podriamos cambiar por absorcion de energia.
+                    "nombre": "Absorcion de Ki",
                     "poder": 1500,
                     "costo": 3000,
                     "transformacion_requerida": ["Base", "Fase 1", "Fase 2", "Fase 3", "Fase 4"],
                     "descripcion": "Tiene la capacidad de absorber ataques de energía, lo que le permite recuperarse y utilizar esa energía en su contra.",
                     "hijos": {
-                        "Autodestrucción": {
-                            "nombre": "Autodestrucción",
+                        "Autodestruccion": {
+                            "nombre": "Autodestruccion",
                             "poder": 50000, #le agregue un cero mas
                             "costo": 40000,
                             "transformacion_requerida": ["Base", "Fase 1", "Fase 2", "Fase 3", "Fase 4"],
@@ -37,28 +37,28 @@ arbol_habilidades_data_16 = {
 }
 
 arbol_habilidades_data_17 = {
-    "nombre": "Ataque básico",
+    "nombre": "Ataque basico",
     "poder": 1000,
     "costo": 1000,
     "transformacion_requerida": ["Base", "Fase 1", "Fase 2", "Fase 3", "Fase 4"],
     "descripcion": "Un golpe básico con Ki.",
     "hijos": {
-        "Barrera de Energía": {
-            "nombre": "Barrera de Energía",
+        "Barrera de energia": {
+            "nombre": "Barrera de energia",
             "poder": 2000,
             "costo": 4000,
             "transformacion_requerida": ["Base", "Fase 1", "Fase 2", "Fase 3", "Fase 4"],
             "descripcion": "Puede crear una barrera de energía defensiva que le protege de ataques enemigos, permitiéndole contrarrestar con ataques propios.",
             "hijos": {
-                "Rayo Energético": {
-                    "nombre": "Rayo Energético",
+                "Rayo energetico": {
+                    "nombre": "Rayo energetico",
                     "poder": 1500,
                     "costo": 3000,
                     "transformacion_requerida": ["Base", "Fase 1", "Fase 2", "Fase 3", "Fase 4"],
                     "descripcion": "Un ataque rápido y potente que dispara un rayo de energía hacia su oponente, con una precisión y velocidad notables.",
                     "hijos": {
-                        "Autodestrucción": {
-                            "nombre": "Autodestrucción",
+                        "Autodestruccion": {
+                            "nombre": "Autodestruccion",
                             "poder": 5000,
                             "costo": 40000,
                             "transformacion_requerida": ["Base", "Fase 1", "Fase 2", "Fase 3", "Fase 4"],
@@ -73,14 +73,14 @@ arbol_habilidades_data_17 = {
 }
 
 arbol_habilidades_data_18 = {
-    "nombre": "Ataque básico",
+    "nombre": "Ataque basico",
     "poder": 1000,
     "costo": 1000,
     "transformacion_requerida": ["Base", "Fase 1", "Fase 2", "Fase 3", "Fase 4"],
     "descripcion": "Un golpe básico con Ki.",
     "hijos": {
-        "Destrucción Rápida": {
-            "nombre": "Destrucción Rápida",
+        "Destruccion rapida": {
+            "nombre": "Destruccion rapida",
             "poder": 2000,
             "costo": 4000,
             "transformacion_requerida": ["Base", "Fase 1", "Fase 2", "Fase 3", "Fase 4"],
@@ -93,8 +93,8 @@ arbol_habilidades_data_18 = {
                     "transformacion_requerida": ["Base", "Fase 1", "Fase 2", "Fase 3", "Fase 4"],
                     "descripcion": "Lanza un disco de energía afilado que puede cortar a través de casi cualquier cosa, siendo un ataque tanto ofensivo como defensivo.",
                     "hijos": {
-                        "Autodestrucción": {
-                            "nombre": "Autodestrucción",
+                        "Autodestruccion": {
+                            "nombre": "Autodestruccion",
                             "poder": 5000,
                             "costo": 40000,
                             "transformacion_requerida": ["Base", "Fase 1", "Fase 2", "Fase 3", "Fase 4"],

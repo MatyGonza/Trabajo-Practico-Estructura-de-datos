@@ -1,4 +1,4 @@
-
+import random
 #Nodo de las habilidades
 class NodoHabilidad:
     def __init__(self, nombre: str, costo_ki: int, daño: int, transformacion_requerida:list,descripcion: str):
@@ -28,7 +28,7 @@ class ArbolHabilidades:
         """
         if nodo is None:
             nodo = self.raiz
-        print("  " * nivel + str(nodo))  # Imprime el nodo con indentación
+        print(str(nodo))  # Imprime el nodo con indentación
         if nodo.hijo:
             self.mostrar_arbol(nodo.hijo, nivel + 1)  # Muestra el primer hijo
         if nodo.hermano:
@@ -80,37 +80,14 @@ class ArbolHabilidades:
         # Devolvemos la pila invertida, ya que el último nodo procesado debe aparecer primero
         return pila[::-1]    
     
-    def listar_habilidades(self):
-        """
-        Devuelve una lista de todas las habilidades en el árbol.
-        """
-        habilidades = []
-        self._listar_habilidades_recursivo(self.raiz, habilidades)
-        return habilidades
-
-    def _listar_habilidades_recursivo(self, nodo: NodoHabilidad, habilidades: list):
-        if nodo is not None:
-            habilidades.append(nodo)  # Agrega la habilidad actual a la lista
-            if nodo.hijo:
-                self._listar_habilidades_recursivo(nodo.hijo, habilidades)  # Recurre al hijo
-            if nodo.hermano:
-                self._listar_habilidades_recursivo(nodo.hermano, habilidades)  # Recurre al hermano
-
-    
-    def __iter__(self):
-            """Permite iterar sobre las habilidades hijas y hermanos."""
-            current = self.hijo
-            while current is not None:
-                yield current  # Devuelve el nodo hijo actual
-                current = current.hermano  # Avanza al siguiente hermano
-    
     def buscar_habilidad(self, nombre: str, nodo=None):
         """
         Busca una habilidad por nombre en el árbol.
         """
+        
         if nodo is None:
             nodo = self.raiz
-        if nodo.nombre == nombre:
+        if nodo.nombre.lower() == nombre:
             return nodo
         # Buscar en el hijo y luego en el hermano
         if nodo.hijo:
@@ -124,6 +101,48 @@ class ArbolHabilidades:
         return None
 
     
+    def seleccionar_habilidad_aleatoria(self):
+        """Selecciona una habilidad aleatoria del árbol."""
+        return self._seleccionar_habilidad(self.raiz)
+
+    def _seleccionar_habilidad(self, nodo):
+        """Método recursivo para seleccionar una habilidad aleatoria."""
+        if nodo is None:
+            return None
+        
+        # Contar cuántos nodos hay en este subárbol
+        total_nodos = self._contar_nodos(nodo)
+        
+        # Elegir un índice aleatorio
+        indice_aleatorio = random.randint(0, total_nodos - 1)
+        
+        # Recorrer nuevamente para encontrar el nodo correspondiente al índice
+        return self._encontrar_nodo_por_indice(nodo, indice_aleatorio)
+
+    def _contar_nodos(self, nodo):
+        """Cuenta los nodos en el árbol."""
+        if nodo is None:
+            return 0
+        return 1 + self._contar_nodos(nodo.hijo) + self._contar_nodos(nodo.hermano)
+
+    def _encontrar_nodo_por_indice(self, nodo, indice):
+        """Encuentra el nodo correspondiente al índice dado."""
+        if nodo is None:
+            return None
+        
+        # Si el índice es 0, devolvemos este nodo
+        if indice == 0:
+            return nodo
+        
+        # Restar uno y buscar en los hijos y hermanos
+        indice -= 1
+        resultado = self._encontrar_nodo_por_indice(nodo.hijo, indice)
+        
+        if resultado is not None:
+            return resultado
+        
+        return self._encontrar_nodo_por_indice(nodo.hermano, indice)
+
 def crear_arbol_habilidades(datos):
     def construir_nodo(nombre, info):
         """
