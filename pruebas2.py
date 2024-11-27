@@ -28,65 +28,77 @@ class Juego:
 
     def turno_jugador(self):
         while True:
-            print(f"""\nTurno de {self.jugador.nombre} -- ki:{self.jugador.ki}/{self.jugador.max_ki} -- vida:{self.jugador.vida} -- nivel:{self.jugador.nivel} -- transformacion actual: {self.jugador.transformacion_actual.nombre}
-                  combates ganados: {self.jugador.combates_ganados} -- experiencia: {self.jugador.exp}/{self.jugador.max_exp}\n""")
+            print(f"""\n
+                  Turno de {self.jugador.nombre} 
+-- ki:{self.jugador.ki}/{self.jugador.max_ki} -- vida:{self.jugador.vida} -- nivel:{self.jugador.nivel} -- transformacion actual: {self.jugador.transformacion_actual.nombre}
+combates ganados: {self.jugador.combates_ganados} -- experiencia: {self.jugador.exp}/{self.jugador.max_exp} -- nivel de poder: {self.jugador.nivel_de_poder} -- \n""")
             print(f"Vida del oponente {self.maquina.nombre}: {self.maquina.vida} HP")
             print("\nHabilidades disponibles:")
             
-            habilidades = self.jugador.habilidades.listar_habilidades()
+            self.jugador.habilidades.mostrar_arbol()
             
-            for i, habilidad in enumerate(habilidades):
-                print(f"{i + 1}. {habilidad.nombre} (Costo Ki: {habilidad.costo_ki}, Daño: {habilidad.daño})")
-            accion = input("¿Quieres usar una habilidad (número) o cargar ki (c)? ").strip().lower()
+
+            accion = input("¿Quieres usar una habilidad (Escribela) o cargar ki (c)? ").lower()
             
-            if accion.isdigit() and 1 <= int(accion) <= len(habilidades):
-                habilidad_seleccionada = habilidades[int(accion) - 1]
-                self.jugador.usar_habilidad(habilidad_seleccionada.nombre, self.maquina)
-                break
-            elif accion == 'c':
+            if accion == 'c':
                 self.jugador.cargar_ki(1000)
+                break
+            elif accion :
+                self.jugador.usar_habilidad(accion, self.maquina)
                 break
             else:
                 print("\nAcción no válida. Por favor, elige un número válido o 'c' para cargar ki.")
             
         print("---"*20)
-    
-    
+    import random
 
-    def busqueda_habilidades(self,hijos):
-        habilidades=[]
-        for c in hijos:
-            if c in hijos is None:
-                return None
-            else:
-                habilidades.append(c)
-                print(c)
-                self.busqueda_habilidades(c.hijos)
-                return habilidades
-        
-    
     def turno_maquina(self):
-        print(f"""\nTurno del oponente {self.maquina.nombre} -- ki:{self.maquina.ki}/{self.maquina.max_ki} -- vida:{self.maquina.vida} -- nivel:{self.maquina.nivel} -- transformacion actual: {self.maquina.transformacion_actual.nombre}
-                  combates ganados: {self.maquina.combates_ganados} -- experiencia: {self.maquina.exp}/{self.maquina.max_exp}\n""")
+        print(f"""\n
+                Turno de {self.maquina.nombre} 
+        -- ki:{self.maquina.ki}/{self.maquina.max_ki} -- vida:{self.maquina.vida} -- nivel:{self.maquina.nivel} -- transformación actual: {self.maquina.transformacion_actual.nombre}
+        combates ganados: {self.maquina.combates_ganados} -- experiencia: {self.maquina.exp}/{self.maquina.max_exp} -- nivel de poder: {self.maquina.nivel_de_poder} -- \n""")
         
-        if self.maquina.ki >= 100 and random.choice([True, False]):
-            # Acceder a las habilidades desde la raíz del árbol
-            habilidades = self.maquina.habilidades.listar_habilidades()
-            
-            habilidad_aleatoria = random.choice(habilidades)
-            self.maquina.usar_habilidad(habilidad_aleatoria.nombre, self.jugador)
-        else:
-            self.maquina.cargar_ki(1000)
-            
-        print("---"*20)
+        # Obtener todas las transformaciones disponibles
+        transformaciones_disponibles = self.maquina.transformaciones.obtener_transformaciones_disponibles(self.maquina)
+        
+        # Mensaje de depuración sobre las transformaciones disponibles
+        print(f"Transformaciones disponibles: {[t.nombre for t in transformaciones_disponibles]}")
 
+        # Seleccionar una acción al azar: transformación o habilidad
+        if transformaciones_disponibles and self.maquina.ki > 0:
+            # Elegir aleatoriamente entre transformar o usar habilidad
+            accion = random.choice(['transformar', 'usar_habilidad'])
+
+            if accion == 'transformar':
+                # Seleccionar una transformación aleatoria
+                transformacion_aleatoria = random.choice(transformaciones_disponibles)
+                if self.maquina.ki >= transformacion_aleatoria.ki_necesario:
+                    print(f"Transformación aleatoria seleccionada: {transformacion_aleatoria.nombre}, Ki necesario: {transformacion_aleatoria.ki_necesario}")
+                    self.maquina.transformarse(transformacion_aleatoria.nombre)
+                else:
+                    print(f"No hay suficiente Ki para la transformación aleatoria: {transformacion_aleatoria.nombre}. Ki disponible: {self.maquina.ki}")
+
+            elif accion == 'usar_habilidad':
+                # Usar habilidades al azar si hay suficiente Ki
+                if self.maquina.ki >= 1000:
+                    habilidad_aleatoria = self.maquina.habilidades.seleccionar_habilidad_aleatoria()  # Obtener la habilidad aleatoria
+                    if habilidad_aleatoria:
+                        print(f"Usando habilidad aleatoria: {habilidad_aleatoria.nombre}")
+                        self.maquina.usar_habilidad(habilidad_aleatoria.nombre, self.jugador)
+                else:
+                    print("No hay suficiente Ki para usar habilidades. Cargando Ki...")
+                    self.maquina.cargar_ki(1000)
+        
+        else:
+            print("No hay transformaciones disponibles o no hay Ki para actuar.")    
+    
 # Función para seleccionar un contrincante aleatorio
 def seleccionar_contrincante(personajes):
     return random.choice(personajes)
 
 # Ejemplo de uso
 if __name__ == "__main__":
-    personajes = [goku, vegeta]
+    personajes = [gohan, vegeta]
 
     # Seleccionar un contrincante aleatorio
     contrincante = seleccionar_contrincante(personajes)

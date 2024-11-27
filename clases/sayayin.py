@@ -37,10 +37,10 @@ class Sayayin(Personaje):
     def crear_arbol_transformaciones(self):
         """Crea el árbol de transformaciones para el Saiyajin."""
         base = NodoTransformacion("Base", 0, None, 1)
-        ssj = NodoTransformacion("Super Saiyajin", 4000, base, 50)
-        ssj2 = NodoTransformacion("Super Saiyajin 2", 5500, ssj, 100)
-        ssj3 = NodoTransformacion("Super Saiyajin 3", 7000, ssj2, 150)
-        ssj4 = NodoTransformacion("Super Saiyajin 4", 8500, ssj3, 160)
+        ssj = NodoTransformacion("Super Saiyajin", 4000, "Base", 50)
+        ssj2 = NodoTransformacion("Super Saiyajin 2", 5500, "Super Saiyajin", 100)
+        ssj3 = NodoTransformacion("Super Saiyajin 3", 7000, "Super Saiyajin 3", 150)
+        ssj4 = NodoTransformacion("Super Saiyajin 4", 8500, "Super Saiyajin 4", 160)
 
         # Jerarquías
         base.agregar_hijo(ssj)

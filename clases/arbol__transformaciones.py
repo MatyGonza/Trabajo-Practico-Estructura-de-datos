@@ -28,7 +28,7 @@ class ArbolTransformaciones:
         """Muestra el árbol de manera jerárquica usando enlaces."""
         if nodo is None:
             nodo = self.raiz
-        print("     " * nivel + f"{nodo.nombre} (Ki: {nodo.ki_necesario}, Multiplicador: x{nodo.multiplicador_nivel_de_poder})")
+        print(f"{nodo.nombre} (Ki: {nodo.ki_necesario}, Multiplicador: x{nodo.multiplicador_nivel_de_poder})")
         if nodo.hijo:
             self.mostrar_arbol(nodo.hijo, nivel + 1)
         if nodo.hermano:
@@ -38,7 +38,7 @@ class ArbolTransformaciones:
         """Busca un nodo por nombre en el árbol."""
         if nodo is None:
             nodo = self.raiz
-        if nodo.nombre == nombre:
+        if nodo.nombre.lower() == nombre.lower():
             return nodo
         if nodo.hijo:
             resultado = self.buscar_nodo(nombre, nodo.hijo)
@@ -47,3 +47,24 @@ class ArbolTransformaciones:
         if nodo.hermano:
             return self.buscar_nodo(nombre, nodo.hermano)
         return None
+
+    
+    def obtener_proxima_transformacion(self, personaje):
+        """Devuelve la próxima transformación disponible para el personaje."""
+        return self._obtener_proxima_transformacion(self.raiz, personaje)
+
+    def _obtener_proxima_transformacion(self, nodo, personaje):
+        """Método recursivo para encontrar la próxima transformación."""
+        if nodo is None:
+            return None
+        
+        # Verificar si el personaje tiene la transformación requerida
+        if nodo.transformacion_requerida == personaje.transformacion_actual.nombre:
+            return nodo
+        
+        # Buscar en los hijos y hermanos
+        proxima_transformacion = self._obtener_proxima_transformacion(nodo.hijo, personaje)
+        if proxima_transformacion:
+            return proxima_transformacion
+        
+        return self._obtener_proxima_transformacion(nodo.hermano, personaje)
