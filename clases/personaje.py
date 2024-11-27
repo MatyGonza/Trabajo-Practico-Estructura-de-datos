@@ -2,6 +2,14 @@ import time
 from clases.arbol_transformaciones import ArbolTransformaciones
 from clases.arbol_habilidades import ArbolHabilidades
 from clases.grafo import GrafoDragonBall
+
+
+
+
+
+
+
+
 class Personaje:
     def __init__(self,nombre:str,vida:int,raza:str,estado:str,ki:int,max_ki,transformaciones:ArbolTransformaciones,transformacion_inicial,habilidades:ArbolHabilidades,exp,max_exp,nivel_de_poder,nivel:int=1,max_ki_base:int=10000,combates_ganados=1,planeta_actual = "Tierra"):
         
@@ -50,7 +58,7 @@ class Personaje:
         else:
             print ("No se puede ataque_basico, ya que no contas con la cant. de ki necesario. Te recomiendo cargar el ki.")
     
-    #habria que ver de no dar un valor muy alto a incremento romperia el codigo    
+        
     def cargar_ki(self, incremento:int):  # Se incrementará de 1000 en cien
         
         while self.ki < self.max_ki:
@@ -72,25 +80,19 @@ class Personaje:
     def recibir_daño(self,daño_recibido,personaje):
 
         if self.estado == "defensivo":
-            self.vida -= round(daño_recibido/2)
-            if personaje.vida < 0 :
-            #No puede llegar la vida a menos de 0 
-                personaje.vida = 0
-                print(f"{personaje.nombre} ha sido derrotado")
+            self.vida -= (daño_recibido//2)
+
             
-                self.estado = "Normal"
+            self.estado = "Normal"
 
             print(f"{self.nombre} recibio daño reducido debido a su defensa y su vida se redujo a: {self.vida}.")
       
         else: #self.estodo != "defensivo":
             self.vida -=daño_recibido
                 
-            if personaje.vida < 0 :
-            #No puede llegar la vida a menos de 0 
-                personaje.vida = 0
-                print(f"{personaje.nombre} ha sido derrotado")
+   
             
-            print(f"{personaje.nombre} Recibiste daño efectivo: {daño_recibido}\nTu vida restante es: {self.vida}")
+            print(f"{self.nombre} Recibiste daño efectivo de {personaje.nombre}: {daño_recibido}\nTu vida restante es: {self.vida}")
 
     def usar_habilidad(self, habilidad_nombre, enemigo):
         # Buscar la habilidad en el árbol
@@ -151,9 +153,12 @@ class Personaje:
 
     def incrementar_atributos(self):
         """Aumenta gradualmente los atributos de velocidad, defensa y fuerza."""
-        incremento = 5  # Define cuánto se incrementarán los atributos por cada nivel de poder
+        incremento = 5000 # Define cuánto se incrementarán los atributos por cada nivel de poder
         self.nivel_de_poder += incremento
-        self.vida += incremento*100
+        self.vida += incremento*2
+    
+    def aumentar_nivel_de_poder(self,incremento):
+        self.nivel_de_poder += incremento
 
     def calcular_max_ki(self,multiplicador=None):
         """Calcula el máximo de Ki basado en el nivel."""
@@ -221,8 +226,7 @@ class Personaje:
 
     def escapar_a(self, grafo, planeta_destino):
         """
-        Permite al personaje escapar a un planeta especificado,
-        sin necesidad de verificar las rutas (cambia el planeta directamente).
+        Permite al personaje escapar a un planeta especificado, sin necesidad de verificar las rutas (cambia el planeta directamente).
         
         :param grafo: El grafo de planetas.
         :param planeta_destino: El planeta al que el personaje quiere escapar.
@@ -233,33 +237,35 @@ class Personaje:
             print(f"{self.nombre} ha escapado a {planeta_destino}.")
         else:
             print(f"El planeta {planeta_destino} no existe en el grafo.")
+
     
-    def viajar_a(self, grafo, planeta_destino):
+    def viajar_a(self, grafo, planeta_destino, metodo_busqueda='bfs'):
         """
         Permite al personaje viajar a un planeta conectado al planeta actual,
-        si existe una ruta entre los planetas.
+        si existe una ruta entre los planetas usando el algoritmo de búsqueda especificado.
         
         :param grafo: El grafo de planetas.
         :param planeta_destino: El planeta al que el personaje quiere viajar.
+        :param metodo_busqueda: El algoritmo de búsqueda ('bfs' o 'dfs') a utilizar para encontrar la ruta.
         """
-        # Verificar si el planeta destino está conectado al planeta actual
-        if grafo.obtener_peso(self.planeta_actual, planeta_destino) > 0:
-            self.planeta_actual = planeta_destino
-            print(f"{self.nombre} ha viajado a {planeta_destino}.")
+        # Verificar si el planeta destino está conectado al planeta actual usando el algoritmo de búsqueda
+        if metodo_busqueda == 'bfs':
+            camino = grafo.bfs(self.planeta_actual, planeta_destino)
+        elif metodo_busqueda == 'dfs':
+            camino = grafo.dfs(self.planeta_actual, planeta_destino)
         else:
-            print(f"No hay ruta entre {self.planeta_actual} y {planeta_destino}.")
+            print("Método de búsqueda no válido. Usa 'bfs' o 'dfs'.")
+            return
+        
+        if camino:  # Si encontramos un camino
+            self.planeta_actual = planeta_destino
+            print(f"{self.nombre} ha viajado a {planeta_destino}. Camino encontrado: {camino}")
+        else:
+            print(f"No hay ruta entre {self.planeta_actual} y {planeta_destino} usando {metodo_busqueda}.")
 
 
 
 
-# Crear el grafo de planetas
-universo_planetas = ["Tierra", "Namek", "Vegeta"]
-grafo_universo = GrafoDragonBall(universo_planetas)
 
-# Agregar rutas entre planetas
-grafo_universo.agregar_ruta("Tierra", "Namek", 10)
-grafo_universo.agregar_ruta("Tierra", "Vegeta", 5)
-grafo_universo.agregar_ruta("Namek", "Vegeta", 15)
  
 
-goku = Personaje("Goku",)

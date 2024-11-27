@@ -1,22 +1,15 @@
 import heapq
-from clases.personaje import Personaje
+from personajes.personajes_saiyajin import goku, vegeta
 from clases.juego import Juego
 from clases.cola_prioridad import ColaDePrioridad
 from clases.grafo import GrafoDragonBall
 from clases.arbolDB import ArbolBinario
 
 class JuegoTorneo(Juego):
-    def __init__(self, jugador: Personaje, personajes_disponibles):
+    def __init__(self, jugador, personajes_disponibles):
         super().__init__(jugador, None)  # Inicia con un jugador y sin máquina
         self.personajes_disponibles = personajes_disponibles  # Lista de personajes disponibles
 
-    def elegir_personaje(self):
-        print("Selecciona un personaje para el torneo:")
-        for i, personaje in enumerate(self.personajes_disponibles):
-            print(f"{i+1}. {personaje.nombre} (Poder: {personaje.nivel_de_poder})")
-        opcion = int(input("Elige un número de personaje: ")) - 1
-        self.maquina = self.personajes_disponibles[opcion]
-        print(f"Has seleccionado a {self.maquina.nombre} para el torneo.")
 
     def iniciar_torneo(self):
         # Crear cola de prioridad

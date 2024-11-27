@@ -4,34 +4,24 @@ from clases.arbol_transformaciones import ArbolTransformaciones,NodoTransformaci
 from clases.arbol_habilidades import crear_arbol_habilidades
 
 class Androide(Personaje):
-    def __init__(self, nombre: str,arbol_habilidades_data):#el max ki cambiar su unidad a 10000
-        super().__init__(nombre, vida=1000, raza="Androide", estado="Normal", ki=0, max_ki=10000, transformaciones=self.crear_arbol_transformaciones(), transformacion_inicial=self.crear_arbol_transformaciones().raiz, habilidades=self.crear_arbol_habilidades(arbol_habilidades_data), exp=0, max_exp=100, nivel_de_poder=1, nivel=1, max_ki_base=1000,planeta_actual="Tierra")
-    def __init__(self, nombre: str,arbol_habilidades_data,combates_ganados):
-        super().__init__(nombre, vida=1000, raza="Androide", estado="Normal", ki=0, max_ki=100, transformaciones=self.crear_arbol_transformaciones(), transformacion_inicial=self.crear_arbol_transformaciones().raiz, habilidades=self.crear_arbol_habilidades(arbol_habilidades_data), exp=0, max_exp=100, nivel_de_poder=1, nivel=1, max_ki_base=1000)
+    def __init__(self, nombre: str, arbol_habilidades_data, combates_ganados=0):
+        """
+        Constructor de la clase Androide.
+        """
+        super().__init__(nombre=nombre,vida=1000,raza="Androide",estado="Normal",ki=0,max_ki=10000,transformaciones=self.crear_arbol_transformaciones(),transformacion_inicial=self.crear_arbol_transformaciones().raiz,habilidades=self.crear_arbol_habilidades(arbol_habilidades_data),exp=0,max_exp=100,nivel_de_poder=1,nivel=1,max_ki_base=1000,planeta_actual="Tierra")
         self.combates_ganados = combates_ganados
         self.evolucionar_poder(combates_ganados=self.combates_ganados)
     
     def ataque_especial(self, enemigo):
-        """Ataque especial del Andriode."""
-        if self.ki >= 300:
+        """Ataque especial del Saiyajin."""
+        if self.ki >= 5000:
             # Calcular el daño potencial basado en la fuerza
-            daño_especial = int(self.fuerza * 18)
+            daño_especial = int(self.nivel_de_poder*2)
             
-            # Calcular el daño efectivo restando la defensa del enemigo
-            daño_efectivo = daño_especial - enemigo.defensa
-            
-            # Asegurarse de que el daño no sea negativo
-            if daño_efectivo < 0:
-                daño_efectivo = 0
-            
-            # Aplicar el daño al enemigo
-            enemigo.recibir_daño(daño_efectivo)
-            
-            # Mensaje de resultado
-            print(f"{self.nombre} realizó un ataque especial infligiendo {daño_efectivo} puntos de daño a {enemigo.nombre}.")
+            enemigo.recibir_daño(daño_especial,enemigo)
             
             # Reducir ki al usar el ataque especial
-            self.ki -= 300  
+            self.ki -= 5000  
         else:
             print("No tienes suficiente ki para realizar un ataque especial.")
             
@@ -50,7 +40,8 @@ class Androide(Personaje):
         fase1.agregar_hijo(fase2)
         fase2.agregar_hijo(fase3)
         fase3.agregar_hijo(fase4)
-        return ArbolTransformaciones(base)
+        arbol = ArbolTransformaciones(base)
+        return arbol
 
     def crear_arbol_habilidades(self,arbol_habilidades_data):
             return crear_arbol_habilidades(arbol_habilidades_data)

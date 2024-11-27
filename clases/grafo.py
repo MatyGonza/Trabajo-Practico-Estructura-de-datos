@@ -1,7 +1,7 @@
 import heapq
 #usaremos un grafo con matriz de adyacencia
 class GrafoDragonBall:
-    def __init__(self, planetas):
+    def __init__(self, planetas,dirigido):
         """
         Inicializa el grafo con una lista de planetas.
         Crea una matriz de adyacencia donde cada celda almacena el peso (valor) de la ruta.
@@ -9,6 +9,7 @@ class GrafoDragonBall:
         """
         self.planetas = planetas  # Lista de planetas (nodos)
         self.num_planetas = len(planetas)
+        self.dirigido = dirigido # Define si el grafo es dirigido
         # Crear una matriz de adyacencia inicializada en 0
         self.matriz_adyacencia = [[0 for _ in range(self.num_planetas)] for _ in range(self.num_planetas)]
 
@@ -24,9 +25,11 @@ class GrafoDragonBall:
             i = self.planetas.index(origen)  # Índice del planeta de origen
             j = self.planetas.index(destino)  # Índice del planeta de destino
             self.matriz_adyacencia[i][j] = peso  # Establece el peso de la ruta
-            self.matriz_adyacencia[j][i] = peso  # Grafo no dirigido: ruta es bidireccional
-        else:
-            print("Uno o ambos planetas no existen en el grafo.")
+            if not self.dirigido:  # Si es un grafo no dirigido
+                self.matriz_adyacencia[j][i] = peso  # Añadir la ruta en dirección opuesta
+
+        if not self.dirigido:
+            self.matriz_adyacencia[j][i] = peso  # Para grafos no dirigidos
 
     def mostrar_rutas(self):
         """
@@ -40,20 +43,35 @@ class GrafoDragonBall:
                 if peso > 0:  # Solo muestra rutas con peso mayor a 0
                     print(f"Ruta entre {origen} y {destino} con peso {peso}")
 
+    def armar_grafo(self):
+        """
+        Configura el grafo con las rutas dadas.
+        Parámetros:
+            - rutas: Lista de tuplas (origen, destino, peso) que definen las rutas.
+        """
+
+        #lista a utiilizar para armar el grafo
+        planetas_dragonball =  ["Tierra","Namek","Vegeta","Planeta Kaio","Reino de los demonios","Planeta de Bills","La habitacion del tiempo","Planeta Yadarat"]
+        
+        rutas = [("Tierra","Namek",40),("Namek","Vegeta",90),("Namek","Reino de los demonios",70),("Tierra","La habitacion del tiempo",10),("Tierra","Planeta de Bills",180),("Reino de los demonios","Planeta Kaio",90),("Vegeta","Planeta Yadarat",50)]
+        for origen, destino, peso in rutas:
+            self.agregar_ruta(origen, destino, peso)
+        return
+
+
+
     def obtener_peso(self, origen, destino):
         """
         Devuelve el peso de la ruta entre dos planetas, si existe.
-        Parámetros:
-            - origen: nombre del planeta de inicio.
-            - destino: nombre del planeta de destino.
-        Retorna:
-            - El peso de la ruta o None si no existe.
         """
-        if origen in self.planetas and destino in self.planetas:
-            i = self.planetas.index(origen)
-            j = self.planetas.index(destino)
-            return self.matriz_adyacencia[i][j]
-        return None
+        if origen not in self.planetas or destino not in self.planetas:
+            print("Error: Uno o ambos planetas no existen en el grafo.")
+            return None
+
+        i = self.planetas.index(origen)
+        j = self.planetas.index(destino)
+        return self.matriz_adyacencia[i][j]
+
     
     def dfs(self, origen, destino):
         """
@@ -174,16 +192,11 @@ class GrafoDragonBall:
 
 
 
-#Creacion del universo
-#se va a utlizar para el torneo
 
-universo_dragonball =  ["Tierra","Namek","Vegeta","Planeta Kaio","Reino de los demonios","Planeta de Bills"]
-grafo = GrafoDragonBall(universo_dragonball)
-grafo.agregar_ruta("Tierra","Namek",40)
-grafo.agregar_ruta("Namek","Vegeta",70)
-grafo.agregar_ruta("Tierra","Reino de los demonios",60)
-grafo.agregar_ruta("Vegeta","Planeta Kaio",30)
-grafo.agregar_ruta("Tierra","Planeta de Bills",200)
+
+
+
+
 
 
 

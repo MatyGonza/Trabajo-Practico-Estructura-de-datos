@@ -4,34 +4,27 @@ from clases.arbol_transformaciones import ArbolTransformaciones,NodoTransformaci
 from clases.arbol_habilidades import crear_arbol_habilidades
 
 class Saiyajin(Personaje):
-    def __init__(self, nombre: str,arbol_habilidades_data):
-        super().__init__(nombre, vida=1000, raza="Saiyajin", estado="Normal", ki=0, max_ki=10000, transformaciones=self.crear_arbol_transformaciones(), transformacion_inicial=self.crear_arbol_transformaciones().raiz, habilidades=self.crear_arbol_habilidades(arbol_habilidades_data), exp=0, max_exp=100, nivel_de_poder=1, nivel=1, max_ki_base=1000,planeta_actual= "Tierra")
-    def __init__(self, nombre: str,arbol_habilidades_data,combates_ganados):
-        super().__init__(nombre, vida=1000, raza="Saiyajin", estado="Normal", ki=0, max_ki=100, transformaciones=self.crear_arbol_transformaciones(), transformacion_inicial=self.crear_arbol_transformaciones().raiz, habilidades=self.crear_arbol_habilidades(arbol_habilidades_data), exp=0, max_exp=100, nivel_de_poder=1, max_ki_base=1000,planeta_actual="Tierra")
+
+    def __init__(self, nombre: str, arbol_habilidades_data, combates_ganados=0):
+        # Combina ambos constructores previos en uno solo
+        transformaciones = self.crear_arbol_transformaciones()
+        habilidades = self.crear_arbol_habilidades(arbol_habilidades_data)
+    
+        super().__init__(nombre=nombre,vida=1000,raza="Saiyajin",estado="Normal",ki=0,max_ki=10000,transformaciones=transformaciones,transformacion_inicial=transformaciones.raiz,habilidades=habilidades,exp=0,max_exp=100, nivel_de_poder=1,nivel=1,max_ki_base=10000,planeta_actual="Tierra")
+        # Inicializa la cantidad de combates ganados y la evolución del poder
         self.combates_ganados = combates_ganados
         self.evolucionar_poder(combates_ganados=self.combates_ganados)
-        
-    
+
     def ataque_especial(self, enemigo):
         """Ataque especial del Saiyajin."""
-        if self.ki >= 500:
+        if self.ki >= 5000:
             # Calcular el daño potencial basado en la fuerza
-            daño_especial = int(self.fuerza * 20)
+            daño_especial = int(self.nivel_de_poder*2)
             
-            daño_efectivo = daño_especial - int(enemigo.defensa)
-            
-            # Asegurarse de que el daño no sea negativo
-            if daño_efectivo < 0:
-                daño_efectivo = 0
-            
-            # Aplicar el daño al enemigo
-            enemigo.recibir_daño(daño_efectivo)
-            
-            # Mensaje de resultado
-            print(f"{self.nombre} desató un poderoso ataque especial infligiendo {daño_efectivo} puntos de daño a {enemigo.nombre}.")
+            enemigo.recibir_daño(daño_especial,enemigo)
             
             # Reducir ki al usar el ataque especial
-            self.ki -= 500  
+            self.ki -= 5000  
         else:
             print("No tienes suficiente ki para realizar un ataque especial.")
 
@@ -51,7 +44,14 @@ class Saiyajin(Personaje):
         ssj2.agregar_hijo(ssj3)
         ssj3.agregar_hijo(ssj4)
 
-        return ArbolTransformaciones(base)
+        arbol = ArbolTransformaciones(base)
+        #muestra el arbol luego de crearlo
+        #arbol.mostrar_arbol()
+
+        return arbol
     
     def crear_arbol_habilidades(self,arbol_habilidades_data):
         return crear_arbol_habilidades(arbol_habilidades_data)
+
+#saiyajin = Saiyajin()
+#saiyajin.crear_arbol_transformaciones()

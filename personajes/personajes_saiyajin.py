@@ -38,25 +38,25 @@ arbol_habilidades_data_goku = {
 
 arbol_habilidades_data_vegeta = {
         "nombre": "Ataque básico",
-        "poder": 1000,
-        "costo": 100,
+        "poder": 10000,
+        "costo": 1500,
         "transformacion_requerida":  ["Base","Super Saiyajin","Super Saiyajin 2","Super Saiyajin 3"],
         "descripcion": "Un golpe básico con Ki.",
         "hijos": {
             "Resplandor Final": {
-                "poder": 2000,
+                "poder": 3000,
                 "costo": 4000,
                 "transformacion_requerida":  ["Base","Super Saiyajin","Super Saiyajin 2","Super Saiyajin 3"],
                 "descripcion": "Un ataque devastador que concentra una gran cantidad de energía en un rayo destructivo.",
                 "hijos": {
                     "Galick Gun": {
-                        "poder": 1500,
+                        "poder": 4500,
                         "costo": 3000,
                         "transformacion_requerida":  ["Base","Super Saiyajin","Super Saiyajin 2","Super Saiyajin 3"],
                         "descripcion": "Un poderoso rayo de energía",
                         "hijos": {
                             "Hakai": {
-                                "poder": 5000,
+                                "poder": 5500,
                                 "costo": 40000,
                                 "transformacion_requerida":  ["Base","Super Saiyajin","Super Saiyajin 2","Super Saiyajin 3"],
                                 "descripcion": "Una técnica destructiva utilizada por los dioses de la destrucción",
@@ -73,14 +73,14 @@ arbol_habilidades_data_vegeta = {
 
 arbol_habilidades_data_gohan = {
     "nombre": "Ataque básico",
-    "poder": 1000,
-    "costo": 100,
+    "poder": 1500,
+    "costo": 1000,
     "transformacion_requerida": ["Base", "Super Saiyajin", "Super Saiyajin 2", "Super Saiyajin 3"],
     "descripcion": "Un golpe básico con Ki.",
     "hijos": {
         "Masenko": {
             "nombre": "Masenko",
-            "poder": 2000,
+            "poder": 2500,
             "costo": 4000,
             "transformacion_requerida": ["Base", "Super Saiyajin", "Super Saiyajin 2", "Super Saiyajin 3"],
             "descripcion": "Un ataque rápido y poderoso donde lanza un rayo de energía.",
