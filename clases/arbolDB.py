@@ -1,4 +1,5 @@
-from clases.personaje import Personaje
+
+
 
 
 
@@ -100,3 +101,4 @@ class ArbolBinario:
                 self._mostrar_ramas_recursivo(nodo.derecha, camino_actual, ramas)
             # Eliminar el nodo actual al regresar (backtracking)
             camino_actual.pop()
+

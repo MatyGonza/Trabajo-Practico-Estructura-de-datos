@@ -2,7 +2,6 @@ from personajes.personajes_saiyajin import goku, gohan, vegeta
 from personajes.personajes_androide import andriode16, andriode17, andriode18
 from clases.personaje import Personaje
 from clases.grafo import GrafoDragonBall
-from clases.arbolDB import ArbolBinario
 from clases.arbol_transformaciones import NodoTransformacion, ArbolTransformaciones
 import random
 
@@ -11,69 +10,73 @@ import random
 
 
 class Juego:
-    def __init__(self, jugador: Personaje, maquina: Personaje, grafo:GrafoDragonBall, arbol_transfromaciones:ArbolTransformaciones):
+    def __init__(self, jugador: Personaje, maquina: Personaje, grafo: GrafoDragonBall, transformaciones: ArbolTransformaciones):
         self.jugador = jugador
         self.maquina = maquina
-        self.grafo = GrafoDragonBall()
-        self.transformaciones = ArbolTransformaciones()
+        self.grafo = grafo
+        self.transformaciones = transformaciones
         self.esferas_recolectadas = 0
 
 
 
     def iniciar_combate(self):
         print(f"Iniciando combate entre {self.jugador.nombre} y {self.maquina.nombre}!")
-        
         while self.jugador.vida > 0 and self.maquina.vida > 0:
             self.turno_jugador()
             if self.maquina.vida <= 0:
                 print(f"{self.maquina.nombre} ha sido derrotado!")
                 return self.jugador.mostrar_stats()
-            
             self.turno_maquina()
             if self.jugador.vida <= 0:
                 print(f"{self.jugador.nombre} ha sido derrotado!")
                 return self.maquina.mostrar_stats()
-
         print("El combate ha terminado.")
 
     def turno_jugador(self):
-            while True:  # Bucle para repetir hasta que se ingrese una opción válida
-                print(f"\nTurno de {self.jugador.nombre}.")
-                print(f"Vida de {self.maquina.nombre}: {self.maquina.vida} HP")
-                
-                accion = input("¿Quieres atacar (a) o cargar ki (c) o defenderse (d)?").strip().lower()
-                
-                if accion == 'a':
-                    self.jugador.ataque_basico(self.maquina)
-                    break  # Salir del bucle si la acción es válida
-                if accion == 'c':
-                    self.jugador.cargar_ki(1000)
-                    break  # Salir del bucle si la acción es válida
-                elif accion == 'd':
-                    self.jugador.defender()
-                    break
-                else: 
-                    print("Acción no válida. Por favor, elige 'a' para atacar o 'c' para cargar ki o 'd' para defenderse.")
+        while True:
+            print(f"""\nTurno de {self.jugador.nombre} -- Vida: {self.jugador.vida} -- Ki: {self.jugador.ki}/{self.jugador.max_ki}""")
+            print("Opciones: (1) Usar habilidad, (2) Cargar Ki, (3) Transformarse, (4) Escapar")
+            accion = input("Elige tu acción: ").strip()
+            if accion == "1":
+                habilidades = self.jugador.habilidades.listar_habilidades()
+                for i, habilidad in enumerate(habilidades):
+                    print(f"{i + 1}. {habilidad.nombre} (Ki: {habilidad.costo_ki}, Daño: {habilidad.daño})")
+                seleccion = int(input("Selecciona una habilidad: "))
+                self.jugador.usar_habilidad(habilidades[seleccion - 1].nombre, self.maquina)
+                break
+            elif accion == "2":
+                self.jugador.cargar_ki(1000)
+                break
+            elif accion == "3":
+                transformacion = input("¿A qué transformación deseas ir? ")
+                self.jugador.transformarse(transformacion)
+                break
+            elif accion == "4":
+                print("¡Has escapado del combate!")
+                return
+            else:
+                print("Opción inválida, intenta de nuevo.")
+        print("------"*20)
 
     def turno_maquina(self):
-        print(f"\nTurno de {self.maquina.nombre}.")
         if self.maquina.ki >= 100 and random.choice([True, False]):
-            self.maquina.ataque_basico(self.jugador)
+            habilidades = self.maquina.habilidades.listar_habilidades()
+            habilidad = random.choice(habilidades)
+            self.maquina.usar_habilidad(habilidad.nombre, self.jugador)
         else:
             self.maquina.cargar_ki(1000)
 
-
-        """
-        Realiza la búsqueda de las Esferas del Dragón explorando los vértices del grafo.
-        Si encuentra una, permite al jugador pedir un deseo.
-        """
-        print("Explorando el mundo en busca de las Esferas del Dragón...")
-        planetas_dragonball =  ["Tierra","Namek","Vegeta","Planeta Kaio","Reino de los demonios","Planeta de Bills","La habitacion del tiempo","Planeta Yadarat"]
-        grafo =GrafoDragonBall(planetas_dragonball,False)
-        grafo.armar_grafo()
-        grafo.mostrar_rutas()
-        print(grafo.dfs ("Tierra","Vegeta"))
-
+    def busqueda_habilidades(self,hijos):
+        habilidades=[]
+        for c in hijos:
+            if c in hijos is None:
+                return None
+            else:
+                habilidades.append(c)
+                print(c)
+                self.busqueda_habilidades(c.hijos)
+                return habilidades
+            
     def explorar_esferas(self):
         """
         Método para que el jugador busque las Esferas del Dragón en el grafo. El jugador debe recolectar las 7 esferas 
@@ -85,7 +88,7 @@ class Juego:
         
         planetas_dragonball = ["Tierra", "Namek", "Vegeta", "Planeta Kaio", "Reino de los demonios", 
                                "Planeta de Bills", "La habitación del tiempo", "Planeta Yadarat"]
-
+        
         # Buscar las esferas
         while self.esferas_recolectadas < 7:
             # El jugador elige un planeta desde el cual partir
@@ -136,12 +139,23 @@ class Juego:
                     print("Demasiados intentos el deseo no se cumple.")
                     break
 
-    
+# Función para seleccionar un contrincante aleatorio
+def seleccionar_contrincante(personajes):
+    return random.choice(personajes)
+
+# Ejemplo de uso
+if __name__ == "__main__":
+    personajes = [goku, vegeta]
+
+    # Seleccionar un contrincante aleatorio
+    contrincante = seleccionar_contrincante(personajes)
 
 
 
-    
 
+    # Iniciar el juego
+    juego = Juego(goku, contrincante)
+    juego.iniciar_combate()
 
 
             
