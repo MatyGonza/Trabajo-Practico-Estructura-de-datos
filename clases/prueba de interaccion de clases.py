@@ -816,27 +816,24 @@ arbol_habilidades_data_gohan = {
 
 
 class Saiyajin(Personaje):
-
     def __init__(self, nombre: str, arbol_habilidades_data, combates_ganados=0):
-        # Combina ambos constructores previos en uno solo
         transformaciones = self.crear_arbol_transformaciones()
         habilidades = self.crear_arbol_habilidades(arbol_habilidades_data)
     
-        super().__init__(nombre=nombre,vida=1000,raza="Saiyajin",estado="Normal",ki=0,max_ki=10000,transformaciones=transformaciones,transformacion_inicial=transformaciones.raiz,habilidades=habilidades,exp=0,max_exp=100, nivel_de_poder=1,nivel=1,max_ki_base=10000,planeta_actual="Tierra")
-        # Inicializa la cantidad de combates ganados y la evolución del poder
+        super().__init__(nombre=nombre, vida=1000, raza="Saiyajin", estado="Normal",
+                         ki=0, max_ki=10000, transformaciones=transformaciones,
+                         transformacion_inicial=transformaciones.raiz, habilidades=habilidades,
+                         exp=0, max_exp=100, nivel_de_poder=1, nivel=1, max_ki_base=10000,
+                         planeta_actual="Tierra")
         self.combates_ganados = combates_ganados
         self.evolucionar_poder(combates_ganados=self.combates_ganados)
 
     def ataque_especial(self, enemigo):
         """Ataque especial del Saiyajin."""
         if self.ki >= 5000:
-            # Calcular el daño potencial basado en la fuerza
-            daño_especial = int(self.nivel_de_poder*2)
-            
-            enemigo.recibir_daño(daño_especial,enemigo)
-            
-            # Reducir ki al usar el ataque especial
-            self.ki -= 5000  
+            daño_especial = int(self.nivel_de_poder * 2)
+            enemigo.recibir_daño(daño_especial, enemigo)
+            self.ki -= 5000
         else:
             print("No tienes suficiente ki para realizar un ataque especial.")
 
@@ -850,28 +847,26 @@ class Saiyajin(Personaje):
         ssj3 = NodoTransformacion("Super Saiyajin 3", 7000, ssj2, 150)
         ssj4 = NodoTransformacion("Super Saiyajin 4", 8500, ssj3, 160)
 
-        # Jerarquías
         base.agregar_hijo(ssj)
         ssj.agregar_hijo(ssj2)
         ssj2.agregar_hijo(ssj3)
         ssj3.agregar_hijo(ssj4)
 
-        arbol = ArbolTransformaciones(base)
-        #muestra el arbol luego de crearlo
-        #arbol.mostrar_arbol()
-
-        return arbol
+        return ArbolTransformaciones(base)
     
-    def crear_arbol_habilidades(self,arbol_habilidades_data):
+    def crear_arbol_habilidades(self, arbol_habilidades_data):
+        return crear_arbol_habilidades(arbol_habilidades_data)
         return crear_arbol_habilidades(arbol_habilidades_data)
 
 
 class Androide(Personaje):
     def __init__(self, nombre: str, arbol_habilidades_data, combates_ganados=0):
-        """
-        Constructor de la clase Androide.
-        """
-        super().__init__(nombre=nombre,vida=1000,raza="Androide",estado="Normal",ki=0,max_ki=10000,transformaciones=self.crear_arbol_transformaciones(),transformacion_inicial=self.crear_arbol_transformaciones().raiz,habilidades=self.crear_arbol_habilidades(arbol_habilidades_data),exp=0,max_exp=100,nivel_de_poder=1,nivel=1,max_ki_base=1000,planeta_actual="Tierra")
+        super().__init__(nombre=nombre, vida=1000, raza="Androide", estado="Normal",
+                         ki=0, max_ki=10000, transformaciones=self.crear_arbol_transformaciones(),
+                         transformacion_inicial=self.crear_arbol_transformaciones().raiz,
+                         habilidades=self.crear_arbol_habilidades(arbol_habilidades_data),
+                         exp=0, max_exp=100, nivel_de_poder=1, nivel=1, max_ki_base=10000,
+                         planeta_actual="Tierra")
         self.combates_ganados = combates_ganados
         self.evolucionar_poder(combates_ganados=self.combates_ganados)
     
@@ -891,23 +886,21 @@ class Androide(Personaje):
         
     
     def crear_arbol_transformaciones(self):
-        """Crea el árbol de transformaciones para el Saiyajin."""
         base = NodoTransformacion("Base", 0, None, 1)
         fase1 = NodoTransformacion("Fase 1", 4000, base, 50)
         fase2 = NodoTransformacion("Fase 2", 5500, fase1, 100)
         fase3 = NodoTransformacion("Fase 3", 7000, fase2, 150)
         fase4 = NodoTransformacion("Fase 4", 8500, fase3, 160)
 
-        # Jerarquías
         base.agregar_hijo(fase1)
         fase1.agregar_hijo(fase2)
         fase2.agregar_hijo(fase3)
         fase3.agregar_hijo(fase4)
-        arbol = ArbolTransformaciones(base)
-        return arbol
 
-    def crear_arbol_habilidades(self,arbol_habilidades_data):
-            return crear_arbol_habilidades(arbol_habilidades_data)
+        return ArbolTransformaciones(base)
+
+    def crear_arbol_habilidades(self, arbol_habilidades_data):
+        return crear_arbol_habilidades(arbol_habilidades_data)
 
 
 
@@ -1144,70 +1137,61 @@ class GrafoDragonBall:
 
 
 class Juego:
-    def __init__(self, jugador: Personaje, maquina: Personaje, grafo:GrafoDragonBall, transfromaciones:ArbolTransformaciones):
+    def __init__(self, jugador: Personaje, maquina: Personaje, grafo: GrafoDragonBall, transformaciones: ArbolTransformaciones):
         self.jugador = jugador
         self.maquina = maquina
         self.grafo = grafo
-        self.transformaciones = transfromaciones
+        self.transformaciones = transformaciones
         self.esferas_recolectadas = 0
 
 
 
     def iniciar_combate(self):
         print(f"Iniciando combate entre {self.jugador.nombre} y {self.maquina.nombre}!")
-        
         while self.jugador.vida > 0 and self.maquina.vida > 0:
             self.turno_jugador()
             if self.maquina.vida <= 0:
                 print(f"{self.maquina.nombre} ha sido derrotado!")
                 return self.jugador.mostrar_stats()
-            
             self.turno_maquina()
             if self.jugador.vida <= 0:
                 print(f"{self.jugador.nombre} ha sido derrotado!")
                 return self.maquina.mostrar_stats()
-
         print("El combate ha terminado.")
 
     def turno_jugador(self):
         while True:
-            print(f"""\nTurno de {self.jugador.nombre} -- ki:{self.jugador.ki}/{self.jugador.max_ki} -- vida:{self.jugador.vida} -- nivel:{self.jugador.nivel} -- transformacion actual: {self.jugador.transformacion_actual.nombre}
-                  combates ganados: {self.jugador.combates_ganados} -- experiencia: {self.jugador.exp}/{self.jugador.max_exp}\n""")
-            print(f"Vida del oponente {self.maquina.nombre}: {self.maquina.vida} HP")
-            print("\nHabilidades disponibles:")
-            
-            habilidades = self.jugador.habilidades.listar_habilidades()
-            
-            for i, habilidad in enumerate(habilidades):
-                print(f"{i + 1}. {habilidad.nombre} (Costo Ki: {habilidad.costo_ki}, Daño: {habilidad.daño})")
-            accion = input("¿Quieres usar una habilidad (número) o cargar ki (c)? ").strip().lower()
-            
-            if accion.isdigit() and 1 <= int(accion) <= len(habilidades):
-                habilidad_seleccionada = habilidades[int(accion) - 1]
-                self.jugador.usar_habilidad(habilidad_seleccionada.nombre, self.maquina)
+            print(f"""\nTurno de {self.jugador.nombre} -- Vida: {self.jugador.vida} -- Ki: {self.jugador.ki}/{self.jugador.max_ki}""")
+            print("Opciones: (1) Usar habilidad, (2) Cargar Ki, (3) Transformarse, (4) Escapar")
+            accion = input("Elige tu acción: ").strip()
+            if accion == "1":
+                habilidades = self.jugador.habilidades.listar_habilidades()
+                for i, habilidad in enumerate(habilidades):
+                    print(f"{i + 1}. {habilidad.nombre} (Ki: {habilidad.costo_ki}, Daño: {habilidad.daño})")
+                seleccion = int(input("Selecciona una habilidad: "))
+                self.jugador.usar_habilidad(habilidades[seleccion - 1].nombre, self.maquina)
                 break
-            elif accion == 'c':
+            elif accion == "2":
                 self.jugador.cargar_ki(1000)
                 break
+            elif accion == "3":
+                transformacion = input("¿A qué transformación deseas ir? ")
+                self.jugador.transformarse(transformacion)
+                break
+            elif accion == "4":
+                print("¡Has escapado del combate!")
+                return
             else:
-                print("\nAcción no válida. Por favor, elige un número válido o 'c' para cargar ki.")
-            
-        print("---"*20)
+                print("Opción inválida, intenta de nuevo.")
+        print("------"*20)
 
     def turno_maquina(self):
-        print(f"""\nTurno del oponente {self.maquina.nombre} -- ki:{self.maquina.ki}/{self.maquina.max_ki} -- vida:{self.maquina.vida} -- nivel:{self.maquina.nivel} -- transformacion actual: {self.maquina.transformacion_actual.nombre}
-                  combates ganados: {self.maquina.combates_ganados} -- experiencia: {self.maquina.exp}/{self.maquina.max_exp}\n""")
-        
         if self.maquina.ki >= 100 and random.choice([True, False]):
-            # Acceder a las habilidades desde la raíz del árbol
             habilidades = self.maquina.habilidades.listar_habilidades()
-            
-            habilidad_aleatoria = random.choice(habilidades)
-            self.maquina.usar_habilidad(habilidad_aleatoria.nombre, self.jugador)
+            habilidad = random.choice(habilidades)
+            self.maquina.usar_habilidad(habilidad.nombre, self.jugador)
         else:
             self.maquina.cargar_ki(1000)
-            
-        print("---"*20)
 
     def busqueda_habilidades(self,hijos):
         habilidades=[]
@@ -1281,6 +1265,107 @@ class Juego:
                 if intentos ==3:
                     print("Demasiados intentos el deseo no se cumple.")
                     break
+
+#clase
+class Torneo:
+    def __init__(self, personajes):
+        #se inicia una cola de prioridad
+        self.cola_prioridad = ColaDePrioridad()
+        #se agregan los personajes
+        for personaje in personajes:
+            self.cola_prioridad.agregar_personaje(personaje)
+        self.ganador = None #aca se guarda el ganador
+
+    def iniciar_torneo(self):
+        print("¡Iniciando el Torneo de Artes Marciales!")
+        #El torneo se ejecuta hasta que quede un solo personaje en la cola
+        while not self.cola_prioridad.esta_vacia():
+            # Si solo queda un personaje, es el ganador del torneo
+            if len(self.cola_prioridad.heap) == 1:
+                self.ganador = self.cola_prioridad.siguiente_enfrentamiento()
+                print(f"El ganador del torneo es {self.ganador.nombre} con un nivel de poder de {self.ganador.nivel_de_poder}!")
+                break
+
+            #se seleccionan a los dos luchadores        
+            contrincante1 = self.cola_prioridad.siguiente_enfrentamiento()
+            contrincante2 = self.cola_prioridad.siguiente_enfrentamiento()
+
+            print(f"Enfrentamiento: {contrincante1.nombre} vs {contrincante2.nombre}")
+
+            #se crea el juego
+            juego = Juego(contrincante1, contrincante2, None, None)
+            ganador = self.simular_combate(juego) #simula el combate
+            print(f"Ganador del combate: {ganador.nombre}")
+            ganador.ganar_combate() #el ganador mejora sus stats 
+            self.cola_prioridad.agregar_personaje(ganador) #vuele a la cola
+
+    def simular_combate(self, juego):
+        #simula el combate entre dos personajes turnándose
+        while juego.jugador.vida > 0 and juego.maquina.vida > 0:
+            juego.turno_jugador()  #turno del jugador
+            if juego.maquina.vida <= 0:  #si la máquina pierde toda su vida, el jugador gana
+                return juego.jugador
+            juego.turno_maquina()  #turno de la máquina
+            if juego.jugador.vida <= 0:  #si el jugador pierde toda su vida, la máquina gana
+                return juego.maquina
+
+#Representa el juego principal
+
+class MenuPrincipal:
+    def __init__(self, personajes, grafo, habilidades):
+        self.personajes = personajes #lista de personajes
+        self.grafo = grafo #grafo de las esferas o rutas
+        self.habilidades = habilidades
+
+    def mostrar_menu(self):
+        #Bucle principal para mostrar y gestionar las opciones del menú
+        while True:
+            print("\n--- Menú Principal ---")
+            print("1. Modo Torneo")
+            print("2. Modo Batalla Rápida")
+            print("3. Buscar Esferas del Dragón")
+            print("4. Ver orden de habilidades")
+            print("5. Salir")
+            opcion = input("Selecciona una opción: ").strip()
+
+            #Según la opción elegida, se ejecuta la funcionalidad correspondiente
+            if opcion == "1":
+                torneo = Torneo(self.personajes)  #se crea un torneo con los personajes
+                torneo.iniciar_torneo()  #se inicia el torneo
+            elif opcion == "2":
+                self.modo_batalla_rapida()  #se ejecuta una batalla rápida
+            elif opcion == "3":
+                self.buscar_esferas()  #se busca esferas del dragón
+            elif opcion == "4":
+                self.ver_habilidades()  #se muestra el orden de habilidades
+            elif opcion == "5":
+                print("¡Gracias por jugar!")  # Salida del juego
+                break
+            else:
+                print("Opción no válida. Intenta de nuevo.")  #validación de opción inválida
+
+    def modo_batalla_rapida(self):
+        # Selección de dos personajes aleatorios para una batalla rápida
+        jugador = random.choice(self.personajes)
+        maquina = random.choice([p for p in self.personajes if p != jugador])
+        # Se crea un juego con el jugador y la máquina
+        juego = Juego(jugador, maquina, self.grafo, None)
+        juego.iniciar_combate()  # Se inicia el combate
+
+    def buscar_esferas(self):
+        # Selección de un personaje para explorar las esferas
+        jugador = random.choice(self.personajes)
+        # Se crea un juego para la exploración
+        juego = Juego(jugador, None, self.grafo, None)
+        juego.explorar_esferas()  # Se exploran las esferas del dragón)
+
+    def ver_habilidades(self):
+        # Muestra el orden de habilidades utilizando un ordenamiento topológico
+        print("\nOrden de habilidades (topológico):")
+        habilidades_ordenadas = self.habilidades.ordenamiento_topologico()
+        for habilidad in habilidades_ordenadas:
+            print(habilidad.nombre)  # Se imprime cada habilidad en el orden obtenido
+
 
 # Función para seleccionar un contrincante aleatorio
 def seleccionar_contrincante(personajes):

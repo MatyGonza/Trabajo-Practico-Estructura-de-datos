@@ -1,13 +1,12 @@
-from clases.juego import Juego
+from pruebas2 import Juego
 from clases.personaje import Personaje
 from clases.cola_prioridad import ColaDePrioridad
 from clases.grafo import GrafoDragonBall
 from personajes.personajes_androide import andriode16, andriode17, andriode18
 from personajes.personajes_saiyajin import goku, gohan, vegeta
-from clases.arbol_habilidades import ArbolHabilidades
+
 import random
-import time
-import heapq
+
 
 
 #clase
@@ -112,12 +111,7 @@ class MenuPrincipal:
 
 
 # Crear los objetos y ejecutar el menú
-personajes = [andriode16, andriode17, andriode18, goku, vegeta, gohan]
-grafo = GrafoDragonBall(["Tierra", "Namek", "Vegeta", "Planeta Kaio", "Reino de los demonios", "Planeta de Bills", "La habitación del tiempo", "Planeta Yadarat"], False)
-grafo.armar_grafo()
 
-menu = MenuPrincipal(personajes, grafo, goku.habilidades)
-menu.mostrar_menu()
 
 
 

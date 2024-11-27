@@ -1,8 +1,9 @@
 from personajes.personajes_saiyajin import goku,gohan,vegeta
 from personajes.personajes_androide import andriode16,andriode17,andriode18
-
+from clases.grafo import GrafoDragonBall
 from clases.personaje import Personaje
 from clases.saiyajin import Saiyajin # Asegúrate de importar la clase correcta
+from clases.torneo import Torneo, MenuPrincipal
 import random
 
 class Juego:
@@ -92,5 +93,9 @@ if __name__ == "__main__":
     contrincante = seleccionar_contrincante(personajes)
 
     # Iniciar el juego
-    juego = Juego(goku, contrincante)
-    juego.iniciar_combate()
+personajes = [andriode16, andriode17, andriode18, goku, vegeta, gohan]
+grafo = GrafoDragonBall(["Tierra", "Namek", "Vegeta", "Planeta Kaio", "Reino de los demonios", "Planeta de Bills", "La habitación del tiempo", "Planeta Yadarat"], False)
+grafo.armar_grafo()
+
+menu = MenuPrincipal(personajes, grafo, goku.habilidades)
+menu.mostrar_menu()
