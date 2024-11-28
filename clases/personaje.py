@@ -63,9 +63,6 @@ class Personaje:
         
         while self.ki < self.max_ki:
             self.ki += incremento
-            # Asegurarse de que ki no supere max_ki
-            #if self.ki > self.max_ki:
-            #   self.ki = self.max_ki
             # Imprimir la carga actual
             print(f"\r{self.nombre} está cargando ki... Ki actual: {self.ki}/{self.max_ki}", end="") #el \r acualiza la linea en lugar de generar una sobre otra
             time.sleep(0.2) #pasa 0.5 segundos antes de cargar para hacer tipo una animacion
@@ -87,7 +84,7 @@ class Personaje:
 
             print(f"{self.nombre} recibio daño reducido debido a su defensa y su vida se redujo a: {self.vida}.")
       
-        else: #self.estodo != "defensivo":
+        else:
             self.vida -=daño_recibido
                 
    

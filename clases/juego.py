@@ -57,18 +57,21 @@ combates ganados: {self.jugador.combates_ganados} -- experiencia: {self.jugador.
             print("\nTransformaciones disponibles:")
             self.jugador.transformaciones.mostrar_arbol(self.jugador.transformaciones.raiz)
             
-            accion = input("\n¿Quieres usar una habilidad (Escríbela), cargar ki (c) o transformar (t)? ").lower()
+            accion = input("\n¿Quieres usar una habilidad (Escríbela), cargar ki (c) o transformar (t) o defenderse (d)? ").lower()
             
             if accion == 'c':
                 self.jugador.cargar_ki(1000)
                 break
-            elif accion == 't':
+            if accion == 't':
                 nombre_transformacion = input("Escribe el nombre de la transformación que deseas usar: ")
                 if self.jugador.transformarse(nombre_transformacion):
                     print(f"{self.jugador.nombre} se ha transformado en {nombre_transformacion}!")
                 else:
                     print("Transformación no válida o no tienes suficiente ki.")
                 break
+            elif accion == 'd':
+                self.jugador.defender()
+                
             else:
                 if accion:
                     self.jugador.usar_habilidad(accion, self.maquina)
