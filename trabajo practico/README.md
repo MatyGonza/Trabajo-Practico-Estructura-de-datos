@@ -800,6 +800,9 @@ Función seleccionar_contrincante
 
 Este código depende de que las clases Personaje, GrafoDragonBall, ArbolTransformaciones, y otras sean definidas correctamente para que todo funcione correctamente. Además, los comandos del sistema (cls para Windows y clear para sistemas UNIX) deben ser ejecutados en un entorno de consola compatible.
 
+**Anexo**
+![Diagrama de clases](./Diagrama%20de%20clases3.jpg)
+
 
 ### Estructuras Recursivas
 [estructuras-recursivas]:(#estructuras-recursivas)
