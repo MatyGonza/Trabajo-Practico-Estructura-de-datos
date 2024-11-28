@@ -140,7 +140,7 @@ class Personaje:
         self.transformacion_actual = nodo_transformacion
         
         # Evolucionar el poder del personaje con el multiplicador de la transformación
-        self.evolucionar_poder(nodo_transformacion.multiplicador_nivel_de_poder)
+        self.evolucionar_poder(multiplicador=nodo_transformacion.multiplicador_nivel_de_poder)
         
         print(f"{self.nombre} se ha transformado en '{nombre_transformacion}', con nivel de poder multiplicado por {nodo_transformacion.multiplicador_nivel_de_poder}.")
         exp_base = 100
@@ -212,6 +212,7 @@ class Personaje:
             return self.evolucionar_poder(combates_ganados - 1, multiplicador)
         else:
             
+            #Al tranformase se pasa como parametro el multiplicador de la tranformacion y eleva el poder del personaje
             nuevo_poder = self.nivel_de_poder * multiplicador
             nuevo_poder = round(nuevo_poder)
             # Actualizar el poder actual en una transformacion
