@@ -1,3 +1,5 @@
+# Segunda fase de pruebas
+
 from personajes.personajes_saiyajin import goku,gohan,vegeta
 from personajes.personajes_androide import andriode16,andriode17,andriode18
 from clases.grafo import GrafoDragonBall

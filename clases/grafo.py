@@ -13,13 +13,13 @@ class GrafoDragonBall:
         # Crear una matriz de adyacencia inicializada en 0
         self.matriz_adyacencia = [[0 for _ in range(self.num_planetas)] for _ in range(self.num_planetas)]
 
-    def agregar_ruta(self, origen, destino, peso):
+    def agregar_ruta(self, origen:str, destino:str, peso:int):
         """
         Agrega una ruta entre dos planetas con un peso (valor) asociado.
         Parámetros:
             - origen: nombre del planeta de inicio.
             - destino: nombre del planeta de destino.
-            - peso: valor asociado a la ruta (por ejemplo, distancia o tiempo).
+            - peso: (no puede ser negativo) valor asociado a la ruta (por ejemplo, distancia o tiempo).
         """
         if origen in self.planetas and destino in self.planetas:
             i = self.planetas.index(origen)  # Índice del planeta de origen

@@ -59,7 +59,7 @@ class Personaje:
             print ("No se puede ataque_basico, ya que no contas con la cant. de ki necesario. Te recomiendo cargar el ki.")
     
         
-    def cargar_ki(self, incremento:int):  # Se incrementará de 1000 en cien
+    def cargar_ki(self, incremento:int):  # Se incrementará de 1000 en mil
         
         while self.ki < self.max_ki:
             self.ki += incremento

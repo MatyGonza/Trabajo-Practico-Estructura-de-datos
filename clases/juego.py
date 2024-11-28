@@ -3,9 +3,9 @@ from personajes.personajes_androide import andriode16, andriode17, andriode18
 from clases.personaje import Personaje
 from clases.grafo import GrafoDragonBall
 from clases.arbol_transformaciones import NodoTransformacion, ArbolTransformaciones
-import random
-import os
-import time
+import random # Importamos el modulo random para los turnos de la maquina
+import os # Importamos el módulo os para poder limpiar la pantalla dependiendo del sistema operativo
+import time # Importamos el modulo time para el el turno de maquina que la salida no sea tan 
 
 
 
@@ -13,34 +13,52 @@ import time
 
 class Juego:
     def __init__(self, jugador: Personaje, maquina: Personaje, grafo: GrafoDragonBall, transformaciones: ArbolTransformaciones):
-        self.jugador = jugador
-        self.maquina = maquina
-        self.grafo = grafo
-        self.transformaciones = transformaciones
-        self.esferas_recolectadas = 0
+        self.jugador = jugador # El personaje de el usuario controla
+        self.maquina = maquina # La maquina de hace acciones aleatorias
+        self.grafo = grafo # Para el metodo de Explorar esferas
+        self.transformaciones = transformaciones 
+        self.esferas_recolectadas = 0 #contador para el metodo de encontrar explorar_esferas
 
 
 
+    # Método para limpiar la pantalla de la consola
     def limpiar_pantalla(self):
+        # Limpiar la pantalla de la consola, dependiendo del sistema operativo.
+        # Si es Windows ('nt'), usamos 'cls', de lo contrario ('clear' para sistemas Unix).
         os.system('cls' if os.name == 'nt' else 'clear')
 
+    # Método para iniciar el combate entre el jugador y la máquina
     def iniciar_combate(self):
+        # Imprime un mensaje indicando que el combate ha comenzado
         print(f"Iniciando combate entre {self.jugador.nombre} y {self.maquina.nombre}!")
+    
+        # Mientras ambos, jugador y máquina, tengan vida mayor a cero, el combate continúa
         while self.jugador.vida > 0 and self.maquina.vida > 0:
+            # El jugador realiza su turno
             self.turno_jugador()
+        
+            # Si la vida de la máquina es menor o igual a cero después del turno del jugador,
+            # entonces la máquina ha sido derrotada y el jugador gana
             if self.maquina.vida <= 0:
                 print(f"{self.maquina.nombre} ha sido derrotado!")
+                # Se muestran las estadísticas finales del jugador
                 return self.jugador.mostrar_stats()
+        
+        # Si la máquina aún está viva, realiza su turno
             self.turno_maquina()
+        
+            # Si la vida del jugador es menor o igual a cero después del turno de la máquina,
+            # entonces el jugador ha sido derrotado y la máquina gana
             if self.jugador.vida <= 0:
                 print(f"{self.jugador.nombre} ha sido derrotado!")
+                # Se muestran las estadísticas finales de la máquina
                 return self.maquina.mostrar_stats()
+    
+        # Si salimos del bucle (es decir, uno de los dos ha sido derrotado), mostramos un mensaje
         print("El combate ha terminado.")
 
     
-    def turno_jugador(self):
-        
-        
+    def turno_jugador(self): 
         
         while True:
             self.limpiar_pantalla()
@@ -204,19 +222,7 @@ combates ganados: {self.jugador.combates_ganados} -- experiencia: {self.jugador.
 def seleccionar_contrincante(personajes):
     return random.choice(personajes)
 
-# Ejemplo de uso
-if __name__ == "__main__":
-    personajes = [goku, vegeta]
 
-    # Seleccionar un contrincante aleatorio
-    contrincante = seleccionar_contrincante(personajes)
-
-
-
-
-    # Iniciar el juego
-    juego = Juego(goku, contrincante)
-    juego.iniciar_combate()
 
 
             
