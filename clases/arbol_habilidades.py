@@ -195,36 +195,3 @@ def crear_arbol_habilidades(datos):
         # Agregar el nodo hijo al nodo raíz
         arbol.agregar_hijo(raiz, hijo_nodo)
     return arbol # Devuelve el árbol completo
-
-#test
-# Crear un árbol de habilidades
-datos_habilidades = {
-    "nombre": "Kamehameha",
-    "costo": 500,
-    "poder": 1000,
-    "transformacion_requerida": [],
-    "descripcion": "Un potente rayo de energía.",
-    "hijos": {
-        "Kaio-Ken": {
-            "costo": 300,
-            "poder": 5000,
-            "transformacion_requerida": [],
-            "descripcion": "Técnica que multiplica la fuerza.",
-            "hijos": {}
-        },
-        "Genki-Dama": {
-            "costo": 800,
-            "poder": 15000,
-            "transformacion_requerida": ["Kaio-Ken"],
-            "descripcion": "Rayo de energía concentrada en una esfera gigante.",
-            "hijos": {}
-        }
-    }
-}
-# Crear el árbol de habilidades
-arbol_habilidades = crear_arbol_habilidades(datos_habilidades)
-
-# Obtener el orden topológico de las habilidades
-orden = arbol_habilidades.ordenamiento_topologico()
-for habilidad in orden:
-    print(habilidad)

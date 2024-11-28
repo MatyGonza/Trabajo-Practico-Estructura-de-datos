@@ -1,4 +1,4 @@
-from personajes.personajes_saiyajin import * 
+
 
 #utilizamos el modulo de cola de phyton
 
@@ -36,25 +36,6 @@ class ColaDePrioridad:
         Verifica si la cola de prioridades está vacía.
         """
         return len(self.heap) == 0    
-#test
-if __name__ == "__main__":
-
-
-    # Crear personajes
-    #goku = Personaje("Goku", 1000, "Saiyajin", "Normal", 500, 1000, None,
-                     #"Base", None, 0, 100, 9000)
-    #vegeta = Personaje("Vegeta", 1000, "Saiyajin", "Normal", 400, 900, None,
-                       #"Base", None, 0, 100, 8500)
-
-    # Crear cola de prioridad
-    cola = ColaDePrioridad()
-    cola.agregar_personaje(goku)
-    cola.agregar_personaje(vegeta)
-
-    # Simular enfrentamientos
-    while not cola.esta_vacia():
-        personaje = cola.siguiente_enfrentamiento()
-        print(f"¡Enfrentamiento con: {personaje}!")
 
 
 

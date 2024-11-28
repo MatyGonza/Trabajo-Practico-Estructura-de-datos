@@ -1,4 +1,4 @@
-
+# La primera fase de pruebas
 from clases.saiyajin import Saiyajin
 from clases.andriode import Androide
 from clases.juego import Juego

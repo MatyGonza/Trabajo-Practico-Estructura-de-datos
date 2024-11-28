@@ -31,7 +31,7 @@ class Androide(Personaje):
             print("No tienes suficiente ki para realizar un ataque especial.")
             
         
-    
+    # Crea las transformaciones y las agrega a el arbol
     def crear_arbol_transformaciones(self):
         base = NodoTransformacion("Base", 0, None, 1)
         fase1 = NodoTransformacion("Fase 1", 4000, "Base", 50)
@@ -45,6 +45,6 @@ class Androide(Personaje):
         fase3.agregar_hijo(fase4)
 
         return ArbolTransformaciones(base)
-
+    # Carga las habilidades de la carpeta personajes
     def crear_arbol_habilidades(self, arbol_habilidades_data):
         return crear_arbol_habilidades(arbol_habilidades_data)
