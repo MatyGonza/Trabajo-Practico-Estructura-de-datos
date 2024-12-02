@@ -1,8 +1,6 @@
-from personajes.personajes_saiyajin import goku, gohan, vegeta
-from personajes.personajes_androide import andriode16, andriode17, andriode18
-from clases.personaje import Personaje
+from ..clases.personaje import Personaje
 from clases.grafo import GrafoDragonBall
-from clases.arbol_transformaciones import NodoTransformacion, ArbolTransformaciones
+from clases.arbol_transformaciones import  ArbolTransformaciones
 import random # Importamos el modulo random para los turnos de la maquina
 import os # Importamos el módulo os para poder limpiar la pantalla dependiendo del sistema operativo
 import time # Importamos el modulo time para el el turno de maquina que la salida no sea tan 
@@ -89,6 +87,7 @@ combates ganados: {self.jugador.combates_ganados} -- experiencia: {self.jugador.
                 break
             elif accion == 'd':
                 self.jugador.defender()
+                break
                 
             else:
                 if accion:

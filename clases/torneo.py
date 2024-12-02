@@ -1,11 +1,7 @@
-from pruebas2 import Juego
-from clases.cola_prioridad import ColaDePrioridad
-from clases.grafo import GrafoDragonBall
-from personajes.personajes_androide import andriode16, andriode17, andriode18
-from personajes.personajes_saiyajin import goku, gohan, vegeta
 
+from .cola_prioridad import ColaDePrioridad
 import random
-
+from .grafo import GrafoDragonBall
 
 
 #clase
@@ -107,10 +103,5 @@ class MenuPrincipal:
         habilidades_ordenadas = self.habilidades.ordenamiento_topologico()
         for habilidad in habilidades_ordenadas:
             print(habilidad.nombre)  # Se imprime cada habilidad en el orden obtenido
-
-
-
-
-
 
 

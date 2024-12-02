@@ -21,6 +21,8 @@ class GrafoDragonBall:
             - destino: nombre del planeta de destino.
             - peso: (no puede ser negativo) valor asociado a la ruta (por ejemplo, distancia o tiempo).
         """
+        i = self.planetas.index(origen)  # Índice del planeta de origen
+        j = self.planetas.index(destino)
         if origen in self.planetas and destino in self.planetas:
             i = self.planetas.index(origen)  # Índice del planeta de origen
             j = self.planetas.index(destino)  # Índice del planeta de destino
