@@ -1,7 +1,4 @@
 
-
-#utilizamos el modulo de cola de phyton
-
 import heapq
 
     

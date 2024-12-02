@@ -1,7 +1,7 @@
 # La primera fase de pruebas
 from clases.saiyajin import Saiyajin
 from clases.andriode import Androide
-from clases.juego import Juego
+from clases.juego.juego import Juego
 
 arbol_habilidades_data = {
         "nombre":"Ataque básica",

@@ -17,6 +17,9 @@ class Androide(Personaje):
     def __str__(self):
         return f"{self.nombre} Nivel de poder: {self.nivel_de_poder}"
     
+    def __lt__(self, other):
+        return self.nivel_de_poder > other.nivel_de_poder  # Mayor nivel de poder tiene mayor prioridad
+    
     def ataque_especial(self, enemigo):
         """Ataque especial del Saiyajin."""
         if self.ki >= 5000:

@@ -1,4 +1,4 @@
-from ..clases.personaje import Personaje
+from ..personaje import Personaje
 from clases.grafo import GrafoDragonBall
 from clases.arbol_transformaciones import  ArbolTransformaciones
 import random # Importamos el modulo random para los turnos de la maquina
@@ -165,7 +165,7 @@ combates ganados: {self.jugador.combates_ganados} -- experiencia: {self.jugador.
         print("Explorando el mundo en busca de las Esferas del Dragón...")
         
         planetas_dragonball = ["Tierra", "Namek", "Vegeta", "Planeta Kaio", "Reino de los demonios", 
-                               "Planeta de Bills", "La habitación del tiempo", "Planeta Yadarat"]
+                               "Planeta de Bills", "La habitacion del tiempo", "Planeta Yadarat"]
         
         # Buscar las esferas
         while self.esferas_recolectadas < 7:

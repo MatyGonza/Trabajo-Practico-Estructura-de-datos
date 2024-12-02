@@ -1,8 +1,7 @@
 
 from .cola_prioridad import ColaDePrioridad
+from .juego.juego import Juego
 import random
-from .grafo import GrafoDragonBall
-
 
 #clase
 class Torneo:
@@ -29,7 +28,7 @@ class Torneo:
             contrincante2 = self.cola_prioridad.siguiente_enfrentamiento()
 
             print(f"Enfrentamiento: {contrincante1.nombre} vs {contrincante2.nombre}")
-
+            
             #se crea el juego
             juego = Juego(contrincante1, contrincante2, None, None)
             ganador = self.simular_combate(juego) #simula el combate
@@ -50,10 +49,11 @@ class Torneo:
 #Representa el juego principal
 
 class MenuPrincipal:
-    def __init__(self, personajes, grafo, habilidades):
+    def __init__(self, personajes, grafo, habilidades,torneo:Torneo):
         self.personajes = personajes #lista de personajes
         self.grafo = grafo #grafo de las esferas o rutas
         self.habilidades = habilidades
+        self.torneo=torneo
 
     def mostrar_menu(self):
         #Bucle principal para mostrar y gestionar las opciones del menú
@@ -68,8 +68,8 @@ class MenuPrincipal:
 
             #Según la opción elegida, se ejecuta la funcionalidad correspondiente
             if opcion == "1":
-                torneo = Torneo(self.personajes)  #se crea un torneo con los personajes
-                torneo.iniciar_torneo()  #se inicia el torneo
+                #torneo = Torneo(self.personajes)  #se crea un torneo con los personajes
+                self.torneo.iniciar_torneo()  #se inicia el torneo
             elif opcion == "2":
                 self.modo_batalla_rapida()  #se ejecuta una batalla rápida
             elif opcion == "3":
