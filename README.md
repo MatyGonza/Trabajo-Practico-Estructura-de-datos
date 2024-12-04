@@ -7,10 +7,9 @@
 
 
 ## Integrantes del Grupo
-1. Florencia Molina - dni: 37.834.497
-3. Junior Flores - dni: 95.122.461
-2. Matias Gonzalez - dni: 37.477.163
-
+1. Florencia Molina -
+3. Junior Flores - 
+2. Matias Gonzalez - 
 
 **Enlace al repositorio** [Repositorio][repositorio].
 
